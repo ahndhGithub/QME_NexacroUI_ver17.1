@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="cmmGridAddDelButton" width="40" height="28" onload="form_onload" scrolltype="none">
+    <Layouts>
+      <Layout height="28" width="40">
+        <Button id="btn_GridFormat" taborder="3" text="포맺" left="0" top="0" width="40" height="28" onclick="btn_GridFormat_onclick"/>
+        <PopupMenu id="PopupMenuGrdFormat" left="0" top="28" width="100" height="80" captioncolumn="CAPTION" idcolumn="ID" levelcolumn="LEVEL" innerdataset="ds_GridFormatMenu" enablecolumn="ENABLE" userdatacolumn="userdatacolumn" onmenuclick="PopupMenuGrdFormat_onmenuclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Src_HintsEduLib::All_EduLib.xjs";
+
+this.parentForm;
+this.oDivParnt;			// 부모Div
+
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+									var gtrcPos = "Comm_GridAddDelButton.form_onload";
+	// 0.선언
+	var sEvFrm;
+	
+	{	//	1. 스콥 확인용
+// 											this.gtrace("this.parent.form.name--->"+this.parent.form.name, gtrcPos);
+// 											this.gtrace("this.parent.form.parent.name--->"+this.parent.form.parent.name, gtrcPos);
+// 												this.gtrace("this.parent.form.parent.form.name--->"+this.parent.form.parent.form.name, gtrcPos);
+// 											this.gtrace("this.parent.form.parent.parent.name--->"+this.parent.form.parent.parent.parent.name, gtrcPos);
+// 													this.gtrace("this.parent.form.parent.parent.form.name--->"+this.parent.form.parent.parent.parent.form.name, gtrcPos);
+// 											this.gtrace("this.parent.form.parent.parent.parent.name--->"+this.parent.form.parent.parent.parent.name, gtrcPos);
+// 											this.gtrace("this.parent.form.parent.parent.parent.parent.name--->"+this.parent.form.parent.parent.parent.parent.name, gtrcPos);
+// 											this.gtrace("this.parent.form.parent.parent.parent.parent.parent.parent.name--->"+this.parent.form.parent.parent.parent.parent.parent.parent.name, gtrcPos);
+// 											this.gtrace("this.parent.form.parent.parent.parent.parent.name--->"+this.parent.form.parent.parent.parent.parent.name, gtrcPos);
+// 											this.gtrace("this.parent.form.parent.parent.parent.parent.parent.name--->"+this.parent.form.parent.parent.parent.parent.parent.name, gtrcPos);
+// 											this.gtrace("this.parent.form.parent.parent.parent.parent.parent.parent.name--->"+this.parent.form.parent.parent.parent.parent.parent.parent.name, gtrcPos);
+// 											this.gtrace("this.parent.form.parent.parent.parent.parent.parent.parent.parent.name--->"+this.parent.form.parent.parent.parent.parent.parent.parent.parent.name, gtrcPos);
+// 											this.gtrace("this.parent.form.parent.parent.parent.parent.parent.parent.parent.parent.name--->"+this.parent.form.parent.parent.parent.parent.parent.parent.parent.parent.name, gtrcPos);
+	}
+	
+	var arrTargetGrid;
+	var pFormName;
+	var pTargeGridName;
+	
+	{	//	1. UserProperty 가져오기
+						this.gtrace("this.parent.form.parent.targetGrid--->"+this.parent.form.parent.targetGrid, gtrcPos);
+		this.oDivParnt = this.parent.form.parent;
+	}
+
+	{	//	2. 부모 폼 가져오기 - Frame 바로 전 단계의 폼을 가져온다.
+		var sGridFullName;
+		var oTargetGrid;
+			sEvFrm = "this.parent.form";	//cmmGridAddDelButton
+			
+		while(!(eval(sEvFrm) instanceof nexacro.Frame)){
+			sEvFrm += ".parent";
+		}
+		
+		// 한단계 전으로
+		sEvFrm = sEvFrm.replace("this.parent.form.parent","this.parent.form");	//	this.parent.form.parent.parent.parent.parent.parent.parent
+		
+		//오브젝트화
+		this.parentForm = eval(sEvFrm);		this.gtrace("this.parentForm---->"+this.parentForm.name, gtrcPos);
+	}
+
+
+ 	{	//	3. 버튼 Enable / Disable 처리 : 부모폼의 세팅값(미정)에 따라 활성화 여부를 결정하는 로직 향후 필요함.
+// 		var arrInitSts = this.InitCompVisEna.split(",");
+// 		var arrVis = arrInitSts[0].split(":");
+// 		var arrEna = arrInitSts[1].split(":");
+// 					this.gtrace("this.arrBtns.length--->"+this.arrBtns.length, gtrcPos);
+// 
+// 		// 이 순서를 바꾸지 말자
+// 		this.arrBtns.push(this.btn_add);		//1.
+// 		this.arrBtns.push(this.btn_del);		//2.
+// 		this.arrBtns.push(this.btn_delMulti);	//3.
+// 
+// 		for(var i=0;i<this.arrBtns.length;i++){
+// 			this.arrBtns[i].set_visible((arrVis[i]=="1"?true:false));
+// 			this.arrBtns[i].set_enable((arrEna[i]=="1"?true:false));
+//		}
+	}
+		this.gtrace("<-------------------END------------------->", gtrcPos);
+};
+
+//포맷메뉴팝업
+this.btn_GridFormat_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+											var gtrcPos = "cmmGridAddDelButton.xjs.btn_GridFormat_onclick";
+												this.gtrace("그리드우클릭이벤트--->시작", gtrcPos);
+	var objApp = pForm.gfn_getApplication();
+	
+	// 대상 그리드와 셀 정보를 추가
+// 	objGrid.popupMenu.grid = objGrid;
+// 	objGrid.popupMenu.cellindex = e.cell;
+// 	objGrid.popupMenu.rowindex = e.row;
+	
+	// 위치는 다시 한번 봐야 한다.
+	var x = nexacro.toNumber(nexacro.System.getCursorX()) - nexacro.toNumber(system.clientToScreenX(objApp.mainframe, 0));
+	var y = nexacro.toNumber(nexacro.System.getCursorY()) - nexacro.toNumber(system.clientToScreenY(objApp.mainframe, 0));
+											this.gtrace("x,y--->("+x+","+y+")", gtrcPos);
+	this.PopupMenuGrdFormat.trackPopup(x, y);
+};
+
+//포맷메뉴팝업에서 클릭했을때 실행
+this.PopupMenuGrdFormat_onmenuclick = function(obj:nexacro.PopupMenu,e:nexacro.MenuClickEventInfo)
+{
+	this.fn_SaveLayoutPopup(e.id);
+};
+
+//포맷메뉴팝업에서 클릭했을때 실행
+this.fn_SaveLayoutPopup = function(sMenuId)
+{
+	var sPopupId;
+	var sTmpPopTitle;
+	var sTmpUrl = "Popup::PopupSaveLayout.xfdl"
+	var sTmpNum = this.parentForm.name;
+	var sTmpObj = eval("this.parentForm."+this.oDivParnt.targetGrid);
+	
+					var gtrcPos = "cmmGridAddDelButton.xfdl.fn_SaveLayoutPopup";
+							this.gtrace("sMenuId--->"+sMenuId, gtrcPos);
+	{
+		switch(sMenuId)
+		{
+			case "SaveLayout" :	sTmpPopTitle	= this.gfn_getWord("popup.SaveLayout");	//	팝업타이틀텍스트
+				break;
+			case "LoadLayout" : sTmpPopTitle	= this.gfn_getWord("popup.LoadLayout");	//	팝업타이틀텍스트
+				break;
+			default :
+				break;
+		}
+	}
+	{ //	1. 팝업 띄우기
+		sPopupId 	= sMenuId;
+		//팝업의 TitleText
+		sPopTitle	= sTmpPopTitle;		
+		sUrl      	= sTmpUrl;
+		oArg      	= {pStr:sMenuId, pNum:sTmpNum, pObj:sTmpObj};	//	전달변수 : pStr : 메뉴아이디
+		sCallBack 	= "fn_popupCallback";
+		oOption   	= {title : sPopTitle};	
+		
+		this.gfn_openPopup(sPopupId, sUrl, oArg, sCallBack, oOption);
+	}
+}
+
+/**
+* @description 콜백
+*/
+this.fn_popupCallback = function(sPopId, sRtn)
+{
+			var gtrcPos = "cmmGridAddDelButton.xfdl.fn_popupCallback";
+													this.gtrace("sPopId--->"+sPopId, gtrcPos);
+	switch(sPopId)
+	{
+// 		case "SaveLayout" :
+// 			
+// 			break;
+// 			
+		default : 
+
+			break;
+	}
+}
+]]></Script>
+    <Objects>
+      <Dataset id="ds_GridFormatMenu">
+        <ColumnInfo>
+          <Column id="ID" type="STRING" size="256"/>
+          <Column id="LEVEL" type="STRING" size="256"/>
+          <Column id="CAPTION" type="STRING" size="256"/>
+          <Column id="ENABLE" type="INT" size="256"/>
+          <Column id="VISIBLE" type="STRING" size="256"/>
+          <Column id="USERDATA" type="STRING" size="256"/>
+          <Column id="UPMENU" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="ID">SaveLayout</Col>
+            <Col id="LEVEL">0</Col>
+            <Col id="CAPTION">SaveLayout</Col>
+            <Col id="ENABLE">true</Col>
+            <Col id="VISIBLE">true</Col>
+            <Col id="USERDATA">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">LoadLayout</Col>
+            <Col id="LEVEL">0</Col>
+            <Col id="CAPTION">LoadLayout</Col>
+            <Col id="ENABLE">true</Col>
+            <Col id="VISIBLE">true</Col>
+            <Col id="USERDATA">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">ResetLayout</Col>
+            <Col id="LEVEL">0</Col>
+            <Col id="CAPTION">ResetLayout</Col>
+            <Col id="ENABLE">true</Col>
+            <Col id="VISIBLE">true</Col>
+            <Col id="USERDATA">0</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

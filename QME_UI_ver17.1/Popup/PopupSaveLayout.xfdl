@@ -1,0 +1,441 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="PopupSaveLayout" width="600" height="400" titletext="Sample_PopupSub" onload="Form_onload">
+    <Layouts>
+      <Layout height="400" width="600">
+        <Grid id="grd_list" taborder="0" left="16" top="104" right="16" autofittype="col" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" bottom="51" griduserproperty="no,status,!sort,!initial,!export,!colfix,!rowfix,!filter,!cellcopypaste,!colhide,!personal,!subsum" readonly="true" binddataset="ds_LayoutList">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="420"/>
+                <Column size="145"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Layout Name"/>
+                <Cell col="1" text="Default"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:LAYOUT_NM" edittype="text" editautoselect="true"/>
+                <Cell col="1" text="bind:DEFAULT_YN" displaytype="checkboxcontrol" edittype="checkbox" checkboxtruevalue="Y" checkboxfalsevalue="N"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static08" taborder="1" left="0" top="0" width="16" cssclass="sta_WF_guideRed" visible="false" text="w&#13;&#10;16" height="100%"/>
+        <Static id="Static02" taborder="2" top="0" width="16" cssclass="sta_WF_guideRed" visible="false" text="w&#13;&#10;16" right="0" height="100%"/>
+        <Static id="Static03" taborder="3" left="0" cssclass="sta_WF_guideRed" visible="false" text="h16" bottom="0" height="16" width="100%"/>
+        <Div id="DivCrudButton" top="8" height="28" text="" formscrolltype="none" cssclass="div_WF_search" url="Comm::Comm_CrudButton.xfdl" taborder="4" background="transparent" width="300" left="16" border="0px none"/>
+        <Static id="StaticVendor" taborder="5" text="Save Layout Name" left="0" top="44" width="160" cssclass="sta_WF_searchLabel" height="24"/>
+        <Edit id="EditLayoutName" taborder="6" left="158" height="24" top="44" cssclass="essential" width="150" autoselect="true" readonly="true"/>
+        <Div id="DivCnc" taborder="7" text="Div00" width="128" height="28" url="Comm::Comm_CnC.xfdl" right="16" bottom="16" visible="true" returnparms="SEQ,LAYOUT_NM,DEFAULT_YN,DATA_1" targetGrid="grd_list"/>
+        <Static id="StaticVendor00" taborder="8" text="Default Layout" left="0" top="74" width="160" cssclass="sta_WF_searchLabel" height="24"/>
+        <CheckBox id="CheckBoxDefaultLayout" taborder="9" text="" left="158" top="79" width="21" height="15" background="" truevalue="1" falsevalue="0" readonly="true"/>
+        <Div id="DivBtnAddDel_GridPoList00" taborder="10" text="" top="8" width="208" height="28" url="Comm::cmmGridAddDelButton.xfdl" targetGrid="grd_list" right="16"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_inLayout" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="PROGRAM_ID" type="STRING" size="256"/>
+          <Column id="GRID_ID" type="STRING" size="256"/>
+          <Column id="USER_ID" type="STRING" size="256"/>
+          <Column id="DEFAULT_YN" type="STRING" size="256"/>
+          <Column id="DEL_YN" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_LayoutList" useclientlayout="true" oncolumnchanged="ds_LayoutList_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="DEFAULT_YN" type="STRING" size="256"/>
+          <Column id="DEL_YN" type="STRING" size="256"/>
+          <Column id="GRID_ID" type="STRING" size="256"/>
+          <Column id="LAYOUT_NM" type="STRING" size="256"/>
+          <Column id="DATA_1" type="STRING" size="256"/>
+          <Column id="DATA_2" type="STRING" size="256"/>
+          <Column id="DATA_3" type="STRING" size="256"/>
+          <Column id="DATA_4" type="STRING" size="256"/>
+          <Column id="DATA_5" type="STRING" size="256"/>
+          <Column id="DATA_6" type="STRING" size="256"/>
+          <Column id="DATA_7" type="STRING" size="256"/>
+          <Column id="DATA_8" type="STRING" size="256"/>
+          <Column id="DATA_9" type="STRING" size="256"/>
+          <Column id="DATA_10" type="STRING" size="256"/>
+          <Column id="USER_ID" type="STRING" size="256"/>
+          <Column id="RN" type="STRING" size="256"/>
+          <Column id="PROGRAM_ID" type="STRING" size="256"/>
+          <Column id="SEQ" type="STRING" size="256"/>
+          <Column id="SaveUser" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_in" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="PROGRAM_ID" type="STRING" size="256"/>
+          <Column id="USER_ID" type="STRING" size="256"/>
+          <Column id="GRID_ID" type="STRING" size="256"/>
+          <Column id="DEFAULT_YN" type="STRING" size="256"/>
+          <Column id="LAYOUT_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_tranResult"/>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/********************************************************************************************
+@desc	1. Include
+********************************************************************************************/
+include "Src_HintsEduLib::All_EduLib.xjs";
+
+/********************************************************************************************
+@desc	2. Form 변수 선언 ---------------
+********************************************************************************************/
+this.paramStr;
+this.paramNum;
+this.paramObj;
+var sSplitChar = this.gfn_getApplication().MultiTxtSplitChar;
+var CHK_TRUE 	= "Y";
+var CHK_FALSE 	= "N";
+
+//공통코드 세팅 -- 할 일이 있다면 ...
+// this.COMBO_SET_STR = "ds_cmbPaymentTerms"+"#"+"ZTERM"		+" "
+// 					+"ds_cmbDocumentType"	+"#"+"ERP_DOC"      +" "
+// 					+"ds_cmbIncoterms"		+"#"+"INCO1"        +" "
+// 					+"ds_cmbCurrency"		+"#"+"CURRENCY"     +" "
+// 					;
+					
+/********************************************************************************************
+@desc	3. OnLoad
+********************************************************************************************/
+/* 
+ *	온로드이벤트
+ */
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+		//	기본호출
+	this.gfn_getAllInitData();
+												var gtrcPos = "PopupSaveLayout.xfdl.Form_onload";
+	{	//	넘어온 변수 세팅
+		this.paramStr = this.getOwnerFrame().pStr;			this.gtrace("paramStr--->"+this.paramStr, gtrcPos); // paramStr--->LoadLayout
+		this.paramNum = this.getOwnerFrame().pNum;			this.gtrace("paramNum--->"+this.paramNum, gtrcPos);	//	POList
+		this.paramObj = this.getOwnerFrame().pObj;			this.gtrace("paramObj--->"+this.paramObj, gtrcPos);	//	TabMain.TabpagePOList.form.GridPoList00
+	}
+	
+	{	//	공통콤포넌트 Visible / Enable 제어 (CRUD 버튼)
+		switch(this.paramStr)
+		{
+			case "SaveLayout"  :  
+						this.DivCrudButton.InitCompVisEna = "0:0:1:1,0:0:1:1";
+						this.DivBtnAddDel_GridPoList00.InitCompVisEna = "0:1:0,1:1:1";
+					break;
+			default :
+						this.DivCrudButton.InitCompVisEna = "1:0:0:0,1:0:0:0";
+						this.DivBtnAddDel_GridPoList00.InitCompVisEna = "0:0:0,1:1:1";
+					break;
+		}
+						this.gtrace("this.DivBtnAddDel_GridPoList00.InitCompVisEna--->"+this.DivBtnAddDel_GridPoList00.InitCompVisEna, gtrcPos);
+		//	적용
+		this.DivCrudButton.form.fn_setButtonVisEna();
+		this.DivBtnAddDel_GridPoList00.form.fn_setButtonVisEna();
+	}
+
+	switch(this.paramStr)
+	{	// 콤포넌트, 데이터셋 제어
+		case "SaveLayout"  : 	this.grd_list.set_readonly(false);	
+								this.CheckBoxDefaultLayout.set_readonly(false);
+								this.EditLayoutName.set_readonly(false);
+								this.EditLayoutName.setFocus();
+							break;
+		case "LoadLayout"  :  
+		case "ResetLayout" :  
+		default : break;
+	}
+
+		//리셋호출
+	this.fn_reset();
+};
+
+/* 
+ *	초기화 함수
+ */
+this.fn_reset = function()
+{	
+	{ 	// 데이터셋초기화
+		this.ds_inLayout.clearData();		//	검색in
+		this.ds_LayoutList.clearData();		//	결과Main
+		this.ds_in.clearData();				//	INSERT용
+		
+		this.ds_in.addRow();
+		this.ds_tranResult.clearData();		//	INSERT결과
+	}
+
+		// 데이터 가져오기
+	this.tfn_FormatSearch();
+	
+}
+
+/********************************************************************************************
+@desc	4. Validation 처리
+********************************************************************************************/
+
+
+
+/********************************************************************************************
+@desc	5. 서비스 호출(Transaction)
+********************************************************************************************/
+/*++
+@desc	포맷 가져오기
+*/
+this.tfn_FormatSearch = function(){
+
+	{
+		this.ds_inLayout.clearData();
+		this.ds_inLayout.addRow();
+		this.ds_inLayout.setColumn(0, "PROGRAM_ID", this.paramNum);
+		//	this.ds_inLayout.setColumn(0, "GRID_ID", this.paramObj.name);
+		this.ds_inLayout.setColumn(0, "GRID_ID", this._getUniqueId(this.paramObj));
+		this.ds_inLayout.setColumn(0, "DEFAULT_YN", "");
+		this.ds_inLayout.setColumn(0, "DEL_YN", "N");
+
+		
+		this.gfn_setUser(this.ds_inLayout, "USER_ID");
+	}
+	//	trace(this.ds_inLayout.saveXML());
+	var sSvcID 			= "FormatSearch";
+	var sURL 			= "AppSvr::common/commonAction.ppc";
+	var sInDatasets 	= "ds_in0=ds_inLayout";
+	var sOutDatasets 	= "ds_LayoutList=ds_out0";
+	var sArguments 		= "sqlId=" + nexacro.wrapQuote("getUserGridData");
+
+	//공통 트랜잭션 사용
+	this.gfn_transaction(sSvcID, sURL, sInDatasets, sOutDatasets, sArguments, "callbackFunction");
+}
+
+/*++
+@desc	포맷 저장 : 디폴트가 변경될 수 있기 때문에 ds_in이 아닌 ds_LayoutList 데이터셋에서 작업한다.
+*/
+this.tfn_FormatSave = function()
+{
+	var gtrcPos = "PopupSaveLayout.xfdl.tfn_FormatSave";		this.gtrace("● 포맺저장트랜잭션", gtrcPos);
+		//	trace("LAYOUT_NM---->"+this.ds_in.getColumn(0, "LAYOUT_NM"));
+	// INSERT 상황
+	if(!this.gfn_isNull(this.ds_in.getColumn(0, "LAYOUT_NM")))
+	{	// 레이아웃명이 있다면 INSERT
+		var bDfltLayout = this.ds_in.getColumn(0, "DEFAULT_YN");		//	trace("bDfltLayout--->"+bDfltLayout);
+		if(bDfltLayout==CHK_TRUE)
+		{	//INSERT가 디폴트인경우 : 기존 것들은 체크 해제
+			for(var i=0;i<this.ds_LayoutList.rowcount;i++){
+				if(this.ds_LayoutList.getColumn(i, "DEFAULT_YN")==CHK_TRUE){
+					this.ds_LayoutList.setColumn(i, "DEFAULT_YN", CHK_FALSE);
+				}
+			}
+		}
+
+		// 한줄추가
+		var iAddRp = this.ds_LayoutList.addRow();
+		this.ds_LayoutList.setColumn(iAddRp, "PROGRAM_ID", this.paramNum);
+		this.ds_LayoutList.setColumn(iAddRp, "GRID_ID", this._getUniqueId(this.paramObj));
+		this.ds_LayoutList.setColumn(iAddRp, "LAYOUT_NM", this.ds_in.getColumn(0, "LAYOUT_NM"));
+		this.ds_LayoutList.setColumn(iAddRp, "DEFAULT_YN", this.gfn_nvl(this.ds_in.getColumn(0, "DEFAULT_YN"),"N"));
+		this.ds_LayoutList.setColumn(iAddRp, "DEL_YN", "N");
+		this.ds_LayoutList.setColumn(iAddRp, "SEQ", "1");
+
+		//잘라서 1~10 넣기
+		this.fn_setFormatStringToDataset(iAddRp);
+	}
+
+	//USER세팅
+	this.gfn_setUser(this.ds_LayoutList, "USER_ID"); // gfn_setUser는 ds이벤트에 영향안줌
+	
+	if(this.ds_LayoutList.findRowExpr("ROW_STS=='I' || ROW_STS=='U' || ROW_STS=='D'") > -1)
+	{	// 뭐라도 있어야 트랜잭션
+		
+		this.ds_LayoutList.set_enableevent(false);
+		
+//		trace("this.ds_LayoutList---->"+this.ds_LayoutList.saveXML());
+		
+		// 트랜잭션
+		var sSvcID 			= "FormatSave";
+		var sURL 			= "AppSvr::common/commonAction.ppc";				//	var sURL = "AppSvrLocalMsSql::CommonSaveAction_Return.do";
+		var sInDatasets 	= "ds_in0=ds_LayoutList:U";
+		var sOutDatasets 	= "ds_tranResult=ds_out0";
+		var sArguments 		= "sqlId=" + nexacro.wrapQuote("setUserGridData");	//	var sArguments = "sqlId=" + nexacro.wrapQuote("formatSave");
+
+		//공통 트랜잭션 사용
+		this.gfn_transaction(sSvcID, sURL, sInDatasets, sOutDatasets, sArguments, "callbackFunction");
+		
+		this.ds_LayoutList.set_enableevent(true);
+	}
+	
+}
+/********************************************************************************************
+@desc	6. Callback
+********************************************************************************************/
+/*++
+@desc	Callback Function
+*/
+this.callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
+{
+							var gtrcPos = "PopupSaveLayout.xfdl.callbackFunction"
+	// 에러 체크 영역
+	if (nErrorCode < 0)
+	{
+		//	alert(this.gfn_removeJavaErrMsg(strErrorMsg));
+		alert(strErrorMsg);
+		return;
+	}
+
+	switch (strSvcID) 
+	{
+		default:
+
+			break;
+ 		
+		case "FormatSave"	:
+				
+				trace(this.ds_tranResult.saveXML());
+				this.fn_reset();
+
+				break;
+ 	}
+}
+
+/*++
+@desc	Popup Callbackz
+*/
+this.callbackFunc_pop = function(strID, variant)
+{
+				var gtrcPos = "PopupSaveLayout.xfdl.callbackFunc_pop";
+
+	var iCrntRp = this.ds_LayoutList.rowposition;
+	var sDATA_1 = this.ds_LayoutList.getColumn(iCrntRp, "DATA_1");
+	var iSEQ = this.ds_LayoutList.getColumn(iCrntRp, "SEQ");
+	var sLAYOUT_NM = this.ds_LayoutList.getColumn(iCrntRp, "LAYOUT_NM");
+	var sDEFAULT_YN = this.ds_LayoutList.getColumn(iCrntRp, "DEFAULT_YN");
+	
+	// 그리드 포맺 적용
+	this.paramObj.set_formats(("<Formats>" + sDATA_1 + "</Formats>"));
+	
+// 	var objRtn = { 
+// 					rtnStr 		: this.paramStr,
+// 					rtnNum 		: this.paramNum,
+// 					rtnObj 		: this.paramObj,	//	여기까지 받은 변수 그대로 넘김
+// 					sRtnKey		: iSEQ,
+// 					sRtnName	: sLAYOUT_NM,
+// 					sRtnEtc_00	: sDEFAULT_YN,
+// 					sRtnEtc_10	: "",
+// 					sRtnEtc_20	: ""	
+// 					};
+				this.gtrace("this.paramStr---->"+this.paramStr, gtrcPos);
+				this.gtrace("this.paramNum---->"+this.paramNum, gtrcPos);
+				this.gtrace("this.paramObj---->"+this.paramObj.name, gtrcPos);
+	
+	var objRtn = { 
+					rtnStr 		: this.paramStr,
+					rtnNum 		: this.paramNum,
+					rtnObj 		: this.paramObj.name,	//	여기까지 받은 변수 그대로 넘김
+					sRtnKey		: iSEQ,
+					sRtnName	: sLAYOUT_NM,
+					sRtnEtc_00	: sDEFAULT_YN,
+					sRtnEtc_10	: "",
+					sRtnEtc_20	: ""	
+					};
+					
+	this.close(JSON.stringify(objRtn));
+}
+/********************************************************************************************
+@desc	7. Common Function
+********************************************************************************************/
+/*
+ *	조회
+ */
+this.cfn_search = function()
+{
+	this.tfn_FormatSearch();
+};
+
+/*
+ *	입력
+ */
+this.cfn_add = function()
+{
+};
+
+/*
+ *	삭제
+ */
+this.cfn_del = function()
+{
+	{	//그리드한줄 삭제버튼 클릭후 바로 저장
+		this.DivBtnAddDel_GridPoList00.form.btn_del.click();
+		this.tfn_FormatSave();
+	}
+};
+
+/*
+ *	저장
+ */
+this.cfn_save = function()
+{
+	this.tfn_FormatSave();
+};
+
+/********************************************************************************************/
+/**   8. 사용자 함수                                                                        */
+/********************************************************************************************/
+
+
+/********************************************************************************************/
+/**   9. 이벤트(Event) 처리                                                                 */
+/********************************************************************************************/
+this.ds_LayoutList_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+	if(e.columnid == "DEFAULT_YN"){
+		obj.set_enableevent(false);
+		
+		if(e.newvalue==CHK_TRUE){
+			// 디폴트 체크시 다른 것들은 체크해제 : 하나의 디폴트만 갖도록 한다.
+			for(var i=0;i<obj.rowcount;i++){
+				if(i != e.row && obj.getColumn(i, "DEFAULT_YN")==CHK_TRUE){
+						obj.setColumn(i, "DEFAULT_YN", CHK_FALSE);
+						obj.setColumn(i, "ROW_STS", "U");
+				}
+			}
+		}
+// 		else{
+// 			//	디폴트된 것의 해제 없음
+// 				obj.setColumn(e.row, e.columnid, e.oldvalue);
+// 		}
+		
+		obj.set_enableevent(true);
+	}
+};
+
+
+this.fn_setFormatStringToDataset = function(iRp){
+
+	var sSampleText = this.paramObj.getCurFormatString();
+	
+	var sTmpSubstrText;			//	sSampleText = "1234567890";		//	var iSubstrNum = 3;
+	var iSubstrNum = 3000;
+	
+	var iLen = sSampleText.length;
+	var iStartNum = 0;
+	var iEndNum = iSubstrNum;
+	var iCnt=1;
+	while(iStartNum < iLen)
+	{
+		var sTmpSubstrText = sSampleText.substring(iStartNum,iEndNum); //	trace("sTmpSubstrText--->"+sTmpSubstrText);
+		this.ds_LayoutList.setColumn(iRp, "DATA_"+iCnt, sTmpSubstrText);
+
+		iStartNum += iSubstrNum;
+		iEndNum += iSubstrNum;
+		iCnt++;
+	}	
+}
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="EditLayoutName" propid="value" datasetid="ds_in" columnid="LAYOUT_NM"/>
+      <BindItem id="item1" compid="CheckBoxDefaultLayout" propid="value" datasetid="ds_in" columnid="DEFAULT_YN"/>
+    </Bind>
+  </Form>
+</FDL>
