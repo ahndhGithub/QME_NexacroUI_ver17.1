@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<FDL version="2.0">
+<FDL version="2.1">
   <Form id="test" width="1280" height="720" titletext="New Form" onload="test_onload">
     <Layouts>
       <Layout height="720" mobileorientation="landscape" width="1280">
@@ -12,7 +12,8 @@
     </Layouts>
     <Script type="xscript5.1"><![CDATA[this.test_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
-	this.WebBrowser00.set_url("http://localhost:8080/QME/youtubePlayer.html");		//	https://developers.google.com/youtube/iframe_api_reference?hl=ko
+	//	this.WebBrowser00.set_url("http://localhost:8080/QME/youtubePlayer.html");		//	https://developers.google.com/youtube/iframe_api_reference?hl=ko
+	//	this.WebBrowser00.set_url("http://192.168.11.193:8101/nexos/html/main/main.html?ver=20181022_03#LC00000M");
 };
 
 this.ButtonPlay_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)

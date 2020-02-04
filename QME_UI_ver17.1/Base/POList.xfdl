@@ -232,149 +232,92 @@
                           <Column size="80"/>
                           <Column size="80"/>
                           <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
                         </Columns>
                         <Rows>
-                          <Row band="head" size="24"/>
+                          <Row size="24" band="head"/>
                           <Row size="24"/>
                         </Rows>
                         <Band id="head">
-                          <Cell text="VBELN"/>
-                          <Cell col="1" text="CENTER_NM"/>
-                          <Cell col="2" text="TYPE"/>
-                          <Cell col="3" text="ERP_STYLE"/>
-                          <Cell col="4" text="POITEM"/>
-                          <Cell col="5" text="EBELP"/>
-                          <Cell col="6" text="ZTERM"/>
-                          <Cell col="7" text="BSART_F"/>
-                          <Cell col="8" text="LIFNR"/>
-                          <Cell col="9" text="NAME1"/>
-                          <Cell col="10" text="PO_DESC"/>
-                          <Cell col="11" text="MATNR"/>
-                          <Cell col="12" text="USAGE"/>
-                          <Cell col="13" text="BUYER_ITEM_CD"/>
-                          <Cell col="14" text="TXZ01"/>
-                          <Cell col="15" text="GMT_COL"/>
-                          <Cell col="16" text="BUYER_COLOR_CODE"/>
-                          <Cell col="17" text="FULL_DESC"/>
-                          <Cell col="18" text="MTL_COLOR"/>
-                          <Cell col="19" text="J_3ASIZE"/>
-                          <Cell col="20" text="MENGE"/>
-                          <Cell col="21" text="MEINS"/>
-                          <Cell col="22" text="NETPR"/>
-                          <Cell col="23" text="NETWR"/>
-                          <Cell col="24" text="PEINH"/>
-                          <Cell col="25" text="WAERS"/>
-                          <Cell col="26" text="EKGRP"/>
-                          <Cell col="27" text="UEBTO"/>
-                          <Cell col="28" text="UNTTO"/>
-                          <Cell col="29" text="DELIVERY_LOC"/>
-                          <Cell col="30" text="GR_BSD"/>
-                          <Cell col="31" text="IMPORT_REQ"/>
-                          <Cell col="32" text="USER_ID"/>
-                          <Cell col="33" text="USER_NM"/>
-                          <Cell col="34" text="BUYER_CD"/>
-                          <Cell col="35" text="CUST_NM"/>
-                          <Cell col="36" text="INCO1"/>
-                          <Cell col="37" text="REMARK1"/>
-                          <Cell col="38" text="ITEM_NM"/>
-                          <Cell col="39" text="EINDT"/>
-                          <Cell col="40" text="FORWARDER"/>
-                          <Cell col="41" text="CENTER_CD"/>
-                          <Cell col="42" text="SORT_NUM"/>
-                          <Cell col="43" text="MTL_ITEM_CD"/>
-                          <Cell col="44" text="POSNR"/>
-                          <Cell col="45" text="VBELP"/>
-                          <Cell col="46" text="STATUS"/>
-                          <Cell col="47" text="BSART"/>
-                          <Cell col="48" text="MTL_SIZE_KEY"/>
-                          <Cell col="49" text="MTL_COLOR_KEY"/>
-                          <Cell col="50" text="ELIKZ"/>
-                          <Cell col="51" text="ZQME_PO"/>
-                          <Cell col="52" text="LOT_NO"/>
-                          <Cell col="53" text="GRQTY"/>
-                          <Cell col="54" text="REG_USER_ID"/>
-                          <Cell col="55" text="ITEM_CD"/>
-                          <Cell col="56" text="J_3AEBSP"/>
-                          <Cell col="57" text="SaveUser"/>
+                          <Cell text="Message"/>
+                          <Cell col="1" text="VBELN"/>
+                          <Cell col="2" text="CENTER_NM"/>
+                          <Cell col="3" text="TYPE"/>
+                          <Cell col="4" text="ERP_STYLE"/>
+                          <Cell col="5" text="POITEM"/>
+                          <Cell col="6" text="EBELP"/>
+                          <Cell col="7" text="ZTERM"/>
+                          <Cell col="8" text="BSART_F"/>
+                          <Cell col="9" text="LIFNR"/>
+                          <Cell col="10" text="NAME1"/>
+                          <Cell col="11" text="PO_DESC"/>
+                          <Cell col="12" text="MATNR"/>
+                          <Cell col="13" text="USAGE"/>
+                          <Cell col="14" text="BUYER_ITEM_CD"/>
+                          <Cell col="15" text="TXZ01"/>
+                          <Cell col="16" text="GMT_COL"/>
+                          <Cell col="17" text="BUYER_COLOR_CODE"/>
+                          <Cell col="18" text="FULL_DESC"/>
+                          <Cell col="19" text="MTL_COLOR"/>
+                          <Cell col="20" text="J_3ASIZE"/>
+                          <Cell col="21" text="MENGE"/>
+                          <Cell col="22" text="MEINS"/>
+                          <Cell col="23" text="NETPR"/>
+                          <Cell col="24" text="NETWR"/>
+                          <Cell col="25" text="PEINH"/>
+                          <Cell col="26" text="WAERS"/>
+                          <Cell col="27" text="EKGRP"/>
+                          <Cell col="28" text="UEBTO"/>
+                          <Cell col="29" text="UNTTO"/>
+                          <Cell col="30" text="DELIVERY_LOC"/>
+                          <Cell col="31" text="GR_BSD"/>
+                          <Cell col="32" text="IMPORT_REQ"/>
+                          <Cell col="33" text="USER_ID"/>
+                          <Cell col="34" text="USER_NM"/>
+                          <Cell col="35" text="BUYER_CD"/>
+                          <Cell col="36" text="CUST_NM"/>
+                          <Cell col="37" text="INCO1"/>
+                          <Cell col="38" text="REMARK1"/>
                         </Band>
                         <Band id="body">
-                          <Cell text="bind:VBELN"/>
-                          <Cell col="1" text="bind:CENTER_NM"/>
-                          <Cell col="2" text="bind:TYPE"/>
-                          <Cell col="3" text="bind:ERP_STYLE"/>
-                          <Cell col="4" text="bind:POITEM"/>
-                          <Cell col="5" text="bind:EBELP"/>
-                          <Cell col="6" text="bind:ZTERM"/>
-                          <Cell col="7" text="bind:BSART_F"/>
-                          <Cell col="8" text="bind:LIFNR"/>
-                          <Cell col="9" text="bind:NAME1"/>
-                          <Cell col="10" text="bind:PO_DESC"/>
-                          <Cell col="11" text="bind:MATNR"/>
-                          <Cell col="12" text="bind:USAGE"/>
-                          <Cell col="13" text="bind:BUYER_ITEM_CD"/>
-                          <Cell col="14" text="bind:TXZ01"/>
-                          <Cell col="15" text="bind:GMT_COL"/>
-                          <Cell col="16" text="bind:BUYER_COLOR_CODE"/>
-                          <Cell col="17" text="bind:FULL_DESC"/>
-                          <Cell col="18" text="bind:MTL_COLOR"/>
-                          <Cell col="19" text="bind:J_3ASIZE"/>
-                          <Cell col="20" text="bind:MENGE"/>
-                          <Cell col="21" text="bind:MEINS"/>
-                          <Cell col="22" text="bind:NETPR"/>
-                          <Cell col="23" text="bind:NETWR"/>
-                          <Cell col="24" text="bind:PEINH"/>
-                          <Cell col="25" text="bind:WAERS"/>
-                          <Cell col="26" text="bind:EKGRP"/>
-                          <Cell col="27" text="bind:UEBTO"/>
-                          <Cell col="28" text="bind:UNTTO"/>
-                          <Cell col="29" text="bind:DELIVERY_LOC"/>
-                          <Cell col="30" text="bind:GR_BSD"/>
-                          <Cell col="31" text="bind:IMPORT_REQ"/>
-                          <Cell col="32" text="bind:USER_ID"/>
-                          <Cell col="33" text="bind:USER_NM"/>
-                          <Cell col="34" text="bind:BUYER_CD"/>
-                          <Cell col="35" text="bind:CUST_NM"/>
-                          <Cell col="36" text="bind:INCO1"/>
-                          <Cell col="37" text="bind:REMARK1"/>
-                          <Cell col="38" text="bind:ITEM_NM"/>
-                          <Cell col="39" text="bind:EINDT"/>
-                          <Cell col="40" text="bind:FORWARDER"/>
-                          <Cell col="41" text="bind:CENTER_CD"/>
-                          <Cell col="42" text="bind:SORT_NUM"/>
-                          <Cell col="43" text="bind:MTL_ITEM_CD"/>
-                          <Cell col="44" text="bind:POSNR"/>
-                          <Cell col="45" text="bind:VBELP"/>
-                          <Cell col="46" text="bind:STATUS"/>
-                          <Cell col="47" text="bind:BSART"/>
-                          <Cell col="48" text="bind:MTL_SIZE_KEY"/>
-                          <Cell col="49" text="bind:MTL_COLOR_KEY"/>
-                          <Cell col="50" text="bind:ELIKZ"/>
-                          <Cell col="51" text="bind:ZQME_PO"/>
-                          <Cell col="52" text="bind:LOT_NO"/>
-                          <Cell col="53" text="bind:GRQTY"/>
-                          <Cell col="54" text="bind:REG_USER_ID"/>
-                          <Cell col="55" text="bind:ITEM_CD"/>
-                          <Cell col="56" text="bind:J_3AEBSP"/>
-                          <Cell col="57" text="bind:SaveUser"/>
+                          <Cell text="bind:Message"/>
+                          <Cell col="1" text="bind:VBELN"/>
+                          <Cell col="2" text="bind:CENTER_NM"/>
+                          <Cell col="3" text="bind:TYPE"/>
+                          <Cell col="4" text="bind:ERP_STYLE"/>
+                          <Cell col="5" text="bind:POITEM"/>
+                          <Cell col="6" text="bind:EBELP"/>
+                          <Cell col="7" text="bind:ZTERM"/>
+                          <Cell col="8" text="bind:BSART_F"/>
+                          <Cell col="9" text="bind:LIFNR"/>
+                          <Cell col="10" text="bind:NAME1"/>
+                          <Cell col="11" text="bind:PO_DESC"/>
+                          <Cell col="12" text="bind:MATNR"/>
+                          <Cell col="13" text="bind:USAGE"/>
+                          <Cell col="14" text="bind:BUYER_ITEM_CD"/>
+                          <Cell col="15" text="bind:TXZ01"/>
+                          <Cell col="16" text="bind:GMT_COL"/>
+                          <Cell col="17" text="bind:BUYER_COLOR_CODE"/>
+                          <Cell col="18" text="bind:FULL_DESC"/>
+                          <Cell col="19" text="bind:MTL_COLOR"/>
+                          <Cell col="20" text="bind:J_3ASIZE"/>
+                          <Cell col="21" text="bind:MENGE"/>
+                          <Cell col="22" text="bind:MEINS"/>
+                          <Cell col="23" text="bind:NETPR"/>
+                          <Cell col="24" text="bind:NETWR"/>
+                          <Cell col="25" text="bind:PEINH"/>
+                          <Cell col="26" text="bind:WAERS"/>
+                          <Cell col="27" text="bind:EKGRP"/>
+                          <Cell col="28" text="bind:UEBTO"/>
+                          <Cell col="29" text="bind:UNTTO"/>
+                          <Cell col="30" text="bind:DELIVERY_LOC"/>
+                          <Cell col="31" text="bind:GR_BSD"/>
+                          <Cell col="32" text="bind:IMPORT_REQ"/>
+                          <Cell col="33" text="bind:USER_ID"/>
+                          <Cell col="34" text="bind:USER_NM"/>
+                          <Cell col="35" text="bind:BUYER_CD"/>
+                          <Cell col="36" text="bind:CUST_NM"/>
+                          <Cell col="37" text="bind:INCO1"/>
+                          <Cell col="38" text="bind:REMARK1"/>
                         </Band>
                       </Format>
                     </Formats>
@@ -493,6 +436,7 @@
         <Button id="ButtonScriptTest" taborder="5" text="Script Test" top="8" width="84" height="28" visible="true" onclick="ButtonScriptTest_onclick" right="343"/>
         <Button id="ButtonSearchSample" taborder="6" text="Search Sample 트랜잭션" top="8" width="160" height="28" visible="true" right="177" onclick="TabMain_TabpagePOList_ButtonSearchSample_onclick"/>
         <Button id="ButtonTrace" taborder="7" text="Trc. 보이기/숨기기" height="28" onclick="ButtonTrace_onclick" right="8" width="160" top="8"/>
+        <WebBrowser id="WebBrowser00" taborder="8" left="1314" top="163" width="49" height="33"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[/********************************************************************************************
@@ -796,7 +740,7 @@ this.callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
 				break;
 			case "getPoListHistoryLoad"	:
 													//	this.gtrace(this.ds_POList.saveXML(), gtrcSearchPos);
-													this.gtrace(this.ds_POHistory.saveXML(), gtrcSearchPos);
+													this.gtrace(this.ds_POHistory.saveXML(), gtrcSearchPos)
 				break;
 			case "savePO":
 					//	"00000000000" : 모두 PO생성 안됐다는 것임.
@@ -835,6 +779,8 @@ this.callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
 										
 					this.gfn_alert(sCbMsg);
 					//	alert(sCbMsg);
+						// 조회실행
+						this.tfn_getPoListHistoryLoad();
 				break;
  	}
 }
@@ -844,6 +790,7 @@ this.callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
 */
 this.callbackFunc_pop = function(strID, variant)
 {
+	
 }
 
 /********************************************************************************************
@@ -955,6 +902,15 @@ this.ds_POList_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DS
 		this.fn_TotalAmountCalc(e.row);
 		obj.set_enableevent(true);
 	}
+	
+// Document type과 Payment term 매칭			
+// 해당 Payment term일 경우 해당 Doc. type 로 설정			
+// Payment terms	>>>	Doc. Type	
+// SC00	>>>	IS	
+// EA00	>>>	IS	
+// EC00	>>>	IS	
+// LA60	>>>	IM	
+// FB60	>>>	NB	
 };
 
 /*
@@ -979,6 +935,7 @@ this.TabMain_TabpagePOList_ButtonSearchSample_onclick = function(obj:nexacro.But
  */
 this.ButtonScriptTest_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+	//	192.168.11.193:8101/nexos/html/main/main.html?ver=20181022_03#LC00000M
 	//	trace("clientPos-->("+e.clientx+","+e.clienty+")");
 	//	trace("canvasPos-->("+e.canvasx+","+e.canvasy+")");
 	//	trace(this.TabMain.getIndex(this.TabMain.tabindex));
@@ -2446,6 +2403,8 @@ this.ButtonScriptTest_onclick = function(obj:nexacro.Button,e:nexacro.ClickEvent
       </Dataset>
       <Dataset id="ds_POHistory" useclientlayout="true">
         <ColumnInfo>
+          <Column id="Status" type="STRING" size="256" description="X"/>
+          <Column id="Message" type="STRING" size="256" description="2"/>
           <Column id="VBELN" type="STRING" size="256" description="10"/>
           <Column id="CENTER_NM" type="STRING" size="256" description="20"/>
           <Column id="TYPE" type="STRING" size="256" description="30"/>
@@ -2484,26 +2443,26 @@ this.ButtonScriptTest_onclick = function(obj:nexacro.Button,e:nexacro.ClickEvent
           <Column id="CUST_NM" type="STRING" size="256" description="360"/>
           <Column id="INCO1" type="STRING" size="256" description="370"/>
           <Column id="REMARK1" type="STRING" size="256" description="380"/>
-          <Column id="ITEM_NM" type="STRING" size="256" description="390"/>
-          <Column id="EINDT" type="STRING" size="256" description="400"/>
-          <Column id="FORWARDER" type="STRING" size="256" description="410"/>
-          <Column id="CENTER_CD" type="STRING" size="256" description="420"/>
-          <Column id="SORT_NUM" type="STRING" size="256" description="430"/>
-          <Column id="MTL_ITEM_CD" type="STRING" size="256" description="440"/>
-          <Column id="POSNR" type="STRING" size="256" description="450"/>
-          <Column id="VBELP" type="STRING" size="256" description="460"/>
-          <Column id="STATUS" type="STRING" size="256" description="470"/>
-          <Column id="BSART" type="STRING" size="256" description="480"/>
-          <Column id="MTL_SIZE_KEY" type="STRING" size="256" description="490"/>
-          <Column id="MTL_COLOR_KEY" type="STRING" size="256" description="500"/>
-          <Column id="ELIKZ" type="STRING" size="256" description="510"/>
-          <Column id="ZQME_PO" type="STRING" size="256" description="520"/>
-          <Column id="LOT_NO" type="STRING" size="256" description="530"/>
-          <Column id="GRQTY" type="STRING" size="256" description="540"/>
-          <Column id="REG_USER_ID" type="STRING" size="256" description="550"/>
-          <Column id="ITEM_CD" type="STRING" size="256" description="560"/>
-          <Column id="J_3AEBSP" type="STRING" size="256" description="570"/>
-          <Column id="SaveUser" type="STRING" size="256" description="580"/>
+          <Column id="ITEM_NM" type="STRING" size="256" description="X"/>
+          <Column id="EINDT" type="STRING" size="256" description="X"/>
+          <Column id="FORWARDER" type="STRING" size="256" description="X"/>
+          <Column id="CENTER_CD" type="STRING" size="256" description="X"/>
+          <Column id="SORT_NUM" type="STRING" size="256" description="X"/>
+          <Column id="MTL_ITEM_CD" type="STRING" size="256" description="X"/>
+          <Column id="POSNR" type="STRING" size="256" description="X"/>
+          <Column id="VBELP" type="STRING" size="256" description="X"/>
+          <Column id="STATUS" type="STRING" size="256" description="X"/>
+          <Column id="BSART" type="STRING" size="256" description="X"/>
+          <Column id="MTL_SIZE_KEY" type="STRING" size="256" description="X"/>
+          <Column id="MTL_COLOR_KEY" type="STRING" size="256" description="X"/>
+          <Column id="ELIKZ" type="STRING" size="256" description="X"/>
+          <Column id="ZQME_PO" type="STRING" size="256" description="X"/>
+          <Column id="LOT_NO" type="STRING" size="256" description="X"/>
+          <Column id="GRQTY" type="STRING" size="256" description="X"/>
+          <Column id="REG_USER_ID" type="STRING" size="256" description="X"/>
+          <Column id="ITEM_CD" type="STRING" size="256" description="X"/>
+          <Column id="J_3AEBSP" type="STRING" size="256" description="X"/>
+          <Column id="SaveUser" type="STRING" size="256" description="X"/>
         </ColumnInfo>
       </Dataset>
       <Dataset id="ds_PoHistorySave_in" useclientlayout="true"/>

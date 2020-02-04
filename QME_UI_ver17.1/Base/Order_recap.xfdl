@@ -301,8 +301,6 @@
                       </Format>
                     </Formats>
                   </Grid>
-                  <Div id="DivBtnFormat" taborder="1" text="" top="8" width="40" height="28" url="Comm::cmmFormatMenuButton.xfdl" targetGrid="TabOrderRecap.TabpageGridPoInfo_1.form.GridPoInfo1" visible="true" right="10"/>
-                  <Div id="DivBtnGfilter" taborder="2" text="" top="8" width="40" height="28" url="Comm::cmmGridFilterButton.xfdl" targetGrid="TabOrderRecap.TabpagePoInfo_1.form.GridPoInfo1" visible="true" right="58"/>
                 </Layout>
               </Layouts>
             </Tabpage>
@@ -412,8 +410,6 @@
                       </Format>
                     </Formats>
                   </Grid>
-                  <Div id="DivBtnGfilter" taborder="1" text="" top="8" width="40" height="28" url="Comm::cmmGridFilterButton.xfdl" targetGrid="TabOrderRecap.TabpageGridPoInfo_2.form.GridPoInfo2" visible="true" right="58"/>
-                  <Div id="DivBtnFormat" taborder="2" text="" top="8" width="40" height="28" url="Comm::cmmFormatMenuButton.xfdl" targetGrid="TabOrderRecap.TabpageGridPoInfo_2.form.GridPoInfo2" visible="true" right="10"/>
                 </Layout>
               </Layouts>
             </Tabpage>
@@ -523,8 +519,6 @@
                       </Format>
                     </Formats>
                   </Grid>
-                  <Div id="DivBtnGfilter" taborder="1" text="" top="8" width="40" height="28" url="Comm::cmmGridFilterButton.xfdl" targetGrid="TabOrderRecap.TabpageGridPoInfo_3.form.GridPoInfo3" visible="true" right="58"/>
-                  <Div id="DivBtnFormat" taborder="2" text="" top="8" width="40" height="28" url="Comm::cmmFormatMenuButton.xfdl" targetGrid="TabOrderRecap.TabpageGridPoInfo_3.form.GridPoInfo3" visible="true" right="10"/>
                 </Layout>
               </Layouts>
             </Tabpage>
@@ -721,8 +715,6 @@
                       </Format>
                     </Formats>
                   </Grid>
-                  <Div id="DivBtnGfilter" taborder="1" text="" top="8" width="40" height="28" url="Comm::cmmGridFilterButton.xfdl" targetGrid="TabOrderRecap.TabpageGridOs.form.GridOs" visible="true" right="58"/>
-                  <Div id="DivBtnFormat" taborder="2" text="" top="8" width="40" height="28" url="Comm::cmmFormatMenuButton.xfdl" targetGrid="TabOrderRecap.TabpageGridOs.form.GridOs" visible="true" right="10"/>
                 </Layout>
               </Layouts>
             </Tabpage>
@@ -850,8 +842,6 @@
                       </Format>
                     </Formats>
                   </Grid>
-                  <Div id="DivBtnGfilter" taborder="1" text="" top="8" width="40" height="28" url="Comm::cmmGridFilterButton.xfdl" targetGrid="TabOrderRecap.TabpageGridProduction.form.GridProduction" visible="true" right="58"/>
-                  <Div id="DivBtnFormat" taborder="2" text="" top="8" width="40" height="28" url="Comm::cmmFormatMenuButton.xfdl" targetGrid="TabOrderRecap.TabpageGridProduction.form.GridProduction" visible="true" right="10"/>
                 </Layout>
               </Layouts>
             </Tabpage>
@@ -967,8 +957,6 @@
                       </Format>
                     </Formats>
                   </Grid>
-                  <Div id="DivBtnGfilter" taborder="1" text="" top="8" width="40" height="28" url="Comm::cmmGridFilterButton.xfdl" targetGrid="TabOrderRecap.TabpageGridSample.form.GridSample" visible="true" right="58"/>
-                  <Div id="DivBtnFormat" taborder="2" text="" top="8" width="40" height="28" url="Comm::cmmFormatMenuButton.xfdl" targetGrid="TabOrderRecap.TabpageGridSample.form.GridSample" visible="true" right="10"/>
                 </Layout>
               </Layouts>
             </Tabpage>
@@ -1245,7 +1233,8 @@ this.callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
 		case "getOrderRecapList"	:
 			this.setWaitCursor( true );
 
-			trace("this.ds_listStyle.rowcount---->"+this.ds_listStyle.rowcount);
+			//	trace("this.ds_listStyle.rowcount---->"+this.ds_listStyle.rowcount);
+			trace("this.ds_listStyle.saveXML---->"+this.ds_listStyle.saveXML());
 			
 			if(this.ds_in.getColumn(0, "p_radio")=="1"){
 				for (var i =0; i < this.ds_listStyle.rowcount ; i++){
@@ -1662,6 +1651,7 @@ this.ButtonTrace_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
             <Col id="BindCol">CI_ITEM_IMAGE_THUMB</Col>
             <Col id="HeaderText">Sketch</Col>
             <Col id="bSuppress">{GrId : ["GridPoInfo1","GridPoInfo2","GridPoInfo3"], sPrsVal : 12}</Col>
+            <Col id="bDisplaytype">imagecontrol</Col>
           </Row>
           <Row>
             <Col id="BindCol">OPD_ORDER_QTY</Col>
