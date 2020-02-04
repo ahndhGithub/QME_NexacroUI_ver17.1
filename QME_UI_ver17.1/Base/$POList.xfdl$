@@ -379,8 +379,8 @@
                       </Format>
                     </Formats>
                   </Grid>
-                  <Div id="DivBtnGfilter" taborder="1" text="" top="6" width="40" height="28" url="Comm::cmmGridFilterButton.xfdl" targetGrid="TabMain.TabpagePOHistory.form.GridPoHistory" visible="true" right="58"/>
-                  <Div id="DivBtnFormat" taborder="2" text="" top="6" width="40" height="28" url="Comm::cmmFormatMenuButton.xfdl" targetGrid="TabMain.TabpagePOHistory.form.GridPoHistory" visible="true" right="8"/>
+                  <Div id="DivBtnGfilter" taborder="1" text="" top="8" width="40" height="28" url="Comm::cmmGridFilterButton.xfdl" targetGrid="TabMain.TabpagePOHistory.form.GridPoHistory" visible="true" right="58"/>
+                  <Div id="DivBtnFormat" taborder="2" text="" top="8" width="40" height="28" url="Comm::cmmFormatMenuButton.xfdl" targetGrid="TabMain.TabpagePOHistory.form.GridPoHistory" visible="true" right="8"/>
                 </Layout>
               </Layouts>
             </Tabpage>
