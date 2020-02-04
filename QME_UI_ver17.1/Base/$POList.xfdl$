@@ -1599,145 +1599,174 @@ this.ButtonScriptTest_onclick = function(obj:nexacro.Button,e:nexacro.ClickEvent
             <Col id="BindCol">TYPE</Col>
             <Col id="HeaderText">Style#</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">ERP_STYLE</Col>
             <Col id="HeaderText">ERP Style#</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">POITEM</Col>
             <Col id="HeaderText">P/O#</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">EBELP</Col>
             <Col id="HeaderText">PO Item</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">BSART_F</Col>
             <Col id="HeaderText">Document Type</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">LIFNR</Col>
             <Col id="HeaderText">Vendor</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">NAME1</Col>
             <Col id="HeaderText">Vendor Name</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">TXZ01</Col>
             <Col id="HeaderText">Text</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">BUYER_COLOR_CODE</Col>
             <Col id="HeaderText">GMT Color code</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">FULL_DESC</Col>
             <Col id="HeaderText">Full Description</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">MTL_COLOR</Col>
             <Col id="HeaderText">COLOR</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">J_3ASIZE</Col>
             <Col id="HeaderText">SIZE</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">MENGE</Col>
             <Col id="HeaderText">Order Q'ty</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">MEINS</Col>
             <Col id="HeaderText">Unit</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">NETPR</Col>
             <Col id="HeaderText">Price</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">NETWR</Col>
             <Col id="HeaderText">TTL Amount</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">WAERS</Col>
             <Col id="HeaderText">Currency</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">EKGRP</Col>
             <Col id="HeaderText">Purch.Group</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">DELIVERY_LOC</Col>
             <Col id="HeaderText">Delivery Date</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">GR_BSD</Col>
             <Col id="HeaderText">GR Bsd</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">IMPORT_REQ</Col>
             <Col id="HeaderText">Import Req.</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">USER_ID</Col>
             <Col id="HeaderText">G/W No.</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">USER_NM</Col>
             <Col id="HeaderText">G/W Name</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">BUYER_CD</Col>
             <Col id="HeaderText">Buyer Code</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">CUST_NM</Col>
             <Col id="HeaderText">Buyer</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">REMARK1</Col>
             <Col id="HeaderText">Remark</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">MEINS</Col>
             <Col id="HeaderText">Unit</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">EINDT</Col>
             <Col id="HeaderText">Delivery Date</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
           <Row>
             <Col id="BindCol">FORWARDER</Col>
             <Col id="GridId">GridPoHistory</Col>
+            <Col id="ColWidth">80</Col>
           </Row>
         </Rows>
       </Dataset>
