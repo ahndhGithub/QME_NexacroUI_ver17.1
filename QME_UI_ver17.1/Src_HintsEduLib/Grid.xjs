@@ -107,7 +107,7 @@ pForm.gfn_setGrid = function(objGrid)
 			var sbMaskeditlimitbymask 	= this.ds_grdDic.getColumn(iFndRp, "bMaskeditlimitbymask");									
 			var sbMaskeditformat		= this.ds_grdDic.getColumn(iFndRp, "bMaskeditformat");									
 
-			//	if(!this.gfn_isNull(sHdTxt)) 			objGrid.setCellProperty( "head", realGridCellIndex, "text", sHdTxt );
+			if(!this.gfn_isNull(sHdTxt)) 			objGrid.setCellProperty( "head", realGridCellIndex, "text", sHdTxt );
 			if(!this.gfn_isNull(iColWidth		)) 	objGrid.setRealColSize( "body", realGridCellIndex, iColWidth, true );
 			if(!this.gfn_isNull(sbDisplaytype	)) 	{
 				objGrid.setCellProperty( "body", realGridCellIndex, "displaytype"	, sbDisplaytype 	);	//	if(tmpcol==sTrcTmpCol){this.gtrace("bRslt--->"+bRslt, gtrcPos);}
