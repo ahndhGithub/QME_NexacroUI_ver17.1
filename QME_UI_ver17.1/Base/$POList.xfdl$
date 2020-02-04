@@ -2346,6 +2346,8 @@ this.ButtonScriptTest_onclick = function(obj:nexacro.Button,e:nexacro.ClickEvent
             <Col id="SaveCol">USER_ID</Col>
           </Row>
           <Row>
+            <Col id="SaveCol">P_ZQME_PO</Col>
+            <Col id="LoadCol">ZQME_PO</Col>
             <Col id="DsName">ds_POHistory</Col>
           </Row>
         </Rows>
@@ -2439,6 +2441,7 @@ this.ButtonScriptTest_onclick = function(obj:nexacro.Button,e:nexacro.ClickEvent
           <Column id="P_CRUD" type="STRING" size="256"/>
           <Column id="P_LOEKZ" type="STRING" size="256"/>
           <Column id="P_USER_ID" type="STRING" size="256"/>
+          <Column id="P_ZQME_PO" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
       <Dataset id="ds_POHistory" useclientlayout="true">
