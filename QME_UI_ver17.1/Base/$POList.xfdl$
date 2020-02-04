@@ -379,267 +379,8 @@
                       </Format>
                     </Formats>
                   </Grid>
-                  <Grid id="GridPoList00" taborder="1" left="8" top="254" right="8" bottom="38" griduserproperty="no,status,checkbox,export,colfix,rowfix,sort,filter,initial,cellcopypaste,colhide,personal,seltype" cellsizingtype="col" binddataset="">
-                    <Formats>
-                      <Format id="default">
-                        <Columns>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                        </Columns>
-                        <Rows>
-                          <Row band="head" size="24"/>
-                          <Row size="24"/>
-                        </Rows>
-                        <Band id="head">
-                          <Cell text="Status"/>
-                          <Cell col="1" text="Message"/>
-                          <Cell col="2" text="VBELN"/>
-                          <Cell col="3" text="CENTER_NM"/>
-                          <Cell col="4" text="TYPE"/>
-                          <Cell col="5" text="ITEM_NM"/>
-                          <Cell col="6" text="ZTERM"/>
-                          <Cell col="7" text="DOC_TYPE"/>
-                          <Cell col="8" text="LIFNR"/>
-                          <Cell col="9" text="NAME1"/>
-                          <Cell col="10" text="PO_DESC"/>
-                          <Cell col="11" text="MATNR"/>
-                          <Cell col="12" text="USAGE"/>
-                          <Cell col="13" text="BUYER_ITEM_CD"/>
-                          <Cell col="14" text="MTL_ITEM"/>
-                          <Cell col="15" text="GMT_COL"/>
-                          <Cell col="16" text="GMTColorcode"/>
-                          <Cell col="17" text="COLOR"/>
-                          <Cell col="18" text="SIZE"/>
-                          <Cell col="19" text="OS_MENGE"/>
-                          <Cell col="20" text="UNIT"/>
-                          <Cell col="21" text="PO_MENGE"/>
-                          <Cell col="22" text="REMAIN_MENGE"/>
-                          <Cell col="23" text="MEINS"/>
-                          <Cell col="24" text="PRICE"/>
-                          <Cell col="25" text="PEINH"/>
-                          <Cell col="26" text="L_NETWR"/>
-                          <Cell col="27" text="CURRENCY"/>
-                          <Cell col="28" text="PR_MENGE"/>
-                          <Cell col="29" text="PURCGRP"/>
-                          <Cell col="30" text="WEBRE"/>
-                          <Cell col="31" text="OS_PRICE"/>
-                          <Cell col="32" text="OS_PEINH"/>
-                          <Cell col="33" text="L_WAERK"/>
-                          <Cell col="34" text="OS_AMOUNT"/>
-                          <Cell col="35" text="DELIVERY_DATE"/>
-                          <Cell col="36" text="UEBTO"/>
-                          <Cell col="37" text="UNTTO"/>
-                          <Cell col="38" text="DeliveryLocation"/>
-                          <Cell col="39" text="Forwarder"/>
-                          <Cell col="40" text="BuyerCode"/>
-                          <Cell col="41" text="INCO1"/>
-                          <Cell col="42" text="Remark"/>
-                          <Cell col="43" text="CENTER_CD"/>
-                          <Cell col="44" text="SORT_NUM"/>
-                          <Cell col="45" text="MTL_SIZE_KEY"/>
-                          <Cell col="46" text="MTL_COLOR_KEY"/>
-                          <Cell col="47" text="MTL_ITEM_CD"/>
-                          <Cell col="48" text="ITEM_CD"/>
-                          <Cell col="49" text="GMTMATNR"/>
-                          <Cell col="50" text="POSNR"/>
-                          <Cell col="51" text="LOT_NO"/>
-                          <Cell col="52" text="ITEM_NM___"/>
-                          <Cell col="53" text="VBELP"/>
-                          <Cell col="54" text="BSART"/>
-                          <Cell col="55" text="TXZ01"/>
-                          <Cell col="56" text="ELIKZ"/>
-                          <Cell col="57" text="FULL_DESC"/>
-                          <Cell col="58" text="BSART_F"/>
-                          <Cell col="59" text="EBELP"/>
-                          <Cell col="60" text="ZQME_PO"/>
-                          <Cell col="61" text="CUST_NM"/>
-                          <Cell col="62" text="EKGRP"/>
-                          <Cell col="63" text="USER_NM"/>
-                          <Cell col="64" text="LIFNR_____"/>
-                          <Cell col="65" text="GRQTY"/>
-                          <Cell col="66" text="MENGE"/>
-                          <Cell col="67" text="MTL_COLOR"/>
-                          <Cell col="68" text="J_3ASIZE"/>
-                          <Cell col="69" text="ERP_STYLE"/>
-                          <Cell col="70" text="NETPR"/>
-                          <Cell col="71" text="WAERS"/>
-                          <Cell col="72" text="EINDT"/>
-                          <Cell col="73" text="REG_USER_ID"/>
-                          <Cell col="74" text="BUYER_CD"/>
-                          <Cell col="75" text="GR_BSD"/>
-                          <Cell col="76" text="POITEM"/>
-                          <Cell col="77" text="NAME1_______"/>
-                          <Cell col="78" text="NETWR"/>
-                          <Cell col="79" text="J_3AEBSP"/>
-                          <Cell col="80" text="SaveUser"/>
-                        </Band>
-                        <Band id="body">
-                          <Cell text="bind:Status"/>
-                          <Cell col="1" text="bind:Message"/>
-                          <Cell col="2" text="bind:VBELN"/>
-                          <Cell col="3" text="bind:CENTER_NM"/>
-                          <Cell col="4" text="bind:TYPE"/>
-                          <Cell col="5" text="bind:ITEM_NM"/>
-                          <Cell col="6" text="bind:ZTERM"/>
-                          <Cell col="7" text="bind:DOC_TYPE"/>
-                          <Cell col="8" text="bind:LIFNR"/>
-                          <Cell col="9" text="bind:NAME1"/>
-                          <Cell col="10" text="bind:PO_DESC"/>
-                          <Cell col="11" text="bind:MATNR"/>
-                          <Cell col="12" text="bind:USAGE"/>
-                          <Cell col="13" text="bind:BUYER_ITEM_CD"/>
-                          <Cell col="14" text="bind:MTL_ITEM"/>
-                          <Cell col="15" text="bind:GMT_COL"/>
-                          <Cell col="16" text="bind:GMTColorcode"/>
-                          <Cell col="17" text="bind:COLOR"/>
-                          <Cell col="18" text="bind:SIZE"/>
-                          <Cell col="19" text="bind:OS_MENGE"/>
-                          <Cell col="20" text="bind:UNIT"/>
-                          <Cell col="21" text="bind:PO_MENGE"/>
-                          <Cell col="22" text="bind:REMAIN_MENGE"/>
-                          <Cell col="23" text="bind:MEINS"/>
-                          <Cell col="24" text="bind:PRICE"/>
-                          <Cell col="25" text="bind:PEINH"/>
-                          <Cell col="26" text="bind:L_NETWR"/>
-                          <Cell col="27" text="bind:CURRENCY"/>
-                          <Cell col="28" text="bind:PR_MENGE"/>
-                          <Cell col="29" text="bind:PURCGRP"/>
-                          <Cell col="30" text="bind:WEBRE"/>
-                          <Cell col="31" text="bind:OS_PRICE"/>
-                          <Cell col="32" text="bind:OS_PEINH"/>
-                          <Cell col="33" text="bind:L_WAERK"/>
-                          <Cell col="34" text="bind:OS_AMOUNT"/>
-                          <Cell col="35" text="bind:DELIVERY_DATE"/>
-                          <Cell col="36" text="bind:UEBTO"/>
-                          <Cell col="37" text="bind:UNTTO"/>
-                          <Cell col="38" text="bind:DeliveryLocation"/>
-                          <Cell col="39" text="bind:Forwarder"/>
-                          <Cell col="40" text="bind:BuyerCode"/>
-                          <Cell col="41" text="bind:INCO1"/>
-                          <Cell col="42" text="bind:Remark"/>
-                          <Cell col="43" text="bind:CENTER_CD"/>
-                          <Cell col="44" text="bind:SORT_NUM"/>
-                          <Cell col="45" text="bind:MTL_SIZE_KEY"/>
-                          <Cell col="46" text="bind:MTL_COLOR_KEY"/>
-                          <Cell col="47" text="bind:MTL_ITEM_CD"/>
-                          <Cell col="48" text="bind:ITEM_CD"/>
-                          <Cell col="49" text="bind:GMTMATNR"/>
-                          <Cell col="50" text="bind:POSNR"/>
-                          <Cell col="51" text="bind:LOT_NO"/>
-                          <Cell col="52" text="bind:ITEM_NM___"/>
-                          <Cell col="53" text="bind:VBELP"/>
-                          <Cell col="54" text="bind:BSART"/>
-                          <Cell col="55" text="bind:TXZ01"/>
-                          <Cell col="56" text="bind:ELIKZ"/>
-                          <Cell col="57" text="bind:FULL_DESC"/>
-                          <Cell col="58" text="bind:BSART_F"/>
-                          <Cell col="59" text="bind:EBELP"/>
-                          <Cell col="60" text="bind:ZQME_PO"/>
-                          <Cell col="61" text="bind:CUST_NM"/>
-                          <Cell col="62" text="bind:EKGRP"/>
-                          <Cell col="63" text="bind:USER_NM"/>
-                          <Cell col="64" text="bind:LIFNR_____"/>
-                          <Cell col="65" text="bind:GRQTY"/>
-                          <Cell col="66" text="bind:MENGE"/>
-                          <Cell col="67" text="bind:MTL_COLOR"/>
-                          <Cell col="68" text="bind:J_3ASIZE"/>
-                          <Cell col="69" text="bind:ERP_STYLE"/>
-                          <Cell col="70" text="bind:NETPR"/>
-                          <Cell col="71" text="bind:WAERS"/>
-                          <Cell col="72" text="bind:EINDT"/>
-                          <Cell col="73" text="bind:REG_USER_ID"/>
-                          <Cell col="74" text="bind:BUYER_CD"/>
-                          <Cell col="75" text="bind:GR_BSD"/>
-                          <Cell col="76" text="bind:POITEM"/>
-                          <Cell col="77" text="bind:NAME1_______"/>
-                          <Cell col="78" text="bind:NETWR"/>
-                          <Cell col="79" text="bind:J_3AEBSP"/>
-                          <Cell col="80" text="bind:SaveUser"/>
-                        </Band>
-                      </Format>
-                    </Formats>
-                  </Grid>
-                  <Div id="DivBtnGfilter" taborder="2" text="" top="6" width="40" height="28" url="Comm::cmmGridFilterButton.xfdl" targetGrid="TabMain.TabpagePOHistory.form.GridPoHistory" visible="true" right="58"/>
-                  <Div id="DivBtnFormat" taborder="3" text="" top="6" width="40" height="28" url="Comm::cmmFormatMenuButton.xfdl" targetGrid="TabMain.TabpagePOHistory.form.GridPoHistory" visible="true" right="8"/>
+                  <Div id="DivBtnGfilter" taborder="1" text="" top="6" width="40" height="28" url="Comm::cmmGridFilterButton.xfdl" targetGrid="TabMain.TabpagePOHistory.form.GridPoHistory" visible="true" right="58"/>
+                  <Div id="DivBtnFormat" taborder="2" text="" top="6" width="40" height="28" url="Comm::cmmFormatMenuButton.xfdl" targetGrid="TabMain.TabpagePOHistory.form.GridPoHistory" visible="true" right="8"/>
                 </Layout>
               </Layouts>
             </Tabpage>
@@ -794,6 +535,9 @@ this.fn_reset = function()
 		//조건
 		this.ds_in.clearData();
 		this.ds_in.addRow();
+		
+		//복제
+		this.ds_PoHistorySave_in.copyData(this.ds_PoSave_in);
 	}
 	{
 		//Validation
@@ -905,10 +649,6 @@ this.tfn_savePO = function(){
 										// 행추가
 										var iAdRp = this.ds_PoSave_in.addRow();
 																										//	this.gtrace("내부param(i)--->"+i, gtrcPos);
-										//일괄 값세팅 : P_USER_BU , I_CHECK(Sales Order별)
-										this.ds_PoSave_in.setColumn(iAdRp, "P_USER_BU", this.gfn_getUser().BU_CD) ;
-										this.ds_PoSave_in.setColumn(iAdRp, "I_CHECK", this.ds_in.getColumn(0, "I_CHECK")) ;
-										
 										//paramMap 적용 세팅 : 조회≠저장 Alias 차이로 인해 필요함.( 기준 : ds_paramMap )
 										this.ds_paramMap.filter("");
 										this.ds_paramMap.filter("DsName=='ds_POList'");						this.gtrace("필터된 ds_paramMap 갯수(PO_CREATE)-->"+this.ds_paramMap.rowcount, gtrcPos);
@@ -923,7 +663,11 @@ this.tfn_savePO = function(){
 											}
 										} // End Of Loop
 										
-										{
+										{	// 일괄 값세팅
+											// P_USER_BU , I_CHECK(Sales Order별)
+											this.ds_PoSave_in.setColumn(iAdRp, "P_USER_BU", this.gfn_getUser().BU_CD) ;
+											this.ds_PoSave_in.setColumn(iAdRp, "I_CHECK", this.ds_in.getColumn(0, "I_CHECK")) ;
+											
 											//	P_BUKRS 값을 동일하게 세팅 ( 비맵핑컬럼 )
 											var sBukrs = this.ds_PoSave_in.getColumn(iAdRp, "P_BUKRS") ;
 														 this.ds_PoSave_in.setColumn(iAdRp, "P_EKORG", sBukrs) ;
@@ -965,9 +709,6 @@ this.tfn_savePO = function(){
 										// 행추가
 										var iAdRp = this.ds_PoHistorySave_in.addRow();
 																										//	this.gtrace("내부param(i)--->"+i, gtrcPos);
-										//일괄 값세팅 : P_USER_BU , I_CHECK(Sales Order별)
-											//	this.ds_PoHistorySave_in.setColumn(iAdRp, "P_USER_BU", this.gfn_getUser().BU_CD) ;
-											//	this.ds_PoHistorySave_in.setColumn(iAdRp, "I_CHECK", this.ds_in.getColumn(0, "I_CHECK")) ;
 										
 										//paramMap 적용 세팅 : 조회≠저장 Alias 차이로 인해 필요함.( 기준 : ds_paramMap )
 										this.ds_paramMap.filter("");
@@ -984,6 +725,10 @@ this.tfn_savePO = function(){
 										} // End Of Loop
 										
 										{
+											// 일괄 값세팅
+											// P_USER_BU
+											this.ds_PoHistorySave_in.setColumn(iAdRp, "P_USER_BU", this.gfn_getUser().BU_CD) ;
+											
 											//	P_BUKRS 값을 동일하게 세팅 ( 비맵핑컬럼 )
 	// 											var sBukrs = this.ds_PoHistorySave_in.getColumn(iAdRp, "P_BUKRS") ;
 	// 														 this.ds_PoHistorySave_in.setColumn(iAdRp, "P_EKORG", sBukrs) ;
@@ -2729,37 +2474,7 @@ this.ButtonScriptTest_onclick = function(obj:nexacro.Button,e:nexacro.ClickEvent
           <Column id="SaveUser" type="STRING" size="256" description="580"/>
         </ColumnInfo>
       </Dataset>
-      <Dataset id="ds_PoHistorySave_in" useclientlayout="true">
-        <ColumnInfo>
-          <Column id="P_VBELN" type="STRING" size="256"/>
-          <Column id="P_ZTERM" type="STRING" size="256"/>
-          <Column id="P_BSART" type="STRING" size="256"/>
-          <Column id="P_LIFNR" type="STRING" size="256"/>
-          <Column id="P_MATNR" type="STRING" size="256"/>
-          <Column id="P_USAGE" type="STRING" size="256"/>
-          <Column id="P_BUYER_ITEM_CD" type="STRING" size="256"/>
-          <Column id="P_TXZ01" type="STRING" size="256"/>
-          <Column id="P_J_3ASIZE" type="STRING" size="256"/>
-          <Column id="P_MENGE" type="STRING" size="256"/>
-          <Column id="P_NETPR" type="STRING" size="256"/>
-          <Column id="P_PEINH" type="STRING" size="256"/>
-          <Column id="P_NETWR" type="STRING" size="256"/>
-          <Column id="P_WAERS" type="STRING" size="256"/>
-          <Column id="P_EKGRP" type="STRING" size="256"/>
-          <Column id="P_WEBRE" type="STRING" size="256"/>
-          <Column id="P_UEBTO" type="STRING" size="256"/>
-          <Column id="P_UNTTO" type="STRING" size="256"/>
-          <Column id="P_INCO1" type="STRING" size="256"/>
-          <Column id="P_BUKRS" type="STRING" size="256"/>
-          <Column id="P_MTL_SIZE_KEY" type="STRING" size="256"/>
-          <Column id="P_MTL_COLOR_KEY" type="STRING" size="256"/>
-          <Column id="P_MTL_ITEM_CD" type="STRING" size="256"/>
-          <Column id="P_VBELP" type="STRING" size="256"/>
-          <Column id="P_CRUD" type="STRING" size="256"/>
-          <Column id="P_USER_ID" type="STRING" size="256"/>
-          <Column id="P_USER_BU" type="STRING" size="256"/>
-        </ColumnInfo>
-      </Dataset>
+      <Dataset id="ds_PoHistorySave_in" useclientlayout="true"/>
       <Dataset id="ds_result_savePO"/>
       <Dataset id="ds_result_savePO_default"/>
     </Objects>
