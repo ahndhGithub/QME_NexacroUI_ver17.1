@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<FDL version="2.0">
+<FDL version="2.1">
   <Form id="Comm_ColumnHide" width="128" height="28" onload="form_onload">
     <Layouts>
       <Layout height="28" mobileorientation="landscape" width="128">
@@ -18,7 +18,6 @@ include "Src_HintsEduLib::All_EduLib.xjs";
 this.oFrmParnt; 		//Parent폼
 var strReturnparms;
 var sSplitChar = this.gfn_getApplication().MultiTxtSplitChar;
-//	this.sParentFormGetTxt
 //	this.oFrmParnt
 //	this.oDivParnt
 //	this.oTargetGrid
@@ -33,16 +32,18 @@ var sSplitChar = this.gfn_getApplication().MultiTxtSplitChar;
  */
 this.fn_reset = function()
 {
-														var gtrcPos	=	"Comm_CnC.xfdl.fn_reset";
-														//	this.gtrace("nexacro.getApplication().gds_User.saveXML()->"+nexacro.getApplication().gds_User.saveXML(), gtrcPos);
-
-	this.gfn_getParentForm();
-								this.gtrace("this.sParentFormGetTxt ---->"+this.sParentFormGetTxt,gtrcPos);
-								this.gtrace("this.oFrmParnt ---->"+this.oFrmParnt.name,gtrcPos);
-								this.gtrace("this.oDivParnt ---->"+this.oDivParnt.name,gtrcPos);
-								this.gtrace("this.oTargetGrid ---->"+this.oTargetGrid.name,gtrcPos);
-								this.gtrace("this.oTargetDs ---->"+this.oTargetDs.name,gtrcPos);
-								this.gtrace("this.sInitCompVisEna ---->"+this.sInitCompVisEna,gtrcPos);
+	var gtrcPos	=	"Comm_CnC.xfdl.fn_reset";
+	this.gtrace("● 확인/취소(fn_reset)", gtrcPos);
+	
+	// 부모폼 세팅
+ 	this.gfn_getParentForm();
+	
+	// 트레이스
+	if(!this.gfn_isNull(this.oFrmParnt			))this.gtrace("this.oFrmParnt ---->"		+this.oFrmParnt.name	,gtrcPos);
+	if(!this.gfn_isNull(this.oDivParnt			))this.gtrace("this.oDivParnt ---->"		+this.oDivParnt.name	,gtrcPos);
+	if(!this.gfn_isNull(this.oTargetGrid		))this.gtrace("this.oTargetGrid ---->"		+this.oTargetGrid.name	,gtrcPos);
+	if(!this.gfn_isNull(this.oTargetDs			))this.gtrace("this.oTargetDs ---->"		+this.oTargetDs.name	,gtrcPos);
+	if(!this.gfn_isNull(this.sInitCompVisEna	))this.gtrace("this.sInitCompVisEna ---->"	+this.sInitCompVisEna	,gtrcPos);
 												
 	{	//	3. 그리드, 더블클릭이벤트 추가
 		if(!this.gfn_isNull(this.oTargetGrid))
@@ -53,7 +54,6 @@ this.fn_reset = function()
 			}
 		}
 	}
-		this.gtrace("<-------------------END------------------->", gtrcPos);
 }
 
 /************************************************************************************************

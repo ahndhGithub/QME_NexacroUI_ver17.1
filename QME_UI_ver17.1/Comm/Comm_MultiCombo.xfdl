@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<FDL version="2.0">
+<FDL version="2.1">
   <Form id="Comm_MultiCombo" width="200" height="21" titletext="멀티콤보" onload="form_onload">
     <Layouts>
       <Layout height="21" width="200">
@@ -133,7 +133,6 @@ this.fn_setDataset = function(oDs)
 
 
 	this.gfn_getParentForm();
-								this.gtrace("this.sParentFormGetTxt ---->"+this.sParentFormGetTxt,gtrcPos);
 								this.gtrace("this.oFrmParnt ---->"+this.oFrmParnt.name,gtrcPos);
 								this.gtrace("this.oDivParnt ---->"+this.oDivParnt.name,gtrcPos);
 // 								this.gtrace("this.oTargetGrid ---->"+this.oTargetGrid.name,gtrcPos);
@@ -144,8 +143,7 @@ this.fn_setDataset = function(oDs)
 	if(this.gfn_isNull(oDs)){
 		//	oDs = this.gfn_lookup(this.parent.parent, this.comboinnerdataset);
 		//	oDs = this.gfn_lookup(this.oFrmParnt, this.comboinnerdataset);
-		//	trace(this.sParentFormGetTxt+"."+this.comboinnerdataset);
-		oDs = eval(this.sParentFormGetTxt+"."+this.comboinnerdataset);
+		oDs = this.oFrmParnt.lookup(this.comboinnerdataset);
 			this.gtrace("oDs.name---->"+oDs.name,gtrcPos);
 		
 	}

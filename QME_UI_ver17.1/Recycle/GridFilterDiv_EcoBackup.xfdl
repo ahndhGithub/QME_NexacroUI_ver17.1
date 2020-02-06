@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<FDL version="2.0">
+<FDL version="2.1">
   <TypeDefinition url="..\default_typedef.xml"/>
   <Form id="GridFilterDiv" classname="GridFilterDiv" left="0" top="0" width="100" height="50" titletext="New Form" onload="GridFilterDiv_onload" onsize="GridFilterDiv_onsize" onsetfocus="GridFilterDiv_onsetfocus">
     <Layouts>
@@ -206,7 +206,6 @@ this.setFilterInfo = function()
 {
 	//	trace("this.parent.name--->"+this.parent.name);
 	this.gfn_getParentForm();
-//								trace("this.sParentFormGetTxt ---->"+this.sParentFormGetTxt);
 //								trace("this.oFrmParnt ---->"+this.oFrmParnt.name);
 //								trace("this.oDivParnt ---->"+this.oDivParnt.name);
 // 								trace("this.oTargetGrid ---->"+this.oTargetGrid.name);

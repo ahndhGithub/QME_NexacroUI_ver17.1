@@ -19,7 +19,6 @@ this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 	this.gfn_getParentForm();	// 공통화폼의 경우 무조건 실행
 
 				this.gtrace("● 콤보공통화 : Comm_ComboConditionFromTo"				, gtrcPos);
-				this.gtrace(" - this.sParentFormGetTxt	--->"+this.sParentFormGetTxt	, gtrcPos);
 				this.gtrace(" - this.oFrmParnt.name    --->"+this.oFrmParnt.name		, gtrcPos);
 				this.gtrace(" - this.oDivParnt.name    --->"+this.oDivParnt.name		, gtrcPos);
 				this.gtrace(" - this.oTargetGrid       --->"+this.oTargetGrid			, gtrcPos);

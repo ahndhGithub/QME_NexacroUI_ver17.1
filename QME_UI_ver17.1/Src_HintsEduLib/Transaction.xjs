@@ -288,4 +288,27 @@ pForm.gfn_getCommonCode = function(arrCode, objDsTemp)
         }
     }
 };
+
+/**
+ * @함수설명  				트랜잭션 전 공통처리 (데이터셋, ...)
+ * @param arrCode 	        
+ * @param isAsync			
+ * @return None
+ */ 
+this.gfn_beforeTrans = function(orgDs, targetDs)
+{
+	orgDs.set_enableevent(false);
+	orgDs.filter("ROW_STS=='I' || ROW_STS=='U' || ROW_STS=='D'");
+	targetDs.clearData();
+	targetDs.copyData(orgDs, true);
+	orgDs.filter("");
+	orgDs.set_enableevent(true);
+
+	if(targetDs.rowcount > 0) {
+		return true;
+	}else{
+		return false;
+	}
+	
+}
 ]]></Script>

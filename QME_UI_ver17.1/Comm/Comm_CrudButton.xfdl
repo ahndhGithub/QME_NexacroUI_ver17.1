@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<FDL version="2.0">
+<FDL version="2.1">
   <Form id="Comm_CrudButton" width="300" height="28" onload="form_onload" scrolltype="none">
     <Layouts>
       <Layout height="28" width="300">
@@ -21,14 +21,11 @@ this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 	
 	var gtrcPos = "Comm_CrudButton.form_onload";
 
-	this.fn_searchName = this.parent.fn_searchName;
-	this.fn_newName = this.parent.fn_newName;
-	this.fn_saveName = this.parent.fn_saveName;
-	this.fn_deleteName = this.parent.fn_deleteName;
-		this.gtrace("this.fn_searchName--->"+this.fn_searchName, gtrcPos);
-		this.gtrace("this.fn_newName--->"+this.fn_newName, gtrcPos);
-		this.gtrace("this.fn_saveName--->"+this.fn_saveName, gtrcPos);
-		this.gtrace("this.fn_deleteName--->"+this.fn_deleteName, gtrcPos);
+	this.fn_searchName 	= this.parent.fn_searchName;	this.gtrace("this.fn_searchName--->"+this.fn_searchName, gtrcPos);
+	this.fn_newName 	= this.parent.fn_newName;		this.gtrace("this.fn_newName--->"+this.fn_newName, gtrcPos);
+	this.fn_saveName 	= this.parent.fn_saveName;		this.gtrace("this.fn_saveName--->"+this.fn_saveName, gtrcPos);
+	this.fn_deleteName 	= this.parent.fn_deleteName;	this.gtrace("this.fn_deleteName--->"+this.fn_deleteName, gtrcPos);
+	
 	this.gfn_getParentForm();	// 공통화폼의 경우 무조건 실행
 };
 

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<FDL version="2.0">
+<FDL version="2.1">
   <TypeDefinition url="..\default_typedef.xml"/>
   <Form id="GridFilterPop" classname="GridFilterPop" left="0" top="0" width="150" height="150" titletext="New Form">
     <Layouts>
@@ -171,7 +171,6 @@ this.setFilterInfo = function(filterType, filterInfo)
 {
 	//	trace("this.parent.name--->"+this.parent.name);
 	this.gfn_getParentForm();
-//								trace("this.sParentFormGetTxt ---->"+this.sParentFormGetTxt);
 //								trace("this.oFrmParnt ---->"+this.oFrmParnt.name);
 //								trace("this.oDivParnt ---->"+this.oDivParnt.name);
 // 								trace("this.oTargetGrid ---->"+this.oTargetGrid.name);

@@ -643,64 +643,36 @@ pForm.gfn_ExistColumnId = function(objDs, sColId){
  **********************************************************************************/
 pForm.gfn_getParentForm = function(){
 
-	var gtrcPos = "Util_adh.xjs.gfn_getParentForm";	this.gtrace("●부모폼가져오기(gfn_getParentForm)", gtrcPos);
+	var gtrcPos = "Util_adh.xjs.gfn_getParentForm";
 	
-	var sEvFrm = "this.parent.form";
+	this.gtrace("●부모폼가져오기(gfn_getParentForm)", gtrcPos);
 	
-	var sTmpNm="";
-	while(!(eval(sEvFrm) instanceof nexacro.Frame)){
-		sEvFrm += ".parent";
-		
-		sTmpNm = eval(sEvFrm).name + "." + sTmpNm;
+	// 최상위폼, 부모Div
+	this.oFrmParnt	=	this.gfn_getTopLevelForm(this);				this.gtrace("this.oFrmParnt.name ---->"+this.oFrmParnt.name, gtrcPos);
+	this.oDivParnt	=	this.parent;								this.gtrace("this.oDivParnt--->"+this.oDivParnt.name, gtrcPos);
+	
+	// 타겟그리드
+	if(!this.gfn_isNull(this.oDivParnt.oTargetGrid)){
+		this.oTargetGrid 		= this.oDivParnt.oTargetGrid;		this.gtrace("this.oTargetGrid--->"+this.oTargetGrid, gtrcPos);
 	}
 	
-	// 한단계 전으로
-	sEvFrm = sEvFrm.replace("this.parent.form.parent","this.parent.form");
-															this.gtrace(" - sEvFrm ---->"+sEvFrm,gtrcPos);
-	var oDivParnt 		= this.parent.form.parent;			this.gtrace(" - oDivParnt ---->"+oDivParnt.name,gtrcPos);
-	var strTargetGrid 	= oDivParnt.targetGrid;				this.gtrace(" - strTargetGrid ---->"+strTargetGrid,gtrcPos);
-	var InitCompVisEna 	= oDivParnt.InitCompVisEna;			this.gtrace(" - InitCompVisEna ---->"+InitCompVisEna,gtrcPos);
-			
-//	var oResult = Array();
-// 		oResult.sParentFormGetTxt 	= sEvFrm;
-// 		oResult.oParentDiv 			= oDivParnt;
-
-	var sGridFullName;
-	var oTargetGrid; 
-	var oTargetDs;	
-
-	// 그리드와 데이터셋
-	if(!this.gfn_isNull(oDivParnt.targetGrid))
-	{
-		sGridFullName 	= 	sEvFrm+"."+oDivParnt.targetGrid;
-		oTargetGrid 	= 	eval(sGridFullName);			this.gtrace(" - oTargetGrid--->"+oTargetGrid.name, gtrcPos);
-		oTargetDs		=	oTargetGrid.getBindDataset();	this.gtrace(" - oTargetDs--->"+oTargetDs.name, gtrcPos);
-		
-// 		oResult.oTargetGrid = oTargetGrid;
-// 		oResult.oTargetDs = oTargetDs;
+	// 타겟데이터셋
+	if(!this.gfn_isNull(this.oDivParnt.oTargetDs))	{
+		this.oTargetDs 			= this.oDivParnt.oTargetDs;			this.gtrace("this.oTargetDs--->"+this.oTargetDs, gtrcPos);
 	}
-
-	if(!this.gfn_isNull(sEvFrm					)) 		{this.sParentFormGetTxt 	= sEvFrm;	this.oFrmParnt = eval(sEvFrm);}
-	if(!this.gfn_isNull(oDivParnt 				)) 		this.oDivParnt 			= oDivParnt;				this.gtrace(" - this.oDivParnt--->"+this.oDivParnt.name, gtrcPos);
-	if(!this.gfn_isNull(oTargetGrid				)) 		this.oTargetGrid		= oTargetGrid;
-	if(!this.gfn_isNull(oTargetDs				)) 		this.oTargetDs			= oTargetDs;
-														this.fullPath = sTmpNm;
-	
 
 	// 콤보넌트 Visible / Enable
-	if(!this.gfn_isNull(oDivParnt.InitCompVisEna))
+	if(!this.gfn_isNull(this.oDivParnt.InitCompVisEna))
 	{
-		this.sInitCompVisEna	= oDivParnt.InitCompVisEna;
+		this.sInitCompVisEna	= this.oDivParnt.InitCompVisEna;	this.gtrace("this.sInitCompVisEna--->"+this.sInitCompVisEna, gtrcPos);
 		this.fn_setButtonVisEna();
 	}
 
 	// ReturnParam ( 확인 / 취소 에서 사용 )
-	if(!this.gfn_isNull(oDivParnt.returnparms))
+	if(!this.gfn_isNull(this.oDivParnt.returnparms))
 	{
-		this.returnparms	= oDivParnt.returnparms;
+		this.returnparms		= this.oDivParnt.returnparms;		this.gtrace("this.returnparms--->"+this.returnparms, gtrcPos);
 	}
-
-//	return oResult;
 }
 
 
