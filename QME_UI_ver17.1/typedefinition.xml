@@ -69,6 +69,7 @@
     <Service prefixid="Recycle" type="form" cachelevel="session" url="./Recycle/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="AppSvr_1" type="JSP" cachelevel="session" url="http://nyc.panpacific.co.kr/QMEServer/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="QmeNexHtml" type="file" url="./QmeNexHtml/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
+    <Service prefixid="AppSvr_7" type="JSP" version="0" cachelevel="session" include_subdir="false" communicationversion="0" url="http://192.168.11.124/"/>
   </Services>
   <Protocols/>
   <Update/>
