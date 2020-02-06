@@ -3,11 +3,12 @@
   <Form id="PopupSaveLayout" width="600" height="400" titletext="Sample_PopupSub" onload="Form_onload">
     <Layouts>
       <Layout height="400" width="600">
-        <Grid id="grd_list" taborder="0" left="16" top="104" right="16" autofittype="col" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" bottom="51" griduserproperty="no,status,!sort,!initial,!export,!colfix,!rowfix,!filter,!cellcopypaste,!colhide,!personal,!subsum" readonly="true" binddataset="ds_LayoutList">
+        <Grid id="grd_list" taborder="0" left="16" top="104" right="16" autofittype="col" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" bottom="51" griduserproperty="no,status,!sort,!initial,!export,!colfix,!rowfix,!filter,cellcopypaste,!colhide,!personal,!subsum,seltype" readonly="true" binddataset="ds_LayoutList">
           <Formats>
             <Format id="default">
               <Columns>
                 <Column size="420"/>
+                <Column size="48"/>
                 <Column size="145"/>
               </Columns>
               <Rows>
@@ -16,11 +17,13 @@
               </Rows>
               <Band id="head">
                 <Cell text="Layout Name"/>
-                <Cell col="1" text="Default"/>
+                <Cell col="1"/>
+                <Cell col="2" text="Default"/>
               </Band>
               <Band id="body">
                 <Cell text="bind:LAYOUT_NM" edittype="text" editautoselect="true"/>
-                <Cell col="1" text="bind:DEFAULT_YN" displaytype="checkboxcontrol" edittype="checkbox" checkboxtruevalue="Y" checkboxfalsevalue="N"/>
+                <Cell col="1" text="bind:SEQ"/>
+                <Cell col="2" text="bind:DEFAULT_YN" displaytype="checkboxcontrol" edittype="checkbox" checkboxtruevalue="Y" checkboxfalsevalue="N"/>
               </Band>
             </Format>
           </Formats>
@@ -29,11 +32,11 @@
         <Static id="Static02" taborder="2" top="0" width="16" cssclass="sta_WF_guideRed" visible="false" text="w&#13;&#10;16" right="0" height="100%"/>
         <Static id="Static03" taborder="3" left="0" cssclass="sta_WF_guideRed" visible="false" text="h16" bottom="0" height="16" width="100%"/>
         <Div id="DivCrudButton" top="8" height="28" text="" formscrolltype="none" cssclass="div_WF_search" url="Comm::Comm_CrudButton.xfdl" taborder="4" background="transparent" width="300" left="16" border="0px none"/>
-        <Static id="StaticVendor" taborder="5" text="Save Layout Name" left="0" top="44" width="160" cssclass="sta_WF_searchLabel" height="24"/>
-        <Edit id="EditLayoutName" taborder="6" left="158" height="24" top="44" cssclass="essential" width="150" autoselect="true" readonly="true"/>
+        <Static id="StaticVendor" taborder="5" text="New Save Layout Name" left="0" top="44" width="180" cssclass="sta_WF_searchLabel" height="24"/>
+        <Edit id="EditLayoutName" taborder="6" left="198" height="24" top="44" cssclass="essential" width="150" autoselect="true" readonly="true"/>
         <Div id="DivCnc" taborder="7" text="Div00" width="128" height="28" url="Comm::Comm_CnC.xfdl" right="16" bottom="16" visible="true" returnparms="SEQ,LAYOUT_NM,DEFAULT_YN,DATA_1" targetGrid="grd_list"/>
         <Static id="StaticVendor00" taborder="8" text="Default Layout" left="0" top="74" width="160" cssclass="sta_WF_searchLabel" height="24"/>
-        <CheckBox id="CheckBoxDefaultLayout" taborder="9" text="" left="158" top="79" width="21" height="15" background="" truevalue="1" falsevalue="0" readonly="true"/>
+        <CheckBox id="CheckBoxDefaultLayout" taborder="9" text="" left="198" top="79" width="21" height="15" background="" truevalue="Y" falsevalue="N" readonly="true"/>
       </Layout>
     </Layouts>
     <Objects>
@@ -56,7 +59,7 @@
         </ColumnInfo>
       </Dataset>
       <Dataset id="ds_tranResult"/>
-      <Dataset id="ds_LayoutList" useclientlayout="true" oncolumnchanged="ds_LayoutList_oncolumnchanged">
+      <Dataset id="ds_LayoutList" useclientlayout="true" oncolumnchanged="ds_LayoutList_oncolumnchanged" keystring="s:-SEQ">
         <ColumnInfo>
           <Column id="DEFAULT_YN" type="STRING" size="256"/>
           <Column id="DEL_YN" type="STRING" size="256"/>
@@ -229,45 +232,52 @@ this.tfn_FormatSearch = function(){
 /*++
 @desc	포맷 저장 : 디폴트가 변경될 수 있기 때문에 ds_in이 아닌 ds_LayoutList 데이터셋에서 작업한다.
 */
-this.tfn_FormatSave = function()
+this.tfn_FormatSave = function(rIDU)
 {
 	var gtrcPos = "PopupSaveLayout.xfdl.tfn_FormatSave";
 		this.gtrace("● 포맺저장트랜잭션", gtrcPos);
 	
-	// 레이아웃명이 있다면 INSERT
-		this.gtrace("레이아웃이름(ds_in-LAYOUT_NM)---->"+this.ds_in.getColumn(0, "LAYOUT_NM"), gtrcPos);
-	if(!this.gfn_isNull(this.ds_in.getColumn(0, "LAYOUT_NM")))
-	{
-		var bDfltLayout = this.ds_in.getColumn(0, "DEFAULT_YN");
-		
-		//INSERT가 디폴트인경우 : 기존 것들은 체크 해제
-		if(bDfltLayout==CHK_TRUE)
-		{	
-			for(var i=0;i<this.ds_LayoutList.rowcount;i++){
-				if(this.ds_LayoutList.getColumn(i, "DEFAULT_YN")==CHK_TRUE){
-					this.ds_LayoutList.setColumn(i, "DEFAULT_YN", CHK_FALSE);
+	//Delete인 경우 해당 Row에 삭제표기
+	if(rIDU == "DELETE"){
+		this.ds_LayoutList.setColumn(this.ds_LayoutList.rowposition, "DEL_YN", "Y");
+	}
+	else{
+		// 레이아웃명이 있다면 INSERT
+			this.gtrace("레이아웃이름(ds_in-LAYOUT_NM)---->"+this.ds_in.getColumn(0, "LAYOUT_NM"), gtrcPos);
+		if(!this.gfn_isNull(this.ds_in.getColumn(0, "LAYOUT_NM")))
+		{
+			var bDfltLayout = this.ds_in.getColumn(0, "DEFAULT_YN");
+			
+			//INSERT가 디폴트인경우 : 기존 것들은 체크 해제
+			if(bDfltLayout==CHK_TRUE)
+			{	
+				for(var i=0;i<this.ds_LayoutList.rowcount;i++){
+					if(this.ds_LayoutList.getColumn(i, "DEFAULT_YN")==CHK_TRUE){
+						this.ds_LayoutList.setColumn(i, "DEFAULT_YN", CHK_FALSE);
+					}
 				}
 			}
+
+			// 한줄추가+값세팅
+			var iAddRp = this.ds_LayoutList.addRow();		this.gtrace("추가된 행 번호(ds_LayoutList-iAddRp)---->"+iAddRp, gtrcPos);
+			this.ds_LayoutList.setColumn(iAddRp, "PROGRAM_ID", this.paramNum);
+			this.ds_LayoutList.setColumn(iAddRp, "GRID_ID", this._getUniqueId(this.paramObj));
+			this.ds_LayoutList.setColumn(iAddRp, "LAYOUT_NM", this.ds_in.getColumn(0, "LAYOUT_NM"));
+			this.ds_LayoutList.setColumn(iAddRp, "DEFAULT_YN", this.gfn_nvl(this.ds_in.getColumn(0, "DEFAULT_YN"),"N"));
+			this.ds_LayoutList.setColumn(iAddRp, "DEL_YN", "N");
+			this.ds_LayoutList.setColumn(iAddRp, "SEQ", "");	// SEQ가 공백인 것을 보고 INSERT 하게 된다.2020-02-06 Version.
+
+			//잘라서 1~10 넣기
+			this.fn_setFormatStringToDataset(iAddRp);
 		}
-
-		// 한줄추가+값세팅
-		var iAddRp = this.ds_LayoutList.addRow();		this.gtrace("추가된 행 번호(ds_LayoutList-iAddRp)---->"+iAddRp, gtrcPos);
-		this.ds_LayoutList.setColumn(iAddRp, "PROGRAM_ID", this.paramNum);
-		this.ds_LayoutList.setColumn(iAddRp, "GRID_ID", this._getUniqueId(this.paramObj));
-		this.ds_LayoutList.setColumn(iAddRp, "LAYOUT_NM", this.ds_in.getColumn(0, "LAYOUT_NM"));
-		this.ds_LayoutList.setColumn(iAddRp, "DEFAULT_YN", this.gfn_nvl(this.ds_in.getColumn(0, "DEFAULT_YN"),"N"));
-		this.ds_LayoutList.setColumn(iAddRp, "DEL_YN", "N");
-		this.ds_LayoutList.setColumn(iAddRp, "SEQ", "1");
-
-		//잘라서 1~10 넣기
-		this.fn_setFormatStringToDataset(iAddRp);
 	}
-
+	
 	//USER세팅
 	this.gfn_setUser(this.ds_LayoutList, "USER_ID");
 	
 	// 트랜잭션 전 처리(공통)
 	var trRslt = this.gfn_beforeTrans(this.ds_LayoutList, this.ds_trans_LayoutList);	this.gtrace("트랜잭션 할 것이 있는지 확인(trRslt)---->"+trRslt, gtrcPos);
+	
 	if(trRslt)
 	{	
 						this.gtrace("저장전트랜잭션_SAVEXML(ds_trans_LayoutList)---->"+this.ds_trans_LayoutList.saveXML(), gtrcPos);
@@ -292,8 +302,11 @@ this.tfn_FormatSave = function()
 */
 this.callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
 {
-	var gtrcPos = "PopupSaveLayout.xfdl.callbackFunction"
+	var gtrcPos = "PopupSaveLayout.xfdl.callbackFunction";
+	var gtrcSavePos = "PopupSaveLayout.xfdl.callbackFunction.FormatSave";
+	
 	this.gtrace("● 포맷콜백", gtrcPos);
+	this.gtrace("● 포맷콜백-save", gtrcSavePos);
 	
 	// 에러 체크 영역
 	if (nErrorCode < 0)
@@ -314,8 +327,10 @@ this.callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
 
 				break;		
 		case "FormatSave"	:
-
-				this.fn_reset();
+				this.gtrace("포맷콜백SAVEXML(ds_tranResult-FormatSave)---->"+this.ds_tranResult.saveXML(), gtrcSavePos);
+				
+				//refresh
+				this.tfn_FormatSearch();
 
 				break;
  	}
@@ -328,25 +343,15 @@ this.callbackFunc_pop = function(strID, variant)
 {
 				var gtrcPos = "PopupSaveLayout.xfdl.callbackFunc_pop";
 
-	var iCrntRp = this.ds_LayoutList.rowposition;
-	var sDATA_1 = this.ds_LayoutList.getColumn(iCrntRp, "DATA_1");
-	var iSEQ = this.ds_LayoutList.getColumn(iCrntRp, "SEQ");
-	var sLAYOUT_NM = this.ds_LayoutList.getColumn(iCrntRp, "LAYOUT_NM");
+	var iCrntRp 	= this.ds_LayoutList.rowposition;
+	var sDATA_1 	= this.ds_LayoutList.getColumn(iCrntRp, "DATA_1");
+	var iSEQ 		= this.ds_LayoutList.getColumn(iCrntRp, "SEQ");
+	var sLAYOUT_NM 	= this.ds_LayoutList.getColumn(iCrntRp, "LAYOUT_NM");
 	var sDEFAULT_YN = this.ds_LayoutList.getColumn(iCrntRp, "DEFAULT_YN");
 	
 	// 그리드 포맺 적용
 	this.paramObj.set_formats(("<Formats>" + sDATA_1 + "</Formats>"));
-	
-// 	var objRtn = { 
-// 					rtnStr 		: this.paramStr,
-// 					rtnNum 		: this.paramNum,
-// 					rtnObj 		: this.paramObj,	//	여기까지 받은 변수 그대로 넘김
-// 					sRtnKey		: iSEQ,
-// 					sRtnName	: sLAYOUT_NM,
-// 					sRtnEtc_00	: sDEFAULT_YN,
-// 					sRtnEtc_10	: "",
-// 					sRtnEtc_20	: ""	
-// 					};
+
 				this.gtrace("this.paramStr---->"+this.paramStr, gtrcPos);
 				this.gtrace("this.paramNum---->"+this.paramNum, gtrcPos);
 				this.gtrace("this.paramObj---->"+this.paramObj.name, gtrcPos);
@@ -388,7 +393,7 @@ this.cfn_add = function()
 this.cfn_del = function()
 {
 	{	//그리드한줄 삭제버튼 클릭후 바로 저장
-		this.tfn_FormatSave();
+		this.tfn_FormatSave("DELETE");
 	}
 };
 
@@ -397,7 +402,7 @@ this.cfn_del = function()
  */
 this.cfn_save = function()
 {
-	this.tfn_FormatSave();
+	this.tfn_FormatSave("SAVE");
 };
 
 /********************************************************************************************/

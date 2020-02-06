@@ -1378,33 +1378,39 @@
         <Row>
           <Col id="TrcId">PopupSaveLayout.xfdl.callbackFunc_pop</Col>
           <Col id="TrcSeq">700</Col>
-          <Col id="Comments">validation(xjs)</Col>
+          <Col id="Comments">사용자화</Col>
         </Row>
         <Row>
           <Col id="TrcId">PopupSaveLayout.xfdl.callbackFunction</Col>
           <Col id="TrcSeq">710</Col>
-          <Col id="Comments">validation(xjs)</Col>
+          <Col id="Comments">사용자화</Col>
+        </Row>
+        <Row>
+          <Col id="TrcSeq">712</Col>
+          <Col id="TrcName">사용자화콜백-저장(FormSave)</Col>
+          <Col id="TrcId">PopupSaveLayout.xfdl.callbackFunction.FormatSave</Col>
+          <Col id="Comments">사용자화</Col>
         </Row>
         <Row>
           <Col id="TrcId">PopupSaveLayout.xfdl.fn_reset</Col>
           <Col id="TrcSeq">720</Col>
-          <Col id="Comments">유틸_adh(xjs)</Col>
+          <Col id="Comments">사용자화</Col>
         </Row>
         <Row>
           <Col id="TrcId">PopupSaveLayout.xfdl.Form_onload</Col>
           <Col id="TrcSeq">730</Col>
-          <Col id="Comments">그리드(xjs)</Col>
+          <Col id="Comments">사용자화</Col>
         </Row>
         <Row>
           <Col id="TrcId">PopupSaveLayout.xfdl.tfn_FormatSave</Col>
           <Col id="TrcSeq">740</Col>
-          <Col id="Comments">확인_취소(공통폼)</Col>
+          <Col id="Comments">사용자화</Col>
           <Col id="TrcName">포맺저장트랜잭션</Col>
         </Row>
         <Row>
           <Col id="TrcId">PopupSaveLayout.xfdl.tfn_FormatSearch</Col>
           <Col id="TrcSeq">750</Col>
-          <Col id="Comments">validation(xjs)</Col>
+          <Col id="Comments">사용자화</Col>
         </Row>
         <Row>
           <Col id="TrcId">QmeNexa.xjs.gfn_getArrComboSetStr</Col>
