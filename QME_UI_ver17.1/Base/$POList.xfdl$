@@ -554,11 +554,7 @@ this.tfn_getPoListHistoryLoad = function(){
 		this.gtrace("보내는 데이터셋(ds_in.saveXML())---->"+this.ds_in.saveXML(), gtrcPos);
 	
 	//공통 트랜잭션 사용
-//	this.gfn_transaction(sSvcID, sURL, sInDatasets, sOutDatasets, sArguments, "callbackFunction");
-//	this.transaction(sSvcID, sURL, sInDatasets, sOutDatasets, sArguments, "callbackFunction");
-	var objApp = nexacro.getApplication() ;
-		this.gtrace("어플리케이션명(objApp)---->"+objApp.name, gtrcPos);
-		objApp.transaction(sSvcID, sURL, sInDatasets, sOutDatasets, sArguments, "callbackFunction");
+	this.gfn_transaction(sSvcID, sURL, sInDatasets, sOutDatasets, sArguments, "callbackFunction");
 }
 
 /*++
@@ -708,7 +704,6 @@ this.tfn_savePO = function(){
 
 	//공통 트랜잭션 사용
 	this.gfn_transaction(sSvcID, sURL, sInDatasets, sOutDatasets, sArguments, "callbackFunction");
-	//	this.transaction(sSvcID, sURL, sInDatasets, sOutDatasets, sArguments, "callbackFunction");
 }
 
 /********************************************************************************************
