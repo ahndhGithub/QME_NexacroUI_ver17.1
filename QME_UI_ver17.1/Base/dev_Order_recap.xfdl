@@ -87,39 +87,12 @@
             </Layout>
           </Layouts>
         </Div>
-        <Tab id="TabOrderRecap" taborder="2" tabindex="0" left="8" top="216" bottom="8" right="8" onchanged="TabOrderRecap_onchanged">
+        <Tab id="TabOrderRecap" taborder="2" tabindex="0" left="8" top="216" bottom="106" right="8" onchanged="TabOrderRecap_onchanged">
           <Tabpages>
             <Tabpage id="TabpageStyle" text="Style">
               <Layouts>
                 <Layout>
-                  <Grid id="Grid01" taborder="0" left="792" top="166" width="249" height="292" binddataset="ds_cmcdSalesGroup" visible="false">
-                    <Formats>
-                      <Format id="default">
-                        <Columns>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                        </Columns>
-                        <Rows>
-                          <Row band="head" size="24"/>
-                          <Row size="24"/>
-                        </Rows>
-                        <Band id="head">
-                          <Cell text="BU_NM"/>
-                          <Cell col="1" text="BU_CD_F"/>
-                          <Cell col="2" text="BU_CD"/>
-                        </Band>
-                        <Band id="body">
-                          <Cell text="bind:BU_NM"/>
-                          <Cell col="1" text="bind:BU_CD_F"/>
-                          <Cell col="2" text="bind:BU_CD"/>
-                        </Band>
-                      </Format>
-                    </Formats>
-                  </Grid>
-                  <Div id="DivBtnGfilter" taborder="1" text="" top="8" width="40" height="28" url="Comm::cmmGridFilterButton.xfdl" targetGrid="TabOrderRecap.TabpageStyle.form.GridStyle" visible="true" right="58"/>
-                  <Div id="DivBtnFormat" taborder="2" text="" top="8" width="40" height="28" url="Comm::cmmFormatMenuButton.xfdl" targetGrid="TabOrderRecap.TabpageStyle.form.GridStyle" visible="true" right="10"/>
-                  <Grid id="GridStyle" taborder="3" left="8" top="50" right="8" bottom="8" griduserproperty="no,!status,!checkbox,export,colfix,rowfix,sort,filter,initial,cellcopypaste,colhide,personal,seltype" binddataset="ds_listStyle" cellsizingtype="col" onvscroll="TabOrderRecap_TabpageStyle_GridStyle_onvscroll" wheelscrollrow="5">
+                  <Grid id="GridStyle" taborder="0" left="8" top="50" right="8" bottom="8" griduserproperty="no,!status,!checkbox,export,colfix,rowfix,sort,filter,initial,cellcopypaste,colhide,personal,seltype" binddataset="ds_listStyle" cellsizingtype="col" onvscroll="TabOrderRecap_TabpageStyle_GridStyle_onvscroll" wheelscrollrow="5">
                     <Formats>
                       <Format id="default">
                         <Columns>
@@ -198,6 +171,33 @@
                       </Format>
                     </Formats>
                   </Grid>
+                  <Grid id="Grid01" taborder="1" left="792" top="166" width="249" height="292" binddataset="ds_cmcdSalesGroup" visible="false">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                        </Columns>
+                        <Rows>
+                          <Row band="head" size="24"/>
+                          <Row size="24"/>
+                        </Rows>
+                        <Band id="head">
+                          <Cell text="BU_NM"/>
+                          <Cell col="1" text="BU_CD_F"/>
+                          <Cell col="2" text="BU_CD"/>
+                        </Band>
+                        <Band id="body">
+                          <Cell text="bind:BU_NM"/>
+                          <Cell col="1" text="bind:BU_CD_F"/>
+                          <Cell col="2" text="bind:BU_CD"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                  <Div id="DivBtnGfilter" taborder="2" text="" top="8" width="40" height="28" url="Comm::cmmGridFilterButton.xfdl" targetGrid="TabOrderRecap.TabpageStyle.form.GridStyle" visible="true" right="58"/>
+                  <Div id="DivBtnFormat" taborder="3" text="" top="8" width="40" height="28" url="Comm::cmmFormatMenuButton.xfdl" targetGrid="TabOrderRecap.TabpageStyle.form.GridStyle" visible="true" right="10"/>
                 </Layout>
               </Layouts>
             </Tabpage>
@@ -962,7 +962,7 @@
             </Tabpage>
           </Tabpages>
         </Tab>
-        <Grid id="Grid00" taborder="3" left="16" height="96" binddataset="ds_in" right="30" cellsizingtype="col" visible="false" bottom="4">
+        <Grid id="Grid00" taborder="3" left="16" height="96" binddataset="ds_in" right="30" cellsizingtype="col" visible="true" bottom="4">
           <Formats>
             <Format id="default">
               <Columns>
@@ -1062,10 +1062,11 @@
             </Format>
           </Formats>
         </Grid>
-        <Button id="Button00_00" taborder="5" text="Output Clear" width="209" height="35" onclick="Button00_onclick" right="0" bottom="0" visible="false"/>
-        <Button id="Button01" taborder="6" text="테스트트랜" left="387" top="175" width="103" height="25" onclick="Button01_onclick"/>
-        <Button id="Button02" taborder="7" text="일반테스트" left="500" top="175" width="103" height="25" onclick="Button02_onclick" visible="true"/>
-        <Grid id="GridTrace" taborder="4" width="690" binddataset="gds_TrcInfo" griduserproperty="checkbox,sort" autofittype="col" cellsizingtype="col" visible="false" right="0" bottom="0" top="340" tempuserproperty="">
+        <TextArea id="TextArea00" taborder="4" left="0" readonly="true" right="0" bottom="100" height="170" visible="false"/>
+        <Button id="Button00_00" taborder="6" text="Output Clear" width="209" height="35" onclick="Button00_onclick" right="0" bottom="0" visible="false"/>
+        <Button id="Button01" taborder="7" text="테스트트랜" left="387" top="175" width="103" height="25" onclick="Button01_onclick"/>
+        <Button id="Button02" taborder="8" text="일반테스트" left="500" top="175" width="103" height="25" onclick="Button02_onclick" visible="true"/>
+        <Grid id="GridTrace" taborder="5" width="690" binddataset="gds_TrcInfo" griduserproperty="checkbox,sort" autofittype="col" cellsizingtype="col" visible="true" right="0" bottom="0" top="340" tempuserproperty="">
           <Formats>
             <Format id="default">
               <Columns>
@@ -1090,7 +1091,7 @@
             </Format>
           </Formats>
         </Grid>
-        <Button id="ButtonTrace" taborder="8" text="Trc." height="25" onclick="ButtonTrace_onclick" right="260" width="40" top="215" visible="true"/>
+        <Button id="ButtonTrace" taborder="9" text="Trc." height="25" onclick="ButtonTrace_onclick" right="260" width="40" top="215"/>
       </Layout>
     </Layouts>
     <Bind>
@@ -1106,6 +1107,7 @@
       <BindItem id="item2" compid="DivCondition.form.div_company" propid="value" datasetid="ds_in" columnid="p_center_cd"/>
       <BindItem id="item0" compid="DivCondition.form.CheckBoxShipment" propid="value" datasetid="ds_in" columnid="p_shipment_yn"/>
       <BindItem id="item3" compid="DivCondition.form.RadioSewing" propid="value" datasetid="ds_in" columnid="p_sewi_type"/>
+      <BindItem id="item6" compid="TextArea00" propid="value" datasetid="gds_TrcOutputTxt" columnid="OutputTxt"/>
       <BindItem id="item7" compid="DivCondition.form.calPerf" propid="value" datasetid="ds_in" columnid="p_perf_date"/>
     </Bind>
     <Script type="xscript5.1"><![CDATA[/********************************************************************************************

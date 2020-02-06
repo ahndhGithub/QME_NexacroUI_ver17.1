@@ -3,7 +3,7 @@
   <Form id="POList" width="1280" height="720" titletext="New Form" onload="formOnload">
     <Layouts>
       <Layout height="720" mobileorientation="landscape" width="1280">
-        <Tab id="TabMain" taborder="1" tabindex="0" left="8" top="146" bottom="8" right="8" border="1px solid gray,1px solid gray,1px solid gray,1px solid gray">
+        <Tab id="TabMain" taborder="1" tabindex="0" left="8" top="146" bottom="107" right="8" border="1px solid gray,1px solid gray,1px solid gray,1px solid gray">
           <Tabpages>
             <Tabpage id="TabpagePOList" text="POList" formscrolltype="none" griduserproperty="">
               <Layouts>
@@ -347,7 +347,7 @@
           </Layouts>
         </Div>
         <Div id="DivCrudButton" left="8" top="8" height="32" text="" formscrolltype="none" right="8" cssclass="div_WF_search" url="Comm::Comm_CrudButton.xfdl" InitCompVisEna="1:1:1:1,1:0:1:1" fn_searchName="" fn_newName="" fn_saveName="" fn_deleteName=""/>
-        <Grid id="Grid02" taborder="6" left="0" height="90" binddataset="ds_in" bottom="0" right="0" visible="false">
+        <Grid id="Grid02" taborder="6" left="0" height="90" binddataset="ds_in" bottom="0" right="0">
           <Formats>
             <Format id="default">
               <Columns>
@@ -408,7 +408,7 @@
             </Format>
           </Formats>
         </Grid>
-        <Grid id="GridTrace" taborder="8" width="690" binddataset="gds_TrcInfo" griduserproperty="checkbox,sort" autofittype="col" cellsizingtype="col" visible="false" right="17" bottom="137" top="363" tempuserproperty="">
+        <Grid id="GridTrace" taborder="8" width="690" binddataset="gds_TrcInfo" griduserproperty="checkbox,sort" autofittype="col" cellsizingtype="col" visible="true" right="17" bottom="137" top="363" tempuserproperty="">
           <Formats>
             <Format id="default">
               <Columns>

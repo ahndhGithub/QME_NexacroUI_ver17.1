@@ -8,11 +8,14 @@
         <Button id="Button00_00" taborder="2" text="Stop" left="460" width="190" height="40" onclick="ButtonStop_onclick" bottom="115"/>
         <Button id="Button00_00_00" taborder="3" text="Pause" left="255" width="190" height="40" onclick="ButtonPause_onclick" bottom="115"/>
         <Button id="Button00_01" taborder="4" text="Size" left="665" width="190" height="40" onclick="ButtonSize_onclick" bottom="115"/>
+        <Button id="ButtonOpenWindow" taborder="5" text="OpenWindow" left="37" width="190" height="40" bottom="65" onclick="ButtonOpenWindow_onclick"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[this.test_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
 	//	this.WebBrowser00.set_url("http://localhost:8080/QME/youtubePlayer.html");		//	https://developers.google.com/youtube/iframe_api_reference?hl=ko
+	this.WebBrowser00.set_url("http://nyc.panpacific.co.kr/QMEServer/");		//	https://developers.google.com/youtube/iframe_api_reference?hl=ko
+	//	this.WebBrowser00.set_url("http://naver.com");		//	https://developers.google.com/youtube/iframe_api_reference?hl=ko
 	//	this.WebBrowser00.set_url("http://192.168.11.193:8101/nexos/html/main/main.html?ver=20181022_03#LC00000M");
 };
 
@@ -66,6 +69,11 @@ this.WebBrowser00_onloadcompleted = function(obj:nexacro.WebBrowser,e:nexacro.We
 };
 
 
+
+this.ButtonOpenWindow_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.WebBrowser00.callMethod("callUrl", "www.naver.com");
+};
 ]]></Script>
   </Form>
 </FDL>
