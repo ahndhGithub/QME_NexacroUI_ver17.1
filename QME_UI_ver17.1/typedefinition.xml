@@ -50,7 +50,7 @@
     <Service prefixid="Frame" type="form" url="./Frame/" cachelevel="session" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="Base" type="form" cachelevel="session" url="./Base/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="Library" type="js" cachelevel="none" url="./Library/" version="0" communicationversion="0" include_subdir="false"/>
-    <Service prefixid="AppSvr3" type="JSP" cachelevel="session" url="http://203.229.231.124/" version="0" communicationversion="0" include_subdir="false"/>
+    <Service prefixid="AppSvr" type="JSP" cachelevel="session" url="http://203.229.231.124/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="AppSvr_2" type="JSP" cachelevel="session" url="http://192.168.11.182/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="ImgSvrTest" type="JSP" cachelevel="session" url="http://192.168.11.193:8081/ImageViewer.do?realFileNm=" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="HintsEduLib" type="js" cachelevel="none" url="./nexacro17lib/component/HintsEduLib/" version="0" communicationversion="0" include_subdir="false"/>
@@ -67,7 +67,7 @@
     <Service prefixid="Images" type="file" cachelevel="session" url="./Images/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="EcoLib" type="js" cachelevel="session" url="./nexacro17lib/component/EcoLibrary/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="Recycle" type="form" cachelevel="session" url="./Recycle/" version="0" communicationversion="0" include_subdir="false"/>
-    <Service prefixid="AppSvr" type="JSP" cachelevel="session" url="http://nyc.panpacific.co.kr/QMEServer/" version="0" communicationversion="0" include_subdir="false"/>
+    <Service prefixid="AppSvr_1" type="JSP" cachelevel="session" url="http://nyc.panpacific.co.kr/QMEServer/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="QmeNexHtml" type="file" url="./QmeNexHtml/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
   </Services>
   <Protocols/>
