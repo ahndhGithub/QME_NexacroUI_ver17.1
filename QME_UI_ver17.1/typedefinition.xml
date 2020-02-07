@@ -50,9 +50,6 @@
     <Service prefixid="Frame" type="form" url="./Frame/" cachelevel="session" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="Base" type="form" cachelevel="session" url="./Base/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="Library" type="js" cachelevel="none" url="./Library/" version="0" communicationversion="0" include_subdir="false"/>
-    <Service prefixid="AppSvr_9" type="JSP" cachelevel="session" url="http://203.229.231.124/" version="0" communicationversion="0" include_subdir="false"/>
-    <Service prefixid="AppSvr_2" type="JSP" cachelevel="session" url="http://192.168.11.182/" version="0" communicationversion="0" include_subdir="false"/>
-    <Service prefixid="ImgSvrTest" type="JSP" cachelevel="session" url="http://192.168.11.193:8081/ImageViewer.do?realFileNm=" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="HintsEduLib" type="js" cachelevel="none" url="./nexacro17lib/component/HintsEduLib/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="Src_HintsEduLib" type="js" cachelevel="none" url="./Src_HintsEduLib/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="Comm" type="form" cachelevel="session" url="./Comm/" version="0" communicationversion="0" include_subdir="false"/>
@@ -61,15 +58,17 @@
     <Service prefixid="Edu_Guide" type="form" cachelevel="session" url="./Edu/Guide/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="Edu_Sample" type="form" cachelevel="session" url="./Edu/Sample/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="Popup" type="form" cachelevel="session" url="./Popup/" version="0" communicationversion="0" include_subdir="false"/>
-    <Service prefixid="AppSvrLocalMsSql" type="JSP" cachelevel="session" url="http://localhost:8080/QME/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="ComComp" type="js" cachelevel="session" url="./nexacro17lib/component/ComComp/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="GridFilter" type="form" cachelevel="none" url="./GridFilter/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="Images" type="file" cachelevel="session" url="./Images/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="EcoLib" type="js" cachelevel="session" url="./nexacro17lib/component/EcoLibrary/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="Recycle" type="form" cachelevel="session" url="./Recycle/" version="0" communicationversion="0" include_subdir="false"/>
-    <Service prefixid="AppSvr" type="JSP" cachelevel="session" url="http://nyc.panpacific.co.kr/QMEServer/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="QmeNexHtml" type="file" url="./QmeNexHtml/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
-    <Service prefixid="AppSvr_7" type="JSP" version="0" cachelevel="session" include_subdir="false" communicationversion="0" url="http://192.168.11.124/"/>
+    <Service prefixid="AppSvrLocalMsSql" type="JSP" cachelevel="none" url="http://localhost:8080/QME/" version="0" communicationversion="0" include_subdir="false"/>
+    <Service prefixid="ImgSvrTest" type="JSP" cachelevel="none" url="http://192.168.11.193:8081/ImageViewer.do?realFileNm=" version="0" communicationversion="0" include_subdir="false"/>
+    <Service prefixid="AppSvr" type="JSP" cachelevel="none" url="http://nyc.panpacific.co.kr/QMEServer/" version="0" communicationversion="0" include_subdir="false"/>
+    <Service prefixid="AppSvr_2" type="JSP" cachelevel="none" url="http://192.168.11.182/" version="0" communicationversion="0" include_subdir="false"/>
+    <Service prefixid="AppSvr_3" type="JSP" cachelevel="none" url="http://203.229.231.124/" version="0" communicationversion="0" include_subdir="false"/>
   </Services>
   <Protocols/>
   <Update/>
