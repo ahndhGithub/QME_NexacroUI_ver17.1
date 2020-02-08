@@ -1,5 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Script version="1.0" type="xscript5.1"><![CDATA[/**
+<Script version="1.0" type="xscript5.1"><![CDATA[/********************************************************************************************
+@desc	1. Include
+********************************************************************************************/
+include "Src_HintsEduLib::All_EduLib.xjs";
+
+/**
 *  @FileName 	Grid.js 
 */
 var pForm = nexacro.Form.prototype;
@@ -26,11 +31,9 @@ pForm.tragetGrid = "";
 */
 pForm.gfn_setGrid = function(objGrid)
 {
-	
-	var gtrcPos = "Grid.xjs.gfn_setGrid";
-	var gtrcBindHeaderTextPos = gtrcPos+".bindHeaderText";
-		this.gtrace("●그리드세팅", gtrcPos);
-		this.gtrace("그리드명--->"+objGrid.name, gtrcPos);
+	var gtrcPos = "Grid.xjs.gfn_setGrid";	
+	this.gtrace("●그리드세팅", gtrcPos);
+	this.gtrace("그리드명--->"+objGrid.name, gtrcPos);
 		
 	//Grid의 binddataset설정
 	var objDs = objGrid.getBindDataset();
@@ -44,110 +47,9 @@ pForm.gfn_setGrid = function(objGrid)
 		objDs.bindgrid = objGrid;
 	}
 
-	// 바인드명을헤드텍스트로 (ds_grdDic)
-	var sTrcGridNm = "GridPoList";	
-	var sTrcTmpCol = "VBELN";		
+ 	// 바인드명을헤드텍스트로 (ds_grdDic)
+	this.gfn_setGrdDic(objGrid);
 	
-	if(!this.gfn_isNull(this.ds_grdDic))
-	{
-		for( var j=0; j < objDs.getColCount(); j++){
-			
-			// GridId에 있는 걸 먼저 적용 , 없을 경우 다시 찾는다.
-			var sObjGridNm		= objGrid.name;			
-			var tmpcol 			= objDs.getColID(j);
-			var realGridCellIndex = objGrid.getBindCellIndex( "body", tmpcol);
-
-									if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("●그리드세팅-바인드명헤드텍스트로", gtrcBindHeaderTextPos)};
-									if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("트레이스볼그리드(sTrcGridNm)--->"+sTrcGridNm, gtrcBindHeaderTextPos)};
-									if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("트레이스볼컬럼(sTrcTmpCol)--->"+sTrcTmpCol, gtrcBindHeaderTextPos)};
-									if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("그리드명----->"+objGrid.name, gtrcBindHeaderTextPos)};
-									if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("데이터셋명(objDs.name)--->"+objDs.name, gtrcBindHeaderTextPos)};
-									if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("데이터셋컬럼수(objDs.getColCount)--->"+objDs.getColCount(), gtrcBindHeaderTextPos)};
-									if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("실제바인딩된그리드셀Index(realGridCellIndex)--->"+realGridCellIndex + " (<--- 이 인덱스에 setCellProperty를 적용한다.", gtrcBindHeaderTextPos);}
-
-			var iFndRp 			= this.ds_grdDic.findRowExpr("GridId=='"+sObjGridNm+"' && BindCol=='"+tmpcol+"'");		
-				if(iFndRp == -1)
-					iFndRp 		= this.ds_grdDic.findRowExpr("BindCol=='"+tmpcol+"'");
-								if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol){this.gtrace("찾은행번호("+tmpcol+"(iFndRp))---> "+iFndRp+" (ds_grdDic의 BindCol컬럼에서 "+tmpcol+" 값을 찾은 행번호)", gtrcBindHeaderTextPos);}
-																							if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("ds_grdDic에서 iFndRp의 다른 컬럼값 가져오기", gtrcBindHeaderTextPos);}
-			var sHdTxt 			= this.ds_grdDic.getColumn(iFndRp, "HeaderText");			if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace(" sHdTxt--->"+sHdTxt 			, gtrcBindHeaderTextPos);}
-			var iColWidth 		= this.ds_grdDic.getColumn(iFndRp, "ColWidth");				if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol)/**/{this.gtrace(" iColWidth--->"+iColWidth 		, gtrcBindHeaderTextPos);}
-			var sbDisplaytype 	= this.ds_grdDic.getColumn(iFndRp, "bDisplaytype");			if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol)/**/{this.gtrace(" sbDisplaytype--->"+sbDisplaytype , gtrcBindHeaderTextPos);}
-			var sbEdittype 		= this.ds_grdDic.getColumn(iFndRp, "bEdittype");			if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol)/**/{this.gtrace(" sbEdittype--->"+sbEdittype 		, gtrcBindHeaderTextPos);}
-			var sbTextAlign 	= this.ds_grdDic.getColumn(iFndRp, "bTextAlign");			if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol)/**/{this.gtrace(" sbEdittype--->"+sbEdittype 		, gtrcBindHeaderTextPos);}
-			var sbSuppress 		= this.ds_grdDic.getColumn(iFndRp, "bSuppress");			if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol)/**/{this.gtrace(" sbSuppress--->"+sbSuppress 		, gtrcBindHeaderTextPos);}
-				if(!this.gfn_isNull(sbSuppress)){
-					var sSval;
-
-					if(sbSuppress.indexOf("{")==0)
-					{
-						var obSuppress = eval("obSuppress = " + sbSuppress);	//	trace("obSuppress--->"+obSuppress);
-						var arrSupGrId 	= obSuppress.GrId;                  	//	trace("obSuppress.GrId--->"+obSuppress.GrId);
-						var	sSupGrVal 	= obSuppress.sPrsVal;               	//	trace("obSuppress.GrId[0]--->"+obSuppress.GrId[0]);
-						if(arrSupGrId.includes(sObjGridNm))	
-						{                                        				//	trace("obSuppress.GrId[0].includes('GridStyle')--->"+obSuppress.GrId[0].includes(sObjGridNm));
-							sSval = sSupGrVal;	
-						}
-					}else
-					{
-						sSval = sbSuppress;
-					}
-					
-					//	Suppress 최종적용
-						if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol)/**/{this.gtrace("sSval--->"+sSval, gtrcPos);}
-							objGrid.setCellProperty( "body", realGridCellIndex, "suppress", this.gfn_nvl(sSval,"") );
-				}
-				
-			var sbPadding 				= this.ds_grdDic.getColumn(iFndRp, "bPadding");					if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol)/**/{this.gtrace("sbEdittype 		--->"+sbEdittype 		, gtrcPos);}
-			var sbCombodataset 			= this.ds_grdDic.getColumn(iFndRp, "bCombodataset");			if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol)/**/{this.gtrace("sbCombodataset--->"+sbCombodataset, gtrcPos);}
-			var sbCombocodecol 			= this.ds_grdDic.getColumn(iFndRp, "bCombocodecol");			if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol)/**/{this.gtrace("sbCombocodecol--->"+sbCombocodecol, gtrcPos);}
-			var sbCombodatacol 			= this.ds_grdDic.getColumn(iFndRp, "bCombodatacol");			if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol)/**/{this.gtrace("sbCombodatacol--->"+sbCombodatacol, gtrcPos);}
-			var sbCombotype 			= this.ds_grdDic.getColumn(iFndRp, "bCombotype");				if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol)/**/{this.gtrace("sbCombotype--->"+sbCombotype, gtrcPos);}
-			var sbMaskedittype 			= this.ds_grdDic.getColumn(iFndRp, "bMaskedittype");										
-			var sbMaskeditlimitbymask 	= this.ds_grdDic.getColumn(iFndRp, "bMaskeditlimitbymask");									
-			var sbMaskeditformat		= this.ds_grdDic.getColumn(iFndRp, "bMaskeditformat");									
-
-			if(!this.gfn_isNull(sHdTxt)) 			objGrid.setCellProperty( "head", realGridCellIndex, "text", sHdTxt );
-			if(!this.gfn_isNull(iColWidth		)) 	objGrid.setRealColSize( "body", realGridCellIndex, iColWidth, true );
-			if(!this.gfn_isNull(sbDisplaytype	)) 	{
-				objGrid.setCellProperty( "body", realGridCellIndex, "displaytype"	, sbDisplaytype 	);	//	if(tmpcol==sTrcTmpCol){this.gtrace("bRslt--->"+bRslt, gtrcPos);}
-				switch(sbDisplaytype){
-					case "mask" 	: 
-									  objGrid.setCellProperty( "body", realGridCellIndex, "maskeditformat"		, sbMaskeditformat		);
-						break;
-					default : 
-						break;
-				}
-			}
-			if(!this.gfn_isNull(sbEdittype		)) 	{
-				objGrid.setCellProperty( "body", realGridCellIndex, "edittype"		, sbEdittype		);
-				switch(sbEdittype){
-					case "normal" 	: objGrid.setCellProperty( "body", realGridCellIndex, "editautoselect"	, true 	);
-						break;
-					case "mask" 	: objGrid.setCellProperty( "body", realGridCellIndex, "maskeditautoselect"	, true 	);
-									  objGrid.setCellProperty( "body", realGridCellIndex, "maskedittype"		, sbMaskedittype 		);
-									  objGrid.setCellProperty( "body", realGridCellIndex, "maskeditlimitbymask"	, sbMaskeditlimitbymask );
-									  objGrid.setCellProperty( "body", realGridCellIndex, "maskeditformat"		, sbMaskeditformat		);
-						break;
-					default : 
-						break;
-				}
-				
-				if(sbEdittype!="none"){
-					this.gtrace("헤더색상변경 : edittype이 none이 아닌경우--->"+sHdTxt, gtrcPos);
-					objGrid.setCellProperty( "head", realGridCellIndex, "background", "ibory" );
-				}
-			}
-			
-			if(!this.gfn_isNull(sbTextAlign		)) 	objGrid.setCellProperty( "body", realGridCellIndex, "textAlign"		, sbTextAlign 		);
-			if(!this.gfn_isNull(sbPadding		)) 	objGrid.setCellProperty( "body", realGridCellIndex, "padding"		, sbPadding 		);
-			if(!this.gfn_isNull(sbCombodataset	)) 	objGrid.setCellProperty( "body", realGridCellIndex, "combodataset"	, sbCombodataset 	);
-			if(!this.gfn_isNull(sbCombocodecol	)) 	objGrid.setCellProperty( "body", realGridCellIndex, "combocodecol"	, sbCombocodecol 	);
-			if(!this.gfn_isNull(sbCombodatacol	)) 	objGrid.setCellProperty( "body", realGridCellIndex, "combodatacol"	, sbCombodatacol 	);
-			if(!this.gfn_isNull(sbCombotype		)) 	objGrid.setCellProperty( "body", realGridCellIndex, "combotype"		, sbCombotype 		);
-		}
-	}
-
 	//Grid의 UserProperty설정
 	var arrProp = this._getGridUserProperty(objGrid);			//	this.gtrace("_getGridUserProperty를 통해 가져온 배열(중복현상 있음) arrProp--->"+arrProp, gtrcPos);
 	if(this.gfn_isNull(arrProp)) return; 		//설정할 속성이 엄쪄용
@@ -2925,4 +2827,195 @@ pForm._gfn_selTypeArea = function(objGrid){
 
 pForm._gfn_selTypeRow = function(objGrid){
 	objGrid.set_selecttype("row");
-};]]></Script>
+};
+
+/**
+ * @class 		gfn_setGrdDic : 바인드명을헤드텍스트로 (ds_grdDic)
+ * @param 		
+ * @return		
+ * @example
+ * 
+*/
+pForm.gfn_setGrdDic = function(objGrid){
+
+	//Grid의 binddataset설정
+	var objDs = objGrid.getBindDataset();
+	
+	var gtrcPos = "Grid.xjs.gfn_setGrdDic";
+	var gtrcBindHeaderTextPos = "Grid.xjs.gfn_setGrdDic.bindHeaderText";
+	var gtrcElapsedTimePos = "Grid.xjs.gfn_setGrdDic.elapsedTime";
+	var gtrcTotalElapsedTimePos = "Grid.xjs.gfn_setGrdDic.totalElapsedTime";
+	
+		this.gtrace("●그리드딕셔너리세팅", gtrcPos);
+		this.gtrace("●그리드딕셔너리세팅-시간체크-->"+objGrid.name, gtrcElapsedTimePos);
+		this.gtrace("●그리드딕셔너리세팅-전체시간체크-->"+objGrid.name, gtrcTotalElapsedTimePos);
+		this.gtrace("그리드명--->"+objGrid.name, gtrcPos);
+		this.gtrace("시작--->"+this.gfn_getDate("time"), gtrcTotalElapsedTimePos);
+		
+	// 바인드명을헤드텍스트로 (ds_grdDic)
+	var sTrcGridNm = "GridPoHistory";	
+	var sTrcTmpCol = "ITEM_NM";		
+	
+	
+	var sObjGridNm = objGrid.name;
+	
+	var iii = 1;
+	
+	if(!this.gfn_isNull(this.ds_grdDic))
+	{
+		for( var j=0; j < objDs.getColCount(); j++){
+			
+			if(iii%10==0/**/){this.gtrace(iii+"(iii) where---->"+this.gfn_getDate("time"), gtrcElapsedTimePos)};
+			
+			
+			// GridId에 있는 걸 먼저 적용 , 없을 경우 다시 찾는다.
+			var sObjGridNm		= objGrid.name;			
+			var tmpcol 			= objDs.getColID(j);
+			
+			if(iii > 40 && iii < 50 /**/){this.gtrace("tmpcol-------->"+tmpcol, gtrcElapsedTimePos)};
+			
+			var realGridCellIndex = objGrid.getBindCellIndex( "body", tmpcol);
+
+									if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("●그리드세팅-바인드명헤드텍스트로", gtrcBindHeaderTextPos)};
+									if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("트레이스볼그리드(sTrcGridNm)--->"+sTrcGridNm, gtrcBindHeaderTextPos)};
+									if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("트레이스볼컬럼(sTrcTmpCol)--->"+sTrcTmpCol, gtrcBindHeaderTextPos)};
+									if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("그리드명----->"+objGrid.name, gtrcBindHeaderTextPos)};
+									if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("데이터셋명(objDs.name)--->"+objDs.name, gtrcBindHeaderTextPos)};
+									if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("데이터셋컬럼수(objDs.getColCount)--->"+objDs.getColCount(), gtrcBindHeaderTextPos)};
+									if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("실제바인딩된그리드셀Index(realGridCellIndex)--->"+realGridCellIndex + " (<--- 이 인덱스에 setCellProperty를 적용한다.", gtrcBindHeaderTextPos);}
+
+			var iFndRp 			= this.ds_grdDic.findRowExpr("GridId=='"+sObjGridNm+"' && BindCol=='"+tmpcol+"'");		
+				if(iFndRp == -1)
+					iFndRp 		= this.ds_grdDic.findRowExpr("BindCol=='"+tmpcol+"'");
+								if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol){this.gtrace("찾은행번호("+tmpcol+"(iFndRp))---> "+iFndRp+" (ds_grdDic의 BindCol컬럼에서 "+tmpcol+" 값을 찾은 행번호)", gtrcBindHeaderTextPos);}
+																							if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("ds_grdDic에서 iFndRp의 다른 컬럼값 가져오기", gtrcBindHeaderTextPos);}
+			var sHdTxt 			= this.ds_grdDic.getColumn(iFndRp, "HeaderText");			if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace(" sHdTxt--->"+sHdTxt 			, gtrcBindHeaderTextPos);}
+			var iColWidth 		= this.ds_grdDic.getColumn(iFndRp, "ColWidth");				if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol)/**/{this.gtrace(" iColWidth--->"+iColWidth 		, gtrcBindHeaderTextPos);}
+			var sbDisplaytype 	= this.ds_grdDic.getColumn(iFndRp, "bDisplaytype");			if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol)/**/{this.gtrace(" sbDisplaytype--->"+sbDisplaytype , gtrcBindHeaderTextPos);}
+			var sbEdittype 		= this.ds_grdDic.getColumn(iFndRp, "bEdittype");			if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol)/**/{this.gtrace(" sbEdittype--->"+sbEdittype 		, gtrcBindHeaderTextPos);}
+			var sbTextAlign 	= this.ds_grdDic.getColumn(iFndRp, "bTextAlign");			if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol)/**/{this.gtrace(" sbEdittype--->"+sbEdittype 		, gtrcBindHeaderTextPos);}
+			var sbSuppress 		= this.ds_grdDic.getColumn(iFndRp, "bSuppress");			if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol)/**/{this.gtrace(" sbSuppress--->"+sbSuppress 		, gtrcBindHeaderTextPos);}
+				
+				if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("TIME:1---->"+this.gfn_getDate("time"), gtrcBindHeaderTextPos)};
+				
+				if(!this.gfn_isNull(sbSuppress)){
+					var sSval;
+
+					if(sbSuppress.indexOf("{")==0)
+					{
+						var obSuppress = eval("obSuppress = " + sbSuppress);	//	trace("obSuppress--->"+obSuppress);
+						var arrSupGrId 	= obSuppress.GrId;                  	//	trace("obSuppress.GrId--->"+obSuppress.GrId);
+						var	sSupGrVal 	= obSuppress.sPrsVal;               	//	trace("obSuppress.GrId[0]--->"+obSuppress.GrId[0]);
+						if(arrSupGrId.includes(sObjGridNm))	
+						{                                        				//	trace("obSuppress.GrId[0].includes('GridStyle')--->"+obSuppress.GrId[0].includes(sObjGridNm));
+							sSval = sSupGrVal;	
+						}
+					}else
+					{
+						sSval = sbSuppress;
+					}
+					
+					if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("TIME:2---->"+this.gfn_getDate("time"), gtrcBindHeaderTextPos)};
+					
+					//	Suppress 최종적용
+						if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol)/**/{this.gtrace("sSval--->"+sSval, gtrcPos);}
+							objGrid.setCellProperty( "body", realGridCellIndex, "suppress", this.gfn_nvl(sSval,"") );
+					
+					if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("TIME:3---->"+this.gfn_getDate("time"), gtrcBindHeaderTextPos)};
+				}
+				
+				
+			
+			var sbPadding 				= this.ds_grdDic.getColumn(iFndRp, "bPadding");					if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol)/**/{this.gtrace("sbEdittype 		--->"+sbEdittype 		, gtrcPos);}
+			var sbCombodataset 			= this.ds_grdDic.getColumn(iFndRp, "bCombodataset");			if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol)/**/{this.gtrace("sbCombodataset--->"+sbCombodataset, gtrcPos);}
+			var sbCombocodecol 			= this.ds_grdDic.getColumn(iFndRp, "bCombocodecol");			if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol)/**/{this.gtrace("sbCombocodecol--->"+sbCombocodecol, gtrcPos);}
+			var sbCombodatacol 			= this.ds_grdDic.getColumn(iFndRp, "bCombodatacol");			if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol)/**/{this.gtrace("sbCombodatacol--->"+sbCombodatacol, gtrcPos);}
+			var sbCombotype 			= this.ds_grdDic.getColumn(iFndRp, "bCombotype");				if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol)/**/{this.gtrace("sbCombotype--->"+sbCombotype, gtrcPos);}
+			var sbMaskedittype 			= this.ds_grdDic.getColumn(iFndRp, "bMaskedittype");										
+			var sbMaskeditlimitbymask 	= this.ds_grdDic.getColumn(iFndRp, "bMaskeditlimitbymask");									
+			var sbMaskeditformat		= this.ds_grdDic.getColumn(iFndRp, "bMaskeditformat");									
+					
+					if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("TIME:4---->"+this.gfn_getDate("time"), gtrcBindHeaderTextPos)};
+					
+			if(!this.gfn_isNull(sHdTxt)) 			objGrid.setCellProperty( "head", realGridCellIndex, "text", sHdTxt );
+					
+					if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("TIME:5---->"+this.gfn_getDate("time"), gtrcBindHeaderTextPos)};
+			
+			//	셀사이즈
+			//		속도개선 : Loop 40 이하에서만 셀사이즈를 조정	Before : if(!this.gfn_isNull(iColWidth) && !this.gfn_isNull(sHdTxt))
+			if(!this.gfn_isNull(iColWidth) && !this.gfn_isNull(sHdTxt) && iii < 40)	
+			{
+				objGrid.setRealColSize( "body", realGridCellIndex, iColWidth, true );
+			}		
+					if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("TIME:5-1---->"+this.gfn_getDate("time"), gtrcBindHeaderTextPos)};
+			
+			if(!this.gfn_isNull(sbDisplaytype	)) 	{
+					
+					if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("TIME:6---->"+this.gfn_getDate("time"), gtrcBindHeaderTextPos)};
+					
+				objGrid.setCellProperty( "body", realGridCellIndex, "displaytype"	, sbDisplaytype 	);	//	if(tmpcol==sTrcTmpCol){this.gtrace("bRslt--->"+bRslt, gtrcPos);}
+					
+					if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("TIME:7---->"+this.gfn_getDate("time"), gtrcBindHeaderTextPos)};
+					
+				switch(sbDisplaytype){
+					case "mask" 	: 
+					
+					if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("TIME:8---->"+this.gfn_getDate("time"), gtrcBindHeaderTextPos)};
+					
+									  objGrid.setCellProperty( "body", realGridCellIndex, "maskeditformat"		, sbMaskeditformat		);
+					
+					if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("TIME:9---->"+this.gfn_getDate("time"), gtrcBindHeaderTextPos)};
+					
+						break;
+					default : 
+						break;
+				}
+			}
+					
+					if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("TIME:9-1---->"+this.gfn_getDate("time"), gtrcBindHeaderTextPos)};
+			
+			if(!this.gfn_isNull(sbEdittype		)) 	{
+			
+					if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("TIME:10---->"+this.gfn_getDate("time"), gtrcBindHeaderTextPos)};
+					
+				objGrid.setCellProperty( "body", realGridCellIndex, "edittype"		, sbEdittype		);
+				
+					if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("TIME:11---->"+this.gfn_getDate("time"), gtrcBindHeaderTextPos)};
+					
+				switch(sbEdittype){
+					case "normal" 	: objGrid.setCellProperty( "body", realGridCellIndex, "editautoselect"	, true 	);
+						break;
+					case "mask" 	: objGrid.setCellProperty( "body", realGridCellIndex, "maskeditautoselect"	, true 	);
+									  objGrid.setCellProperty( "body", realGridCellIndex, "maskedittype"		, sbMaskedittype 		);
+									  objGrid.setCellProperty( "body", realGridCellIndex, "maskeditlimitbymask"	, sbMaskeditlimitbymask );
+									  objGrid.setCellProperty( "body", realGridCellIndex, "maskeditformat"		, sbMaskeditformat		);
+						break;
+					default : 
+						break;
+				}
+					if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("TIME:12---->"+this.gfn_getDate("time"), gtrcBindHeaderTextPos)};
+					
+				if(sbEdittype!="none"){
+					this.gtrace("헤더색상변경 : edittype이 none이 아닌경우--->"+sHdTxt, gtrcPos);
+					objGrid.setCellProperty( "head", realGridCellIndex, "background", "ibory" );
+				}
+			}
+					
+					if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("TIME:13---->"+this.gfn_getDate("time"), gtrcBindHeaderTextPos)};
+					
+			if(!this.gfn_isNull(sbTextAlign		)) 	objGrid.setCellProperty( "body", realGridCellIndex, "textAlign"		, sbTextAlign 		);
+			if(!this.gfn_isNull(sbPadding		)) 	objGrid.setCellProperty( "body", realGridCellIndex, "padding"		, sbPadding 		);
+			if(!this.gfn_isNull(sbCombodataset	)) 	objGrid.setCellProperty( "body", realGridCellIndex, "combodataset"	, sbCombodataset 	);
+			if(!this.gfn_isNull(sbCombocodecol	)) 	objGrid.setCellProperty( "body", realGridCellIndex, "combocodecol"	, sbCombocodecol 	);
+			if(!this.gfn_isNull(sbCombodatacol	)) 	objGrid.setCellProperty( "body", realGridCellIndex, "combodatacol"	, sbCombodatacol 	);
+			if(!this.gfn_isNull(sbCombotype		)) 	objGrid.setCellProperty( "body", realGridCellIndex, "combotype"		, sbCombotype 		);
+					
+					if(sObjGridNm == sTrcGridNm && tmpcol==sTrcTmpCol/**/){this.gtrace("TIME:14---->"+this.gfn_getDate("time"), gtrcBindHeaderTextPos)};
+		
+			iii++;
+		
+		}
+		
+		this.gtrace("끝----->"+this.gfn_getDate("time"), gtrcTotalElapsedTimePos);
+	}
+}]]></Script>

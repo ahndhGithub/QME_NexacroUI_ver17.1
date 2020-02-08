@@ -66,9 +66,9 @@
     <Service prefixid="QmeNexHtml" type="file" url="./QmeNexHtml/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
     <Service prefixid="AppSvrLocalMsSql" type="JSP" cachelevel="none" url="http://localhost:8080/QME/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="ImgSvrTest" type="JSP" cachelevel="none" url="http://192.168.11.193:8081/ImageViewer.do?realFileNm=" version="0" communicationversion="0" include_subdir="false"/>
-    <Service prefixid="AppSvr" type="JSP" cachelevel="none" url="http://nyc.panpacific.co.kr/QMEServer/" version="0" communicationversion="0" include_subdir="false"/>
+    <Service prefixid="AppSvr_1" type="JSP" cachelevel="none" url="http://nyc.panpacific.co.kr/QMEServer/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="AppSvr_2" type="JSP" cachelevel="none" url="http://192.168.11.182/" version="0" communicationversion="0" include_subdir="false"/>
-    <Service prefixid="AppSvr_3" type="JSP" cachelevel="none" url="http://203.229.231.124/" version="0" communicationversion="0" include_subdir="false"/>
+    <Service prefixid="AppSvr" type="JSP" cachelevel="none" url="http://203.229.231.124/" version="0" communicationversion="0" include_subdir="false"/>
   </Services>
   <Protocols/>
   <Update/>
