@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<FDL version="2.0">
+<FDL version="2.1">
   <Form id="PopupSalesOrder" width="600" height="400" titletext="Sample_PopupSub" onload="Form_onload">
     <Layouts>
       <Layout height="400" width="600">
@@ -76,13 +76,18 @@ this.COMBO_SET_STR = ""
 @desc	3. OnLoad
 ********************************************************************************************/
 /* 
+ *	온로드이벤트
+ */
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfn_getAllInitData();
+};
+/* 
  *	초기화 함수
  */
 this.fn_reset = function()
 {
 												var gtrcPos = "PopupSalesOrder.xfdl.fn_reset";
-	//	this.gfn_formOnLoad(this);
-	this.gfn_getAllInitData();
     this.paramStr = this.getOwnerFrame().pStr;			this.gtrace("paramStr--->"+this.paramStr, gtrcPos);
     this.paramNum = this.getOwnerFrame().pNum;			this.gtrace("paramNum--->"+this.paramNum, gtrcPos);
     this.paramObj = this.getOwnerFrame().pObj;			this.gtrace("paramObj--->"+this.paramObj, gtrcPos);
@@ -199,10 +204,6 @@ this.cfn_search = function()
 /**   9. 이벤트(Event) 처리                                                                 */
 /********************************************************************************************/
 
-this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
-{
-	this.fn_reset();
-};
 ]]></Script>
     <Bind>
       <BindItem id="item0" compid="EditSalesOrderNo" propid="value" datasetid="ds_in" columnid="p_key_value"/>

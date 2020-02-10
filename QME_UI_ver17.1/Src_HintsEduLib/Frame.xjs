@@ -62,23 +62,23 @@ pForm.gfn_formOnLoad = function(objForm)
 	}
    
 	// 화면 loading 시간 측정
-	if (objForm.parent.name == "div_work")
-	{
-		var objApp     = objForm.gfn_getApplication();
-		var sStartDate = objApp.sStartDate;
-		var nStartTime = objApp.nStartTime;
-		
-		var objDate  = new Date();
-		var sEndDate = objDate.getYear()
-						+"-"+String(objDate.getMonth()).padLeft(2, '0')
-						+"-"+String(objDate.getDate()).padLeft(2, '0')
-						+" "+String(objDate.getHours()).padLeft(2, '0')
-						+":"+String(objDate.getMinutes()).padLeft(2, '0')
-						+":"+String(objDate.getSeconds()).padLeft(2, '0')
-						+" "+objDate.getMilliseconds();						
-		var nElapseTime = (objDate.getTime() - nStartTime)/1000;
-		objApp.av_BottomFrame.form.staLodingTime.set_text("해당 화면의 loading 시간은 " +  + nElapseTime + " Sec 입니다.");
-	}
+// 	if (objForm.parent.name == "div_work")
+// 	{
+// 		var objApp     = objForm.gfn_getApplication();
+// 		var sStartDate = objApp.sStartDate;
+// 		var nStartTime = objApp.nStartTime;
+// 		
+// 		var objDate  = new Date();
+// 		var sEndDate = objDate.getYear()
+// 						+"-"+String(objDate.getMonth()).padLeft(2, '0')
+// 						+"-"+String(objDate.getDate()).padLeft(2, '0')
+// 						+" "+String(objDate.getHours()).padLeft(2, '0')
+// 						+":"+String(objDate.getMinutes()).padLeft(2, '0')
+// 						+":"+String(objDate.getSeconds()).padLeft(2, '0')
+// 						+" "+objDate.getMilliseconds();						
+// 		var nElapseTime = (objDate.getTime() - nStartTime)/1000;
+// 		objApp.av_BottomFrame.form.staLodingTime.set_text("해당 화면의 loading 시간은 " +  + nElapseTime + " Sec 입니다.");
+//	}
 	
 /*    
 	// 팝업 일때 처리
@@ -86,7 +86,7 @@ pForm.gfn_formOnLoad = function(objForm)
 	{
 		if (objForm.parent instanceof nexacro.ChildFrame)
 		{
-			// 키다운 이베트 추가
+			// 키다운 이벤트 추가
 			objForm.addEventHandler("onkeydown", this.gfn_onkeydown, this);
 		}
 	}
@@ -96,11 +96,11 @@ pForm.gfn_formOnLoad = function(objForm)
 	{
 		if (this.gfn_isNull(objForm.opener) && objForm.parent instanceof nexacro.ChildFrame)
 		{
-			// 키다운 이베트 추가
+			// 키다운 이벤트 추가
 			objForm.addEventHandler("onkeydown", this.gfn_onkeydown, this);
 		}
 	}
-*/    
+*/  
     objForm.addEventHandler("onkeydown", this.gfn_onkeydown, this);
 };
 
@@ -316,4 +316,52 @@ pForm.gfn_setLanguage = function(Obj, rName)
 		else Obj.set_locale("en_US");
 	}
 }
+
+/************************************************************************************************
+ * @ Application 오브젝트를 반환하는 메소드
+ * @param  none
+ * @return Object
+ ************************************************************************************************/
+pForm.gfn_getApplication = function()
+{
+	var objApp = nexacro.getApplication();	
+	return objApp;
+}
+
+/**
+* @class	폼 내의 모든 그리드를 배열로 리턴
+* @param 
+* @return
+* @example 
+* 
+*/
+pForm.gfn_getAllGrid = function(objForm, returnArr)
+{
+	var arrComp = objForm.components;
+	var nLength = arrComp.length;
+	var arrGrids = Array();
+	
+	for(var i = 0 ; i < nLength ; i++)
+	{
+		if(arrComp[i] instanceof nexacro.Div){
+			pForm.gfn_getAllGrid(arrComp[i].form, returnArr); //재귀함수
+		}
+		else if(arrComp[i] instanceof nexacro.Tab){
+			
+			var nPages = arrComp[i].tabpages.length;
+
+			for(var j=0; j<nPages;j++)
+			{
+				pForm.gfn_getAllGrid(arrComp[i].tabpages[j].form, returnArr); //재귀함수
+			}
+		}
+		else{
+			if(arrComp[i] instanceof nexacro.Grid){
+				returnArr.push(arrComp[i]);
+			}
+		}
+	}
+
+	return returnArr;
+};
 ]]></Script>

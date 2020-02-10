@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<FDL version="2.1">
+<FDL version="2.0">
   <Form id="cmmDebug" left="0" top="0" width="800" height="700" titletext="디버깅" onload="form_onload">
     <Layouts>
       <Layout>

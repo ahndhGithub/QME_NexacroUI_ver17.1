@@ -544,19 +544,19 @@ pForm._ALPHA_CHAR_CODES = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 97, 98, 99, 1
  * @param {String} separator id 생성시 구분용 문자(default: '-' ).
  * @return {String} id
  * @example
- * trace(this.gfn_getUniqueId()); 
+ * trace(this.gfn_getRandomId()); 
  * // output : 3e52d1f6-f0d2-4970-a590-ba7656b07859
  * 
- * trace(this.gfn_getUniqueId("Button_")); 
+ * trace(this.gfn_getRandomId("Button_")); 
  * // output : Button_4e601da1-63f4-4cfa-849b-01b8a7f14d40
  * 
- * trace(this.gfn_getUniqueId("", "_")); 
+ * trace(this.gfn_getRandomId("", "_")); 
  * // output : 4e601da1_63f4_4cfa_849b_01b8a7f14d40
  * 
- * trace(this.gfn_getUniqueId("Button_", "_")); 
+ * trace(this.gfn_getRandomId("Button_", "_")); 
  * // output : Button_4e601da1_63f4_4cfa_849b_01b8a7f14d40
 */
-pForm.gfn_getUniqueId = function(prefix, separator)
+pForm.gfn_getRandomId = function(prefix, separator)
 {
 	if ( this.gfn_isNull(prefix) ) prefix = "";
 	if ( this.gfn_isNull(separator) ) {

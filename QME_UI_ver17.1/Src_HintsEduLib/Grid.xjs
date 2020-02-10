@@ -31,10 +31,16 @@ pForm.tragetGrid = "";
 */
 pForm.gfn_setGrid = function(objGrid)
 {
-	var gtrcPos = "Grid.xjs.gfn_setGrid";	
+	var gtrcPos = "Grid.xjs.gfn_setGrid";
+	var gtrcTimeCheckPos = "Grid.xjs.gfn_setGrid.timeCheck";
+	
 	this.gtrace("●그리드세팅", gtrcPos);
+	this.gtrace("●그리드세팅-타임체크", gtrcTimeCheckPos);
 	this.gtrace("그리드명--->"+objGrid.name, gtrcPos);
-		
+	this.gtrace("그리드명--->"+objGrid.name, gtrcTimeCheckPos);
+	var tStartTime = this.gfn_getDate("time");
+	this.gtrace("시작시간--->"+tStartTime, gtrcTimeCheckPos);
+	
 	//Grid의 binddataset설정
 	var objDs = objGrid.getBindDataset();
 
@@ -48,6 +54,7 @@ pForm.gfn_setGrid = function(objGrid)
 	}
 
  	// 바인드명을헤드텍스트로 (ds_grdDic)
+	//	if(this.gfn_nvl(objGrid.name,"")!="GridTrace") this.gfn_setGrdDic(objGrid);
 	this.gfn_setGrdDic(objGrid);
 	
 	//Grid의 UserProperty설정
@@ -64,15 +71,18 @@ pForm.gfn_setGrid = function(objGrid)
 	
 	var sFormatId = this._getUniqueId(objGrid);					//	this.gtrace("_getUniqueId를 통해 sFormatId를 가져온다--->"+sFormatId, gtrcPos);
 	var sFormat;
-																//	this.gtrace(objGds.saveXML(), gtrcPos);
-	var nFindRow = objGds.findRow("sFormatId", sFormatId);		//	this.gtrace("gds_gridPersonal에 sFormatId "+sFormatId+"가 있는지 확인 nFindRow--->"+nFindRow, gtrcPos);
+																//	this.gtrace("SAVEXML : gds_gridPersonal--------->"+objGds.saveXML(), gtrcPos);
+	var nFindRow = objGds.findRow("sFormatId", sFormatId);		this.gtrace("gds_gridPersonal에 sFormatId "+sFormatId+"가 있는지 확인 nFindRow--->"+nFindRow, gtrcPos);
 	if( nFindRow > -1){
 		//	objGrid.orgformat2 = objGds.getColumn(nFindRow, "sOrgFormat");
 		objGrid.orgformat2 = objGrid.getFormatString();			//	191225.mod.
 																//	this.gtrace("gds_gridPersonal에 있을경우 sOrgFormat컬럼값을 orgformat2에 지정--->"+objGrid.orgformat2, gtrcPos);
 		sFormat = "<Formats>" + objGds.getColumn(nFindRow, "sFormat") + "</Formats>";
 																//	this.gtrace("gds_gridPersonal의 sFormat컬럼값을 sFormat 스트링에 담아서"+objGrid.name+"그리드의 포맺으로 지정", gtrcPos);
-		objGrid.set_formats(sFormat);
+		
+		//if(!(this.gfn_nvl(objGrid.name, "")=="GridTrace")) objGrid.set_formats(sFormat);
+		if((this.gfn_nvl(objGrid.name, "")=="GridPoList")) objGrid.set_formats(sFormat);	//	잠시만 이걸로 ...
+	
 	}
 	else{
 		objGrid.orgformat2 = objGrid.getFormatString();
@@ -135,6 +145,10 @@ pForm.gfn_setGrid = function(objGrid)
 	objDs.set_enableevent(true);
 	objGrid.orgformat = objGrid.getCurFormatString();
 	
+	
+	var tEndTime = this.gfn_getDate("time");
+	this.gtrace("끝시간--->"+tEndTime, gtrcTimeCheckPos);
+	this.gtrace("경과시간--->"+(tEndTime - tStartTime), gtrcTimeCheckPos);
 };	
 
 /**

@@ -4,6 +4,7 @@
 */
  
 var pForm = nexacro.Form.prototype;
+var FORMAT_GRID_SETTING_EXEC = true;
 
 pForm._getUserProperty = function (obj,userPropertyName)
 {
@@ -202,24 +203,44 @@ pForm.gfn_getAllInitData = function()
 			this.gtrace(" - sArguments-->"+sArguments, gtrcPos);
 		}
 		
-		{	//	그리드포맺 가져오기
+		if(FORMAT_GRID_SETTING_EXEC){	//	그리드포맺 가져오기
+			
+			var arrAllGrid = Array();
+			this.gfn_getAllGrid(this, arrAllGrid);
+				this.gtrace("arrAllGrid--------------->"+arrAllGrid, gtrcPos);
+			
 			var tFormatInDs = new Dataset;
+			var tFormatOutDs = new Dataset;
 				var tFormatInDsName = "tFormatInDs";
-				this.addChild(tFormatInDsName, tFormatInDs);
-				tFormatInDs.copyData(this.gfn_getApplication().gds_FormatInOutDs);
-				tFormatInDs.addRow();
-				//	this.gfn_setUser(tFormatInDs, "USERID");
-				//	tFormatInDs.setColumn(0, "PROGRAMID", this.name);
-				this.gfn_setUser(tFormatInDs, "p_user_id");
-				this.tFormatInDs.setColumn(0, "p_program_id", this.name);
-				this.tFormatInDs.setColumn(0, "p_default_yn", "Y");
+				var tFormatOutDsName = "tFormatOutDs";
+					this.addChild(tFormatInDsName, tFormatInDs);
+					this.addChild(tFormatOutDsName, tFormatOutDs);
 				
-				this.gtrace(this.tFormatInDs.saveXML(),gtrcPos);
+				tFormatInDs.copyData(this.gfn_getApplication().gds_FormatInDs);
+				tFormatOutDs.copyData(this.gfn_getApplication().gds_FormatOutDs);
+				tFormatOutDs.set_useclientlayout(true);
 				
-			sArguments+="getUserGridData ";
-			sInDatasets+="ds_in"+iSeq+"=tFormatInDs"+" ";
-			sOutDatasets+="tFormatInDs=ds_out"+iSeq+" ";
-			iSeq++;		this.gtrace("그리드포맺 가져오기 : - sArguments-->"+sArguments, gtrcPos);
+			for(var k = 0  ; k < arrAllGrid.length ; k++)
+			{
+				var tempGridUniqueId = this._getUniqueId(arrAllGrid[k]);
+					this.gtrace("tempGridUniqueId-->"+tempGridUniqueId, gtrcPos);
+					
+				var aNewRow = tFormatInDs.addRow();
+
+					tFormatInDs.setColumn(aNewRow, "PROGRAM_ID", this.name);
+					tFormatInDs.setColumn(aNewRow, "GRID_ID", tempGridUniqueId);
+					tFormatInDs.setColumn(aNewRow, "DEFAULT_YN", "Y");
+					tFormatInDs.setColumn(aNewRow, "DEL_YN", "N");
+					tFormatInDs.setColumn(aNewRow, "USER_ID", nexacro.getApplication().gds_QmeLogonInfo_in.getColumn(0, "p_user_id"));
+
+			}
+
+			sArguments+="getUserGridData ";	
+			sInDatasets+="ds_in"+iSeq+"="+tFormatInDsName+" ";
+			sOutDatasets+=tFormatOutDsName+"=ds_out"+iSeq+" ";
+			iSeq++;
+
+			this.gtrace(tFormatInDs.saveXML(),gtrcPos);
 		}
 		
 		
@@ -287,7 +308,7 @@ pForm.gfn_getAllInitData = function()
 
 							sArguments	+=	"CommonMapper.getCodeInfo"		+" ";	//	this.gtrace(" - sArguments-->"+sArguments, gtrcPos);
 							sInDatasets	+=	"ds_in"+iSeq+"="+tCommInDsName	+" ";
-							sOutDatasets+=	sTmpDsName+"=ds_out"+iSeq			+" ";
+							sOutDatasets+=	sTmpDsName+"=ds_out"+iSeq		+" ";
 							iSeq++;
 						break;
 				}
@@ -358,14 +379,15 @@ pForm.gfn_callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
 
 		case "getAllInitData":		// 기본 데이터 가져오기 - 콤보Ds세팅
 			
-			{	// 포맺그리드 처리
+			if(FORMAT_GRID_SETTING_EXEC){	// 포맺그리드 처리
 
-				var oTmpFrmDs = this.tFormatInDs;
-
+				var oTmpFrmDs = this.tFormatOutDs;
+					this.gtrace("oTmpFrmDs.saveXML---->"+oTmpFrmDs.saveXML(),gtrcPos);
+					
+					
 				//테스트데이터는 삭제
 				var iTstRp = oTmpFrmDs.findRowExpr("GRID_ID=='MASTER' && LAYOUT_NM=='TEST_LAYOUT'");
 					oTmpFrmDs.deleteRow(iTstRp);
-						//	this.gtrace("oTmpFrmDs.saveXML---->"+oTmpFrmDs.saveXML(),gtrcPos);
 
 					//	trace("oTmpFrmDs.getRowCount()---->"+oTmpFrmDs.getRowCount());
 				//포맺데이터가 있을 경우만 실행
@@ -373,7 +395,9 @@ pForm.gfn_callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
 				{
 					var oGrdPrsnDs = this.gfn_getApplication().gds_gridPersonal;
 						oGrdPrsnDs.clearData();	
-
+						
+						this.gtrace("oTmpFrmDs.rowcount---->"+oTmpFrmDs.rowcount,gtrcPos);
+						
 					for(var i = 0 ; i < oTmpFrmDs.rowcount ; i++)
 					{
 						var sData = "";
@@ -382,8 +406,12 @@ pForm.gfn_callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
 						}
 						
 						var iAddRp = oGrdPrsnDs.addRow();
-						oGrdPrsnDs.setColumn(iAddRp, "sFormatId"	, this.tFormatInDs.getColumn(i, "GRIDID"));
+						this.gtrace("GRIDID---->"+this.tFormatInDs.getColumn(i, "GRID_ID"),gtrcPos);
+						oGrdPrsnDs.setColumn(iAddRp, "sFormatId"	, this.tFormatInDs.getColumn(i, "GRID_ID"));
 						oGrdPrsnDs.setColumn(iAddRp, "sFormat"		, sData);
+						
+						this.gtrace("oGrdPrsnDs.saveXML---->"+oGrdPrsnDs.saveXML(),gtrcPos);
+						
 					}
 
 				}

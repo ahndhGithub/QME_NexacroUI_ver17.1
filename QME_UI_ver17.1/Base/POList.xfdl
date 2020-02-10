@@ -947,7 +947,7 @@ this.ButtonScriptTest_onclick = function(obj:nexacro.Button,e:nexacro.ClickEvent
 	// 	trace("obj._unique_id---------->"+obj._unique_id);
 	// 	trace("this.gfn_getCompId(ButtonPOListHist)---------->"+this.gfn_getCompId(ButtonPOListHist));
 	// 	trace("this.gfn_getCompId(this.ds_POList)---------->"+this.gfn_getCompId(this.ds_POList));
-	//	trace("this.gfn_getUniqueId (CID+this.gfn_getDate(date)+_)----"+this.gfn_getUniqueId ("CID"+this.gfn_getDate("date")+"_"));
+	//	trace("this.gfn_getRandomId (CID+this.gfn_getDate(date)+_)----"+this.gfn_getRandomId ("CID"+this.gfn_getDate("date")+"_"));
 	//	this.gfn_alert("msg.err.validator", "AAAAAAAAAA");
 
 	// 	var dsResultMsg = new Dataset;

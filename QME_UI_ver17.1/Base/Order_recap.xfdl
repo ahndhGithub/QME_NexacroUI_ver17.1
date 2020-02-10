@@ -92,34 +92,9 @@
             <Tabpage id="TabpageStyle" text="Style">
               <Layouts>
                 <Layout>
-                  <Grid id="Grid01" taborder="0" left="792" top="166" width="249" height="292" binddataset="ds_cmcdSalesGroup" visible="false">
-                    <Formats>
-                      <Format id="default">
-                        <Columns>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                          <Column size="80"/>
-                        </Columns>
-                        <Rows>
-                          <Row band="head" size="24"/>
-                          <Row size="24"/>
-                        </Rows>
-                        <Band id="head">
-                          <Cell text="BU_NM"/>
-                          <Cell col="1" text="BU_CD_F"/>
-                          <Cell col="2" text="BU_CD"/>
-                        </Band>
-                        <Band id="body">
-                          <Cell text="bind:BU_NM"/>
-                          <Cell col="1" text="bind:BU_CD_F"/>
-                          <Cell col="2" text="bind:BU_CD"/>
-                        </Band>
-                      </Format>
-                    </Formats>
-                  </Grid>
-                  <Div id="DivBtnGfilter" taborder="1" text="" top="8" width="40" height="28" url="Comm::cmmGridFilterButton.xfdl" targetGrid="TabOrderRecap.TabpageStyle.form.GridStyle" visible="true" right="58"/>
-                  <Div id="DivBtnFormat" taborder="2" text="" top="8" width="40" height="28" url="Comm::cmmFormatMenuButton.xfdl" targetGrid="TabOrderRecap.TabpageStyle.form.GridStyle" visible="true" right="10"/>
-                  <Grid id="GridStyle" taborder="3" left="8" top="50" right="8" bottom="8" griduserproperty="no,!status,!checkbox,export,colfix,rowfix,sort,filter,initial,cellcopypaste,colhide,personal,seltype" binddataset="ds_listStyle" cellsizingtype="col" onvscroll="TabOrderRecap_TabpageStyle_GridStyle_onvscroll" wheelscrollrow="5">
+                  <Div id="DivBtnGfilter" taborder="0" text="" top="8" width="40" height="28" url="Comm::cmmGridFilterButton.xfdl" targetGrid="TabOrderRecap.TabpageStyle.form.GridStyle" visible="true" right="58"/>
+                  <Div id="DivBtnFormat" taborder="1" text="" top="8" width="40" height="28" url="Comm::cmmFormatMenuButton.xfdl" targetGrid="TabOrderRecap.TabpageStyle.form.GridStyle" visible="true" right="10"/>
+                  <Grid id="GridStyle" taborder="2" left="8" top="50" right="8" bottom="8" griduserproperty="no,!status,!checkbox,export,colfix,rowfix,sort,filter,initial,cellcopypaste,colhide,personal,seltype" binddataset="ds_listStyle" cellsizingtype="col" onvscroll="TabOrderRecap_TabpageStyle_GridStyle_onvscroll" wheelscrollrow="5">
                     <Formats>
                       <Format id="default">
                         <Columns>

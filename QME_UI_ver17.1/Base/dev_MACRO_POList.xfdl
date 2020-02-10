@@ -436,6 +436,7 @@
         <Button id="ButtonScriptTest" taborder="5" text="Script Test" top="8" width="84" height="28" visible="true" onclick="ButtonScriptTest_onclick" right="343"/>
         <Button id="ButtonSearchSample" taborder="6" text="Search Sample 트랜잭션" top="8" width="160" height="28" visible="true" right="177" onclick="TabMain_TabpagePOList_ButtonSearchSample_onclick"/>
         <Button id="ButtonTrace" taborder="7" text="Trc. 보이기/숨기기" height="28" onclick="ButtonTrace_onclick" right="8" width="160" top="8"/>
+        <Static id="Static00" taborder="8" text="dev_MACRO_POList" left="338" top="130" width="385" height="39" font="bold 36px/normal &quot;Malgun Gothic&quot;,&quot;Verdana&quot;"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[/********************************************************************************************
@@ -947,7 +948,7 @@ this.ButtonScriptTest_onclick = function(obj:nexacro.Button,e:nexacro.ClickEvent
 	// 	trace("obj._unique_id---------->"+obj._unique_id);
 	// 	trace("this.gfn_getCompId(ButtonPOListHist)---------->"+this.gfn_getCompId(ButtonPOListHist));
 	// 	trace("this.gfn_getCompId(this.ds_POList)---------->"+this.gfn_getCompId(this.ds_POList));
-	//	trace("this.gfn_getUniqueId (CID+this.gfn_getDate(date)+_)----"+this.gfn_getUniqueId ("CID"+this.gfn_getDate("date")+"_"));
+		trace("this.gfn_getRandomId (CID+this.gfn_getDate(date)+_)----"+this.gfn_getRandomId ("CID"+this.gfn_getDate("date")+"_"));
 	//	this.gfn_alert("msg.err.validator", "AAAAAAAAAA");
 
 	// 	var dsResultMsg = new Dataset;

@@ -115,12 +115,24 @@ var CHK_FALSE 	= "N";
 this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
 	var gtrcPos = "PopupSaveLayout.xfdl.Form_onload";
-	this.gtrace("● 사용자화-Form_onload(PopupSaveLayout)", gtrcPos);
+		this.gtrace("● 사용자화-Form_onload(PopupSaveLayout)", gtrcPos);
+
+	//	기본호출
+	//	this.gfn_getAllInitData();
+	this.gfn_formOnLoad(this);
+	this.fn_reset();
+};
+
+/* 
+ *	초기화 함수
+ */
+this.fn_reset = function()
+{
+	var gtrcPos = "PopupSaveLayout.xfdl.fn_reset";
+		this.gtrace("● 사용자화-fn_reset(PopupSaveLayout)", gtrcPos);
 
 	//	기본호출
 	this.gfn_getParentForm();
-	this.gfn_getAllInitData();
-	//	this.gfn_formOnLoad(this);
 	
 	//	넘어온 변수 세팅
 	{	
@@ -163,15 +175,6 @@ this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 		case "ResetLayout" :  
 		default : break;
 	}
-};
-
-/* 
- *	초기화 함수
- */
-this.fn_reset = function()
-{
-	var gtrcPos = "PopupSaveLayout.xfdl.fn_reset";
-	this.gtrace("● 사용자화-fn_reset(PopupSaveLayout)", gtrcPos);
 
 	{ 	// 데이터셋초기화
 		this.ds_inLayout.clearData();		//	검색in
@@ -206,14 +209,13 @@ this.tfn_FormatSearch = function(){
 	{
 		this.ds_inLayout.clearData();
 		this.ds_inLayout.addRow();
+		
 		this.ds_inLayout.setColumn(0, "PROGRAM_ID", this.paramNum);
 		//	this.ds_inLayout.setColumn(0, "GRID_ID", this.paramObj.name);
 		this.ds_inLayout.setColumn(0, "GRID_ID", this._getUniqueId(this.paramObj));
 		this.ds_inLayout.setColumn(0, "DEFAULT_YN", "");
 		this.ds_inLayout.setColumn(0, "DEL_YN", "N");
 
-		
-		this.gfn_setUser(this.ds_inLayout, "USER_ID");
 		this.gfn_setUser(this.ds_inLayout, "USER_ID");
 	}
 	
