@@ -967,28 +967,28 @@
           <Col id="TrcId">cmmGridAddDelButton.xfdl.btn_del_onclick</Col>
           <Col id="TrcName"/>
           <Col id="TrcSeq">10</Col>
-          <Col id="Comments">PO(메인)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcSeq">20</Col>
           <Col id="TrcId">cmmGridAddDelButton.xfdl.fn_deleteRow</Col>
           <Col id="TrcName"/>
-          <Col id="Comments">팝업-멀티선택</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">cmmGridAddDelButton.xfdl.fn_SaveLayoutPopup</Col>
           <Col id="TrcName"/>
           <Col id="TrcSeq">30</Col>
-          <Col id="Comments">유틸_adh(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">cmmGridAddDelButton.xjs.btn_GridFormat_onclick</Col>
           <Col id="TrcName"/>
           <Col id="TrcSeq">40</Col>
-          <Col id="Comments">유틸_adh(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
@@ -1009,245 +1009,245 @@
           <Col id="TrcId">Comm_CalFromTo.xfdl.ds_FromTo_oncolumnchanged</Col>
           <Col id="TrcName"/>
           <Col id="TrcSeq">70</Col>
-          <Col id="Comments">1</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Comm_CalFromTo.xfdl.fn_parentDsChanged</Col>
           <Col id="TrcSeq">80</Col>
           <Col id="TrcName">달력온컬럼체인지드</Col>
-          <Col id="Comments">그리드추가삭제버튼(공통폼)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcName"/>
           <Col id="TrcId">Comm_CalFromTo.xfdl.form_onload</Col>
           <Col id="TrcSeq">90</Col>
-          <Col id="Comments">그리드필터버튼(공통폼)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcSeq">100</Col>
           <Col id="TrcId">Comm_CnC.xfdl.btn_ok_onclick</Col>
           <Col id="TrcName"/>
-          <Col id="Comments">QmeNexa(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcSeq">110</Col>
           <Col id="TrcName"/>
           <Col id="TrcId">Comm_CnC.xfdl.fn_reset</Col>
-          <Col id="Comments">QmeNexa(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcSeq">120</Col>
           <Col id="TrcName">셋그리드</Col>
           <Col id="TrcId">Comm_ColumnHide.xfdl.fn_setGrd</Col>
-          <Col id="Comments">검색조건(공통폼)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcSeq">130</Col>
           <Col id="TrcId">Comm_ColumnHide.xfdl.form_onload</Col>
           <Col id="TrcName">숨기기/보이기팝업</Col>
-          <Col id="Comments">검색조건(공통폼)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcSeq">132</Col>
           <Col id="TrcName">검색조건콤보-온로드</Col>
           <Col id="TrcId">Comm_ComboConditionFromTo.xfdl.form_onload</Col>
-          <Col id="Comments">검색콤보조건(공통폼)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcSeq">140</Col>
           <Col id="TrcId">Comm_CrudButton.btnCrud_onclick</Col>
           <Col id="TrcName"/>
-          <Col id="Comments">gtrace(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcSeq">150</Col>
           <Col id="TrcName"/>
           <Col id="TrcId">Comm_CrudButton.fn_setButtonVisEna</Col>
-          <Col id="Comments">유틸_adh(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcSeq">160</Col>
           <Col id="TrcName"/>
           <Col id="TrcId">Comm_CrudButton.form_onload</Col>
-          <Col id="Comments">메세지(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcSeq">170</Col>
           <Col id="TrcId">Comm_GridAddDelButton.form_onload</Col>
           <Col id="TrcName"/>
-          <Col id="Comments">PO(메인)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcSeq">180</Col>
           <Col id="TrcId">Comm_GridFilter.xfdl.btn_filter_onclick</Col>
           <Col id="TrcName">필터적용 버튼</Col>
-          <Col id="Comments">그리드(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcSeq">190</Col>
           <Col id="TrcId">Comm_SearchConditionFromTo.xfdl.div_search_btn_onclick</Col>
           <Col id="TrcName"/>
-          <Col id="Comments">그리드(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcSeq">200</Col>
           <Col id="TrcId">Comm_SearchConditionFromTo.xfdl.ds_FromTo_oncolumnchanged</Col>
           <Col id="TrcName"/>
-          <Col id="Comments">그리드(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Comm_SearchConditionFromTo.xfdl.EditFrom_onchanged</Col>
           <Col id="TrcName"/>
           <Col id="TrcSeq">210</Col>
-          <Col id="Comments">그리드(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Comm_SearchConditionFromTo.xfdl.fn_parentDsChanged</Col>
           <Col id="TrcName">조건온컬럼체인지드</Col>
           <Col id="TrcSeq">220</Col>
-          <Col id="Comments">그리드추가삭제버튼(공통폼)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Comm_SearchConditionFromTo.xfdl.fn_popupCallback</Col>
           <Col id="TrcSeq">230</Col>
-          <Col id="Comments">그리드(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Comm_SearchConditionFromTo.xfdl.form_onload</Col>
           <Col id="TrcName"/>
           <Col id="TrcSeq">240</Col>
-          <Col id="Comments">그리드(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Comm_SubSum.xfdl.btn_ok_onclick</Col>
           <Col id="TrcName"/>
           <Col id="TrcSeq">250</Col>
-          <Col id="Comments">gtrace(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Comm_SubSum.xfdl.fn_getHeadTextAndBindingInfo</Col>
           <Col id="TrcName"/>
           <Col id="TrcSeq">260</Col>
-          <Col id="Comments">gtrace(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Comm_SubSum.xfdl.form_onload</Col>
           <Col id="TrcName"/>
           <Col id="TrcSeq">270</Col>
-          <Col id="Comments">gtrace(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Excel.xjs.gfn_excelExport</Col>
           <Col id="TrcName">엑셀 내보내기</Col>
           <Col id="TrcSeq">280</Col>
-          <Col id="Comments">그리드(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Form_Work.xfdl.Button_onclick</Col>
           <Col id="TrcName"/>
           <Col id="TrcSeq">290</Col>
-          <Col id="Comments">그리드(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Frame.xjs.gfn_setLanguage</Col>
           <Col id="TrcName"/>
           <Col id="TrcSeq">300</Col>
-          <Col id="Comments">gtrace(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Grid.xjs._getGridUserProperty</Col>
           <Col id="TrcSeq">310</Col>
-          <Col id="Comments">부분합(공통폼)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Grid.xjs._getUniqueId</Col>
           <Col id="TrcName">그리드의 유니크 아이디 가져오기</Col>
           <Col id="TrcSeq">320</Col>
-          <Col id="Comments">검색조건(공통폼)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Grid.xjs._gfn_getRowType</Col>
           <Col id="TrcName"/>
           <Col id="TrcSeq">330</Col>
-          <Col id="Comments">PO(메인)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Grid.xjs._gfnGridAddProp</Col>
           <Col id="TrcName">userproperties , arrProp[i]값에 따라 sort--&gt;objGrid.sort = 'true'--실행</Col>
           <Col id="TrcSeq">340</Col>
-          <Col id="Comments">부분합(공통폼)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Grid.xjs._gfnGridcellFix</Col>
           <Col id="TrcSeq">350</Col>
-          <Col id="Comments">그리드(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Grid.xjs._gfnGridCheckboxNoStatusAdd</Col>
           <Col id="TrcSeq">360</Col>
-          <Col id="Comments">오더리캡(메인)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Grid.xjs._gfnGridColHideShow</Col>
           <Col id="TrcSeq">370</Col>
-          <Col id="Comments">validation(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Grid.xjs._gfnGridFilter</Col>
           <Col id="TrcSeq">380</Col>
-          <Col id="Comments">그리드(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="TrcName">필터설정</Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Grid.xjs._gfnGridPasteEvent</Col>
           <Col id="TrcSeq">390</Col>
-          <Col id="Comments">팝업-사용자레이아웃</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Grid.xjs._gfnGridSetCssclass</Col>
           <Col id="TrcSeq">400</Col>
-          <Col id="Comments">그리드(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="TrcName">틀고정 행 실행/해제</Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Grid.xjs._gfnHeadCheckSelectAll</Col>
           <Col id="TrcSeq">410</Col>
-          <Col id="Comments">엑셀내보내기(JS)</Col>
+          <Col id="Comments"></Col>
           <Col id="TrcName">-체크박스 : 전체선택 / 전체해제)</Col>
           <Col id="ROW_CHK"/>
         </Row>
@@ -1261,7 +1261,7 @@
         <Row>
           <Col id="TrcId">Grid.xjs.gfn_grid_onheadclick</Col>
           <Col id="TrcSeq">430</Col>
-          <Col id="Comments">부분합(공통폼)</Col>
+          <Col id="Comments"></Col>
           <Col id="TrcName">그리드 헤드 클릭 (체크박스 : 전체선택 / 일반 : 정렬)</Col>
           <Col id="ROW_CHK"/>
         </Row>
@@ -1275,47 +1275,47 @@
         <Row>
           <Col id="TrcId">Grid.xjs.gfn_multiDatasetAdded</Col>
           <Col id="TrcSeq">450</Col>
-          <Col id="Comments">팝업-사용자레이아웃</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Grid.xjs.gfn_multiDatasetChanged</Col>
           <Col id="TrcSeq">460</Col>
-          <Col id="Comments">PO(메인)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Grid.xjs.gfn_popupmenu_onmenuclick</Col>
           <Col id="TrcSeq">470</Col>
-          <Col id="Comments">그리드(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="TrcName">우클릭 팝업메뉴--메뉴클릭시</Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Grid.xjs.gfn_setGrid</Col>
           <Col id="TrcSeq">480</Col>
-          <Col id="Comments">셋그리드</Col>
+          <Col id="Comments"></Col>
           <Col id="TrcName">그리드 세팅</Col>
-          <Col id="ROW_CHK"></Col>
+          <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Grid.xjs.gfn_setGrid.timeCheck</Col>
           <Col id="TrcSeq">480</Col>
-          <Col id="Comments">셋그리드</Col>
+          <Col id="Comments"></Col>
           <Col id="TrcName">그리드세팅-타임체크</Col>
-          <Col id="ROW_CHK"></Col>
+          <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Grid.xjs.gfn_setGrdDic</Col>
           <Col id="TrcName">딕셔너리세팅</Col>
-          <Col id="Comments">셋그리드grdDic적용</Col>
+          <Col id="Comments"></Col>
           <Col id="TrcSeq">490</Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Grid.xjs.gfn_setGrdDic.bindHeaderText</Col>
           <Col id="TrcSeq">491</Col>
-          <Col id="Comments">셋그리드grdDic적용</Col>
+          <Col id="Comments"></Col>
           <Col id="TrcName">바인드명을헤더텍스트로</Col>
           <Col id="ROW_CHK"/>
         </Row>
@@ -1323,48 +1323,48 @@
           <Col id="TrcSeq">492</Col>
           <Col id="TrcName">경과시간체크</Col>
           <Col id="TrcId">Grid.xjs.gfn_setGrdDic.elapsedTime</Col>
-          <Col id="Comments">셋그리드grdDic적용</Col>
-          <Col id="ROW_CHK"></Col>
+          <Col id="Comments"></Col>
+          <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcSeq">493</Col>
           <Col id="TrcName">전체경과시간체크</Col>
           <Col id="TrcId">Grid.xjs.gfn_setGrdDic.totalElapsedTime</Col>
-          <Col id="Comments">셋그리드grdDic적용</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">gtrace_191224_ColumnHide</Col>
           <Col id="TrcSeq">500</Col>
-          <Col id="Comments">필터(공통폼)</Col>
+          <Col id="Comments"></Col>
           <Col id="TrcName">우클릭메뉴(컬럼 숨기기/보이기)</Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">gtrace_191225_ExcelExport</Col>
           <Col id="TrcSeq">510</Col>
-          <Col id="Comments">검색조건(공통폼)</Col>
+          <Col id="Comments"></Col>
           <Col id="TrcName">엑셀내보내기</Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">gtrace_191226_CommCodeSetting</Col>
           <Col id="TrcSeq">520</Col>
-          <Col id="Comments">CRUD(공통폼)</Col>
+          <Col id="Comments"></Col>
           <Col id="TrcName">초기데이터모두가져오기</Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">gtrace_191229_Comm_ComboConditionFromTo</Col>
           <Col id="TrcSeq">530</Col>
-          <Col id="Comments">CRUD(공통폼)</Col>
+          <Col id="Comments"></Col>
           <Col id="TrcName">콤보조건공통화_From_To</Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">gtrace_191230_Comm_MultiCombo</Col>
           <Col id="TrcSeq">540</Col>
-          <Col id="Comments">검색조건(공통폼)</Col>
+          <Col id="Comments"></Col>
           <Col id="TrcName">멀티콤보</Col>
           <Col id="ROW_CHK"/>
         </Row>
@@ -1378,90 +1378,97 @@
         <Row>
           <Col id="TrcId">gtrace_200107_cmmGridFilterButton</Col>
           <Col id="TrcSeq">560</Col>
-          <Col id="Comments">컬럼숨기기(공통폼)</Col>
+          <Col id="Comments"></Col>
           <Col id="TrcName">그리드필터버튼클릭</Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">gtrace_gfn_getParentForm</Col>
           <Col id="TrcSeq">570</Col>
-          <Col id="Comments">CRUD(공통폼)</Col>
+          <Col id="Comments"></Col>
           <Col id="TrcName">부모폼가져오기(gfn_getParentForm)</Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Message.xjs.gfn_alert</Col>
           <Col id="TrcSeq">580</Col>
-          <Col id="Comments">팝업-사용자레이아웃</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Order_recap.xfdl.fn_reset</Col>
           <Col id="TrcSeq">590</Col>
-          <Col id="Comments">확인_취소(공통폼)</Col>
+          <Col id="Comments">오더리캡</Col>
           <Col id="TrcName">오더리캡_리셋</Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">POList.xfdl.Button_SortGroup_onclick</Col>
           <Col id="TrcSeq">600</Col>
-          <Col id="Comments">그리드(xjs)</Col>
+          <Col id="Comments">PO</Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">POList.xfdl.callbackFunction</Col>
           <Col id="TrcSeq">610</Col>
-          <Col id="Comments">그리드(xjs)</Col>
+          <Col id="Comments">PO</Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">POList.xfdl.callbackFunction.getPoListHistoryLoad</Col>
           <Col id="TrcSeq">620</Col>
-          <Col id="Comments">그리드(xjs)</Col>
+          <Col id="Comments">PO</Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">POList.xfdl.fn_reset</Col>
           <Col id="TrcSeq">630</Col>
-          <Col id="Comments">gtrace(xjs)</Col>
+          <Col id="Comments">PO</Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">POList.xfdl.tfn_getPoListHistoryLoad</Col>
           <Col id="TrcSeq">640</Col>
-          <Col id="Comments">그리드추가삭제버튼(공통폼)</Col>
+          <Col id="Comments">PO</Col>
           <Col id="TrcName">POSearch트랜잭션</Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">POList.xfdl.tfn_savePO</Col>
           <Col id="TrcSeq">650</Col>
-          <Col id="Comments">컬럼숨기기(공통폼)</Col>
+          <Col id="Comments">PO</Col>
           <Col id="TrcName">PO저장트랜잭션</Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
+          <Col id="TrcId">POList.xfdl.fn_TotalAmountCalc</Col>
+          <Col id="ROW_CHK"></Col>
+          <Col id="TrcSeq">652</Col>
+          <Col id="TrcName">PO금액계산</Col>
+          <Col id="Comments">PO</Col>
+        </Row>
+        <Row>
           <Col id="TrcId">PopupMultiSelect.xfdl.Form_onload</Col>
           <Col id="TrcSeq">660</Col>
-          <Col id="Comments">트랜잭션(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">PopupMultiSelect.xfdl.grd_list_onexpandup</Col>
           <Col id="TrcSeq">670</Col>
-          <Col id="Comments">트랜잭션(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">PopupSalesOrder.xfdl.btn_ok_onclick</Col>
           <Col id="TrcSeq">680</Col>
-          <Col id="Comments">그리드(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">PopupSalesOrder.xfdl.Form_onload</Col>
           <Col id="TrcSeq">690</Col>
-          <Col id="Comments">그리드(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
@@ -1511,96 +1518,96 @@
         <Row>
           <Col id="TrcId">QmeNexa.xjs.gfn_getArrComboSetStr</Col>
           <Col id="TrcSeq">760</Col>
-          <Col id="Comments">달력_FROM_TO(공통폼)</Col>
+          <Col id="Comments"></Col>
           <Col id="TrcName">공통코드문자열처리</Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">QmeNexa.xjs.gfn_onloadSequence</Col>
           <Col id="TrcSeq">770</Col>
-          <Col id="Comments">달력_FROM_TO(공통폼)</Col>
+          <Col id="Comments"></Col>
           <Col id="TrcName">온로드시퀀스</Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Transaction.xjs.gfn_callback</Col>
           <Col id="TrcSeq">780</Col>
-          <Col id="Comments">PO(메인)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Transaction.xjs.gfn_transaction</Col>
           <Col id="TrcSeq">790</Col>
-          <Col id="Comments">PO(메인)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Util_adh.xjs._getUserProperty</Col>
           <Col id="TrcSeq">800</Col>
-          <Col id="Comments">그리드(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Util_adh.xjs.gfn_callbackFunction</Col>
           <Col id="TrcSeq">810</Col>
-          <Col id="Comments">gtrace(xjs)</Col>
-          <Col id="ROW_CHK"></Col>
+          <Col id="Comments"></Col>
+          <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Util_adh.xjs.gfn_commButtonAlignByVisible</Col>
           <Col id="TrcSeq">820</Col>
-          <Col id="Comments">유틸_adh(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Util_adh.xjs.gfn_getAllInitData</Col>
           <Col id="TrcSeq">830</Col>
-          <Col id="Comments">gtrace(xjs)</Col>
-          <Col id="ROW_CHK"></Col>
+          <Col id="Comments"></Col>
+          <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Util_adh.xjs.gfn_getParentForm</Col>
           <Col id="TrcSeq">840</Col>
-          <Col id="Comments">유틸_adh(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Util_adh.xjs.gfn_setUser</Col>
           <Col id="TrcSeq">850</Col>
-          <Col id="Comments">유틸_adh(xjs)</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Util.xjs.gfn_SetFirstRow</Col>
           <Col id="TrcSeq">860</Col>
-          <Col id="Comments">달력_FROM_TO(공통폼)</Col>
+          <Col id="Comments"></Col>
           <Col id="TrcName">콤보첫줄삽입</Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Validation.xjs.gfn_clearValidation</Col>
           <Col id="TrcSeq">870</Col>
-          <Col id="Comments">팝업-멀티선택</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Validation.xjs.gfn_setValidation</Col>
           <Col id="TrcSeq">880</Col>
-          <Col id="Comments">팝업-판매오더</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcName"/>
           <Col id="TrcId">Validation.xjs.gfn_validation</Col>
           <Col id="TrcSeq">890</Col>
-          <Col id="Comments">팝업-판매오더</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
         <Row>
           <Col id="TrcId">Validation.xjs.gfn_validationCheckRule</Col>
           <Col id="TrcName"/>
           <Col id="TrcSeq">900</Col>
-          <Col id="Comments">팝업-사용자레이아웃</Col>
+          <Col id="Comments"></Col>
           <Col id="ROW_CHK"/>
         </Row>
       </Rows>

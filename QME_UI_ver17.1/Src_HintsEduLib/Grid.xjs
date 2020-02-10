@@ -80,8 +80,8 @@ pForm.gfn_setGrid = function(objGrid)
 		sFormat = "<Formats>" + objGds.getColumn(nFindRow, "sFormat") + "</Formats>";
 																//	this.gtrace("gds_gridPersonal의 sFormat컬럼값을 sFormat 스트링에 담아서"+objGrid.name+"그리드의 포맺으로 지정", gtrcPos);
 		
-		//if(!(this.gfn_nvl(objGrid.name, "")=="GridTrace")) objGrid.set_formats(sFormat);
-		if((this.gfn_nvl(objGrid.name, "")=="GridPoList")) objGrid.set_formats(sFormat);	//	잠시만 이걸로 ...
+		if(!(this.gfn_nvl(objGrid.name, "")=="GridTrace")) objGrid.set_formats(sFormat);
+		//if((this.gfn_nvl(objGrid.name, "")=="GridPoList")) objGrid.set_formats(sFormat);
 	
 	}
 	else{
@@ -488,9 +488,9 @@ pForm.gfn_multiDatasetAdded = function(obj, e)
 {
 	if (sStatus == null) return;
 	
-	if (sStatus == "I") 		sStatus = "theme://Images\\"+"grid_add.png";
-	else if (sStatus == "D") 	sStatus = "theme://Images\\"+"RecycleBin_Empty_18.png";
-	else if (sStatus == "U") 	sStatus = "theme://Images\\"+"grid_edit.png";
+	if (sStatus == "I") 		sStatus = "theme://images\\"+"grid_add.png";
+	else if (sStatus == "D") 	sStatus = "theme://images\\"+"RecycleBin_Empty_18.png";
+	else if (sStatus == "U") 	sStatus = "theme://images\\"+"grid_edit.png";
 	else if (sStatus == "") 	sStatus = "";
 	
 	return sStatus;

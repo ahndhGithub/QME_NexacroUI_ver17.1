@@ -866,11 +866,14 @@ this.getTabpageType = function()
  * 계산 : 단가(PRICE) * 수량(REMAIN_MENGE) * PER(PEINH) = 금액(L_NETWR)
  */
  this.fn_TotalAmountCalc = function(iCalcRp){
-	var sREMAIN_MENGE 	= nexacro.toNumber(this.ds_POList.getColumn(iCalcRp, "REMAIN_MENGE"));
-	var sPRICE 			= nexacro.toNumber(this.ds_POList.getColumn(iCalcRp, "PRICE"));
-	var sPEINH 			= nexacro.toNumber(this.ds_POList.getColumn(iCalcRp, "PEINH"));
-	var	nL_NETWR		= Eco.number.multiply(sREMAIN_MENGE, sPRICE, sPEINH);
+	var gtrcPos = "POList.xfdl.fn_TotalAmountCalc";
+		this.gtrace("● PO금액계산", gtrcPos);
 	
+	var sREMAIN_MENGE 	= nexacro.toNumber(this.ds_POList.getColumn(iCalcRp, "REMAIN_MENGE"));  this.gtrace("sREMAIN_MENGE--->"+sREMAIN_MENGE, gtrcPos);
+	var sPRICE 			= nexacro.toNumber(this.ds_POList.getColumn(iCalcRp, "PRICE"));			this.gtrace("sPRICE--->"+sPRICE, gtrcPos);
+	var sPEINH 			= nexacro.toNumber(this.ds_POList.getColumn(iCalcRp, "PEINH"));			this.gtrace("sPEINH--->"+sPEINH, gtrcPos);
+	var	nL_NETWR		= Eco.number.multiply(sREMAIN_MENGE, sPRICE, sPEINH);					this.gtrace("nL_NETWR--->"+nL_NETWR, gtrcPos);
+
 	this.ds_POList.setColumn(iCalcRp, "L_NETWR", nL_NETWR);
 	//	trace("곱하기--->"+Eco.number.multiply(sREMAIN_MENGE, sPRICE, sPEINH));
 }
@@ -933,6 +936,13 @@ this.TabMain_TabpagePOList_ButtonSearchSample_onclick = function(obj:nexacro.But
  */
 this.ButtonScriptTest_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+// 	var a = 1660,b = -1559.9,c = 0.33;
+// 	var result = Eco.number.multiply(a, b, c);
+// 	//	this.st_3_result01.set_text("(number) " + result);
+// 	trace(result);
+	
+	//	system.execBrowser("www.naver.com");
+	
 	//	192.168.11.193:8101/nexos/html/main/main.html?ver=20181022_03#LC00000M
 	//	trace("clientPos-->("+e.clientx+","+e.clienty+")");
 	//	trace("canvasPos-->("+e.canvasx+","+e.canvasy+")");

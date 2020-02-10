@@ -6,8 +6,8 @@
     <Module url="Grid.json"/>
     <Module url="ListView.json"/>
     <Module url="DeviceAPI.json"/>
-    <Module url="HintsEduLib.json"/>
     <Module url="EcoLibrary.json"/>
+    <Module url="HintsEduLib.json"/>
   </Modules>
   <Components>
     <Component type="JavaScript" id="Button" classname="nexacro.Button"/>
@@ -61,7 +61,6 @@
     <Service prefixid="ComComp" type="js" cachelevel="session" url="./nexacro17lib/component/ComComp/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="GridFilter" type="form" cachelevel="none" url="./GridFilter/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="Images" type="file" cachelevel="session" url="./Images/" version="0" communicationversion="0" include_subdir="false"/>
-    <Service prefixid="EcoLib" type="js" cachelevel="session" url="./nexacro17lib/component/EcoLibrary/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="Recycle" type="form" cachelevel="session" url="./Recycle/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="QmeNexHtml" type="file" url="./QmeNexHtml/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
     <Service prefixid="AppSvrLocalMsSql" type="JSP" cachelevel="none" url="http://localhost:8080/QME/" version="0" communicationversion="0" include_subdir="false"/>
@@ -69,6 +68,7 @@
     <Service prefixid="AppSvr_1" type="JSP" cachelevel="none" url="http://nyc.panpacific.co.kr/QMEServer/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="AppSvr_2" type="JSP" cachelevel="none" url="http://192.168.11.182/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="AppSvr" type="JSP" cachelevel="none" url="http://203.229.231.124/" version="0" communicationversion="0" include_subdir="false"/>
+    <Service prefixid="EcoLibrary" type="file" url="./EcoLibrary/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
   </Services>
   <Protocols/>
   <Update/>
