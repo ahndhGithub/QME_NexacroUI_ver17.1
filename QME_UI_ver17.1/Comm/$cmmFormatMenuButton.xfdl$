@@ -85,30 +85,69 @@ this.btn_GridFormat_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventIn
 {
 	var gtrcPos = "cmmFormatMenuButton.xjs.btn_GridFormat_onclick";
 	this.gtrace("●포맷버튼클릭", gtrcPos);
-	var btnPos = Eco.XComp.PositionSize.getTopLevelFormBox(this.btn_GridFormat);
-	var btnPos2 = Eco.XComp.PositionSize.convertXY(this.oFrmParnt,[0,0], this.parent);
-	var btnPos3 = Eco.XComp.PositionSize.getTopLevelFormBox(this.parent);
-	trace("clientPos-->("+e.clientx+","+e.clienty+")");
-	trace("canvasPos-->("+e.canvasx+","+e.canvasy+")");
-	trace("this.oFrmParnt--->"+this.oFrmParnt.name);
-	trace("this.parent.name---->"+this.parent.name);
-	trace("btnPos---->"+btnPos);
-	trace("btnPos2---->"+btnPos2);
-	trace("btnPos3---->"+btnPos3);
-	var objApp = pForm.gfn_getApplication();
-	trace("nexacro.System.getCursorY()--->"+nexacro.System.getCursorY());
-	trace("nexacro.toNumber(system.clientToScreenY(objApp.mainframe, 0))--->"+nexacro.toNumber(system.clientToScreenY(objApp.mainframe, 0)));
+
+	var pPos = this.gfn_getOffsetTopFromTopLevel(obj);
 	
-	var x = nexacro.toNumber(btnPos[0]) - nexacro.toNumber(this.PopupMenuGrdFormat.width) + nexacro.toNumber(btnPos[3]);
-	var y = nexacro.toNumber(btnPos[1]) + nexacro.toNumber(btnPos[3]);
+	var x = Eco.number.plus(nexacro.toNumber(pPos[0]), nexacro.toNumber(this.PopupMenuGrdFormat.width) * -1, nexacro.toNumber(obj.width));
+	var y = Eco.number.plus(nexacro.toNumber(pPos[1]), nexacro.toNumber(obj.height));
 	
-	this.gtrace("x,y--->("+x+","+y+")", gtrcPos);	//	위치는 도저히 모르겠다...
-	trace("x,y--->("+x+","+y+")");
+	this.PopupMenuGrdFormat.trackPopup(x, y);
+
+//	var objApp = pForm.gfn_getApplication();
+	
+// 	var btnPos = Eco.XComp.PositionSize.getTopLevelFormBox(this.btn_GridFormat);
+// 	var btnPos2 = Eco.XComp.PositionSize.convertXY(this.oFrmParnt,[0,0], this.parent);
+// 	var btnPos3 = Eco.XComp.PositionSize.getTopLevelFormBox(this.parent);
+// 	var btnPos4 = Eco.XComp.PositionSize.getTopLevelFormBox(this.oFrmParnt);
+// 	var btnPos5 = system.screenToClientY(this.oFrmParnt, 0);
+
+//	trace("gfn_getOffsetTopFromTopLevel---->"+this.gfn_getOffsetTopFromTopLevel(obj));
+// 	trace("?????"+e.clientx + this.parent.getOffsetLeft());
+// 	trace("?????"+this.parent.posX);
+// 	trace("?????"+e.clienty + this.parent.getOffsetTop());
+// 	trace("e.clienty?????"+e.clienty);		
+// 	trace("this.parent.getOffsetTop()?????"+this.parent.getOffsetTop());
+// 	trace("this.parent.getOffsetTop()?????"+this.parent.parent.getOffsetTop());
+// 	trace("this.parent.getOffsetTop()?????"+this.parent.parent.parent.getOffsetTop());
+// 	trace("this.parent.getOffsetTop()?????"+this.parent.parent.parent.parent.getOffsetTop());
+// 	trace("this.parent.getOffsetTop()?????"+this.parent.parent.parent.parent.parent.getOffsetTop());
+// 	trace("this.parent.getOffsetTop()?????"+this.parent.parent.parent.parent.parent.parent.getOffsetTop());
+// 	
+// 	trace("clientPos-->("+e.clientx+","+e.clienty+")");
+// 	trace("canvasPos-->("+e.canvasx+","+e.canvasy+")");
+// 	trace("this.oFrmParnt--->"+this.oFrmParnt.name);
+// 	trace("this.parent.name---->"+this.parent.name);
+// 	trace("btnPos---->"+btnPos);
+// 	trace("btnPos2---->"+btnPos2);
+// 	trace("btnPos3---->"+btnPos3);
+// 	trace("btnPos4---->"+btnPos4);
+// 	trace("btnPos5---->"+btnPos5);
+// 	
+// 	trace("nexacro.System.getCursorY()--->"+nexacro.System.getCursorY());
+// 	trace("nexacro.toNumber(system.clientToScreenY(objApp.mainframe, 0))--->"+nexacro.toNumber(system.clientToScreenY(objApp.mainframe, 0)));
+// 	trace("nexacro.toNumber(system.clientToScreenY(parent, 0))--->"+nexacro.toNumber(system.clientToScreenY(this.parent, 0)));
+// 	trace("nexacro.toNumber(system.clientToScreenY(parent.parent, 0))--->"+nexacro.toNumber(system.clientToScreenY(this.parent.parent, 0)));
+// 	trace("nexacro.toNumber(system.clientToScreenY(parent.parent.parent, 0))--->"+nexacro.toNumber(system.clientToScreenY(this.parent.parent.parent, 0)));
+// 	trace("nexacro.toNumber(system.clientToScreenY(parent.parent.parent.parent, 0))--->"+nexacro.toNumber(system.clientToScreenY(this.parent.parent.parent.parent, 0)));
+// 	trace("nexacro.toNumber(system.clientToScreenY(parent.parent.parent.parent.parent, 0))--->"+nexacro.toNumber(system.clientToScreenY(this.parent.parent.parent.parent.parent, 0)));
+// 
+// 
+// 	trace("nexacro.toNumber(system.screenToClientY(objApp.mainframe, 0))--->"+nexacro.toNumber(system.screenToClientY(objApp.mainframe, 0)));
+// 	trace("nexacro.toNumber(system.screenToClientY(parent, 0))--->"+nexacro.toNumber(system.screenToClientY(this.parent, 0)));
+// 	trace("nexacro.toNumber(system.screenToClientY(parent.parent, 0))--->"+nexacro.toNumber(system.screenToClientY(this.parent.parent, 0)));
+// 	trace("nexacro.toNumber(system.screenToClientY(parent.parent.parent, 0))--->"+nexacro.toNumber(system.screenToClientY(this.parent.parent.parent, 0)));
+// 	trace("nexacro.toNumber(system.screenToClientY(parent.parent.parent.parent, 0))--->"+nexacro.toNumber(system.screenToClientY(this.parent.parent.parent.parent, 0)));
+// 	trace("nexacro.toNumber(system.screenToClientY(parent.parent.parent.parent.parent, 0))--->"+nexacro.toNumber(system.screenToClientY(this.parent.parent.parent.parent.parent, 0)));
+
+
+// 	var x = nexacro.toNumber(btnPos[0]) - nexacro.toNumber(this.PopupMenuGrdFormat.width) + nexacro.toNumber(btnPos[3]);
+// 	var y = nexacro.toNumber(btnPos[1]) + nexacro.toNumber(btnPos[3]);
+	
+//	this.gtrace("x,y--->("+x+","+y+")", gtrcPos);	//	위치는 도저히 모르겠다...
+//	trace("x,y--->("+x+","+y+")");
 // 	trace("PopupMenuGrdFormat.width---->"+this.PopupMenuGrdFormat.width);
 // 	trace("PopupMenuGrdFormat.height---->"+this.PopupMenuGrdFormat.height);
 	//	this.PopupMenuGrdFormat.trackPopup(this.PopupMenuGrdFormat.x, this.PopupMenuGrdFormat.y);
-	this.PopupMenuGrdFormat.trackPopup(x, y);
-
 	
 	// 대상 그리드와 셀 정보를 추가
 // 	objGrid.popupMenu.grid = objGrid;

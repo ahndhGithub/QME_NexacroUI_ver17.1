@@ -179,7 +179,7 @@
             <Tabpage id="TabpagePoInfo_1" text="PO Info. 1" griduserproperty="no,!status,!checkbox,export,colfix,rowfix,sort,filter,initial,cellcopypaste,colhide,personal">
               <Layouts>
                 <Layout>
-                  <Grid id="GridPoInfo1" taborder="0" left="8" top="40" right="12" bottom="9" griduserproperty="no" binddataset="ds_listPoInfo1" cellsizingtype="col">
+                  <Grid id="GridPoInfo1" taborder="0" left="8" top="40" right="12" bottom="9" griduserproperty="no" binddataset="ds_listPoInfo1" cellsizingtype="both">
                     <Formats>
                       <Format id="default">
                         <Columns>
@@ -212,7 +212,7 @@
                           <Column size="80"/>
                         </Columns>
                         <Rows>
-                          <Row band="head" size="24"/>
+                          <Row size="24" band="head"/>
                           <Row size="24"/>
                         </Rows>
                         <Band id="head">
@@ -256,7 +256,7 @@
                           <Cell col="8" text="bind:CI_ITEM_NM"/>
                           <Cell col="9" text="bind:OSM_VBELN"/>
                           <Cell col="10" text="bind:CI_ITEM_DESCRIPTION"/>
-                          <Cell col="11" text="bind:CI_ITEM_IMAGE_THUMB"/>
+                          <Cell col="11" text="bind:CI_ITEM_IMAGE_THUMB" imagestretch="fit"/>
                           <Cell col="12" text="bind:OPD_ORDER_QTY"/>
                           <Cell col="13" text="bind:OPM_DELIVERY_DATE"/>
                           <Cell col="14" text="bind:SALES_PRICE"/>
@@ -1206,7 +1206,7 @@ this.callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
 		case "getOrderRecapList"	:
 // 			this.setWaitCursor( true );
 // 
-// //			this.gtrace("this.ds_listStyle.saveXML---->"+this.ds_listStyle.saveXML(), gtrcPos);
+			trace("this.ds_listPoInfo1.saveXML---->"+this.ds_listPoInfo1.saveXML());
 // 			
 // // 			if(this.ds_in.getColumn(0, "p_radio")=="1"){
 // // 				for (var i =0; i < this.ds_listStyle.rowcount ; i++){

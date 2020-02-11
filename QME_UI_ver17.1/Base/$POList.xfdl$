@@ -442,7 +442,6 @@
         <Button id="ButtonScriptTest" taborder="5" text="Script Test" top="8" width="84" height="28" visible="true" onclick="ButtonScriptTest_onclick" right="343"/>
         <Button id="ButtonSearchSample" taborder="6" text="Search Sample 트랜잭션" top="8" width="160" height="28" visible="true" right="177" onclick="TabMain_TabpagePOList_ButtonSearchSample_onclick"/>
         <Button id="ButtonTrace" taborder="7" text="Trc. 보이기/숨기기" height="28" onclick="ButtonTrace_onclick" right="8" width="160" top="8"/>
-        <Div id="DivBtnFormat00" taborder="9" text="" top="288" width="40" height="28" url="Comm::cmmFormatMenuButton.xfdl" targetGrid="TabMain.TabpagePOList.form.GridPoList" visible="true" right="-31"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[/********************************************************************************************
@@ -649,16 +648,19 @@ this.tfn_savePO = function(){
 								//	사용자세팅
 								this.gfn_setUser(this.ds_trans_POHistory, "USER_ID");
 								
-								//CRUD 세팅
+								// 기타처리
 								for(var k = 0 ; k < this.ds_trans_POHistory.rowcount ; k++){
+									//CRUD
 									this.ds_trans_POHistory.setColumn(k, "CRUD", "U");
+									
+									//EINDT : 날짜포맷 수정
 									this.ds_trans_POHistory.setColumn(k, "EINDT", 
 										this.gfn_dateToStr(
 											this.gfn_strToDate(
 												this.ds_trans_POHistory.getColumn(k, "EINDT")
 																)
 															)
-										);
+														);
 								}
 								
 								this.gtrace("트랜잭션데이터셋(ds_trans_POHistory.saveXML)--->"+this.ds_trans_POHistory.saveXML(), gtrcPos);
@@ -1032,8 +1034,8 @@ this.ButtonScriptTest_onclick = function(obj:nexacro.Button,e:nexacro.ClickEvent
 //		system.execBrowser("www.naver.com");
 	
 	//	192.168.11.193:8101/nexos/html/main/main.html?ver=20181022_03#LC00000M
-	trace(this.gfn_strToDate("20191227000000000"));
-	trace(this.gfn_dateToStr(this.gfn_strToDate("20191227000000000")));
+// 	trace(this.gfn_strToDate("20191227000000000"));
+// 	trace(this.gfn_dateToStr(this.gfn_strToDate("20191227000000000")));
 // 		trace("clientPos-->("+e.clientx+","+e.clienty+")");
 // 		trace("canvasPos-->("+e.canvasx+","+e.canvasy+")");
 	//	trace(this.TabMain.getIndex(this.TabMain.tabindex));
@@ -1932,12 +1934,12 @@ this.POList_onclick = function(obj:nexacro.Form,e:nexacro.ClickEventInfo)
           </Row>
           <Row>
             <Col id="LoadCol">COLOR</Col>
-            <Col id="SaveCol">P_J_3ASIZE</Col>
+            <Col id="SaveCol"/>
             <Col id="DsName">ds_POList</Col>
           </Row>
           <Row>
             <Col id="LoadCol">SIZE</Col>
-            <Col id="SaveCol"/>
+            <Col id="SaveCol">P_J_3ASIZE</Col>
             <Col id="DsName">ds_POList</Col>
           </Row>
           <Row>
