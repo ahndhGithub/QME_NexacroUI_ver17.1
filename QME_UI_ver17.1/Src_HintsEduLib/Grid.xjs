@@ -1054,9 +1054,12 @@ pForm.gfn_grid_onrbuttondown = function (objGrid, e)
 	objGrid.popupMenu.grid = objGrid;
 	objGrid.popupMenu.cellindex = e.cell;
 	objGrid.popupMenu.rowindex = e.row;
-
+	
 	var x = nexacro.toNumber(nexacro.System.getCursorX()) - nexacro.toNumber(system.clientToScreenX(objApp.mainframe, 0));
-	var y = nexacro.toNumber(nexacro.System.getCursorY()) - nexacro.toNumber(system.clientToScreenY(objApp.mainframe, 0));
+	var y = nexacro.toNumber(nexacro.System.getCursorY()) - nexacro.toNumber(system.clientToScreenY(objApp.mainframe, 0)) - 120;
+
+// 	var x = e.clientx;
+// 	var y = e.clienty;
 											this.gtrace("x,y--->("+x+","+y+")", gtrcPos);
 	objGrid.popupMenu.trackPopup(x, y);
 

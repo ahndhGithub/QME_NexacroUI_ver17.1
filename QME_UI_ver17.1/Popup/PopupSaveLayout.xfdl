@@ -263,7 +263,7 @@ this.tfn_FormatSave = function(rIDU)
 			// 한줄추가+값세팅
 			var iAddRp = this.ds_LayoutList.addRow();		this.gtrace("추가된 행 번호(ds_LayoutList-iAddRp)---->"+iAddRp, gtrcPos);
 			this.ds_LayoutList.setColumn(iAddRp, "PROGRAM_ID", this.paramNum);
-			this.ds_LayoutList.setColumn(iAddRp, "GRID_ID", this._getUniqueId(this.paramObj));
+			this.ds_LayoutList.setColumn(iAddRp, "GRID_ID", this._getUniqueId(this.paramObj)+"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 			this.ds_LayoutList.setColumn(iAddRp, "LAYOUT_NM", this.ds_in.getColumn(0, "LAYOUT_NM"));
 			this.ds_LayoutList.setColumn(iAddRp, "DEFAULT_YN", this.gfn_nvl(this.ds_in.getColumn(0, "DEFAULT_YN"),"N"));
 			this.ds_LayoutList.setColumn(iAddRp, "DEL_YN", "N");
@@ -309,12 +309,19 @@ this.callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
 	
 	this.gtrace("● 포맷콜백", gtrcPos);
 	this.gtrace("● 포맷콜백-save", gtrcSavePos);
+	this.gtrace("서비스아이디(strSvcID)--->"+strSvcID, gtrcSavePos);
+	this.gtrace("에러코드(nErrorCode)--->"+nErrorCode, gtrcSavePos);
+	this.gtrace("에러메세지(strErrorMsg)--->"+strErrorMsg, gtrcSavePos);
 	
 	// 에러 체크 영역
 	if (nErrorCode < 0)
 	{
-		//	alert(this.gfn_removeJavaErrMsg(strErrorMsg));
-		alert(strErrorMsg);
+		trace("서비스아이디(strSvcID)--->"+strSvcID);
+		trace("에러코드(nErrorCode)--->"+nErrorCode);
+		trace("에러메세지(strErrorMsg)--->"+strErrorMsg);
+
+		this.gfn_alert("msg.err.callback");
+
 		return;
 	}
 

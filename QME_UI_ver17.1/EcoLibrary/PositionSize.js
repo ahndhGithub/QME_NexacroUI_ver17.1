@@ -23,7 +23,7 @@ if ( !JsNamespace.exist("Eco.XComp.PositionSize") )
 		 */
 		getTopLevelFormBox: function(XComp)	
 		{
-			var topForm = Eco.XComp.getTopLevelForm(XComp);
+			var topForm = Eco.XComp.getTopLevelForm(XComp);		trace("topForm--->"+topForm.name);
 			var xy = Eco.XComp.PositionSize.convertXY(topForm, [0, 0], XComp);
 			
 			return [xy[0], xy[1], XComp.getOffsetWidth(), XComp.getOffsetHeight()];
