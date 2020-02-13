@@ -680,7 +680,7 @@ this.tfn_savePO = function(){
 	var sOutDatasets 	=  sOutDatasets;
 	var sArguments 		= "sqlId=" + nexacro.wrapQuote("");
 
-	//공통 트랜잭션 사용
+	//공통 트랜잭션 사용 : -1에러 발생시 자동 콜백처리됨.
 	this.gfn_transaction(sSvcID, sURL, sInDatasets, sOutDatasets, sArguments, "callbackFunction");
 	
 	this.ds_POHistory.filter("");
@@ -729,14 +729,14 @@ this.callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
 							var gtrcSearchPos = gtrcPos+".getPoListHistoryLoad";
 								this.gtrace("● PO콜백", gtrcPos);
 								this.gtrace("● PO콜백-Search", gtrcSearchPos);
-	// 에러 체크 영역
-	if (nErrorCode < 0)
-	{
-		//	alert(this.gfn_removeJavaErrMsg(strErrorMsg));
-		alert(strErrorMsg);
-		return;
-	}
-
+								
+	this.gtrace("strSvcID---->"+strSvcID, gtrcPos);
+	this.gtrace("nErrorCode---->"+nErrorCode, gtrcPos);
+	this.gtrace("strErrorMsg---->"+strErrorMsg, gtrcPos);
+	
+	// ###### nErrorCode < 0 경우는 gfn_transaction 에서 공통으로 처리됨. ######
+	
+	// 트랜잭션 성공시 서비스별 콜백처리
 	switch (strSvcID) 
 	{
 		default:
@@ -758,6 +758,7 @@ this.callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
 												this.gtrace(this.ds_POHistory.saveXML(), gtrcSearchPos)
 			break;
 		case "savePO":
+		
 				//	"00000000000" : 모두 PO생성 안됐다는 것임.
 				//	msg.pleasecheckmessage	: 	Please Check Message!	(	에러가 있을 경우	)
 				
@@ -792,10 +793,8 @@ this.callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
 							+"O_MSG:"+this.ds_result_savePO_default.getColumn(0, "O_MSG")			+"\n"
 							+"O_VBELN:"+this.ds_result_savePO_default.getColumn(0, "O_VBELN")		;
 									
-				this.gfn_alert(sCbMsg);
+				this.gfn_alert(sCbMsg,"TTT",strSvcID,"callbackFunc_pop","C");
 				//	alert(sCbMsg);
-					// 조회실행
-					this.tfn_getPoListHistoryLoad();
 			break;
  	}
 }
@@ -805,7 +804,16 @@ this.callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
 */
 this.callbackFunc_pop = function(strID, variant)
 {
+	trace("strID---->"+strID);
+	trace("variant---->"+variant);
 	
+	switch (strID) 
+	{
+		case "savePO"	:	// 조회실행-Refresh
+							//	this.tfn_getPoListHistoryLoad();
+		default : break;
+	
+	}
 }
 
 /********************************************************************************************
@@ -895,6 +903,30 @@ this.getTabpageType = function()
 	//	trace("곱하기--->"+Eco.number.multiply(sREMAIN_MENGE, sPRICE, sPEINH));
 }
 
+/*
+ * 해당 Payment term일 경우 해당 Doc. type 로 설정
+ */
+this.fn_PaytermDoctypeMatching = function(eRow, newPterm)
+{
+	var newDocType;
+	switch(newPterm) {
+	case "SC00"	:	newDocType = "IS";	break;	//	Sight LC 사용자입력 일자 지급			-->	Import Third PO
+	case "EA00"	:	newDocType = "IS";	break;	//	SAP EDI 당월 당일 지급
+	case "EC00"	:	newDocType = "IS";	break;	//	SAP EDI 사용자입력 일자 지급
+	case "LA60"	:	newDocType = "IM";	break;	//	Local LC 전기일기준 60일 수금/지급	-->	Import PO
+	case "FB60"	:	newDocType = "NB";	break;	//	예금 당월말일기준 60일 지급			-->	Standard PO
+	default		:	break;
+	}
+	
+	if(!this.gfn_isNull(newDocType)){
+		this.ds_POList.set_enableevent(false);
+		this.ds_POList.setColumn(eRow, "DOC_TYPE", newDocType);
+		this.ds_POList.set_enableevent(true);
+		return true;
+	}else{ 
+		return false;
+	}
+}
 /********************************************************************************************/
 /**   9. 이벤트(Event) 처리                                                                 */
 /********************************************************************************************/
@@ -921,14 +953,10 @@ this.ds_POList_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DS
 		obj.set_enableevent(true);
 	}
 	
-// Document type과 Payment term 매칭			
-// 해당 Payment term일 경우 해당 Doc. type 로 설정			
-// Payment terms	>>>	Doc. Type	
-// SC00	>>>	IS	
-// EA00	>>>	IS	
-// EC00	>>>	IS	
-// LA60	>>>	IM	
-// FB60	>>>	NB	
+	if(e.columnid	== "ZTERM"){
+		//	Payment term --> Doc. type 자동매칭
+		this.fn_PaytermDoctypeMatching(e.row, e.newvalue);
+	}
 };
 
 /*
@@ -1021,6 +1049,10 @@ this.TabMain_TabpagePOHistory_ButtonSendMailOutlook_onclick = function(obj:nexac
  */
 this.ButtonScriptTest_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+	var param = new Object();
+	param.polist = "4500571397＾4500571724";
+	opener.openProgram(param);
+
 // 	var objApp = pForm.gfn_getApplication();
 // 	trace("nexacro.System.getCursorY()--->"+nexacro.System.getCursorY());
 // 	trace("nexacro.toNumber(system.clientToScreenY(objApp.mainframe, 0))--->"+nexacro.toNumber(system.clientToScreenY(objApp.mainframe, 0)));

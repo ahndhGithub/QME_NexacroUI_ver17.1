@@ -4,7 +4,7 @@
     <Layouts>
       <Layout height="28" width="40">
         <Button id="btn_GridFormat" taborder="3" text="포맺" left="0" top="0" width="40" height="28" onclick="btn_GridFormat_onclick"/>
-        <PopupMenu id="PopupMenuGrdFormat" top="28" width="100" height="80" captioncolumn="CAPTION" idcolumn="ID" levelcolumn="LEVEL" innerdataset="ds_GridFormatMenu" enablecolumn="ENABLE" userdatacolumn="userdatacolumn" onmenuclick="PopupMenuGrdFormat_onmenuclick" right="-60"/>
+        <PopupMenu id="PopupMenuGrdFormat" top="28" width="80" height="80" captioncolumn="CAPTION" idcolumn="ID" levelcolumn="LEVEL" innerdataset="ds_GridFormatMenu" enablecolumn="ENABLE" userdatacolumn="userdatacolumn" onmenuclick="PopupMenuGrdFormat_onmenuclick" right="-40"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[include "Src_HintsEduLib::All_EduLib.xjs";
@@ -90,6 +90,8 @@ this.btn_GridFormat_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventIn
 	
 	var x = Eco.number.plus(nexacro.toNumber(pPos[0]), nexacro.toNumber(this.PopupMenuGrdFormat.width) * -1, nexacro.toNumber(obj.width));
 	var y = Eco.number.plus(nexacro.toNumber(pPos[1]), nexacro.toNumber(obj.height));
+	x = x + 2;
+	y = y + 2;
 	
 	this.PopupMenuGrdFormat.trackPopup(x, y);
 
@@ -257,14 +259,6 @@ this.fn_popupCallback = function(sPopId, sRtn)
             <Col id="ID">LoadLayout</Col>
             <Col id="LEVEL">0</Col>
             <Col id="CAPTION">LoadLayout</Col>
-            <Col id="ENABLE">true</Col>
-            <Col id="VISIBLE">true</Col>
-            <Col id="USERDATA">0</Col>
-          </Row>
-          <Row>
-            <Col id="ID">ResetLayout</Col>
-            <Col id="LEVEL">0</Col>
-            <Col id="CAPTION">ResetLayout</Col>
             <Col id="ENABLE">true</Col>
             <Col id="VISIBLE">true</Col>
             <Col id="USERDATA">0</Col>

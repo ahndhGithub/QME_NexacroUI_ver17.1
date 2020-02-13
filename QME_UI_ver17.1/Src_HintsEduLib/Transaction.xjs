@@ -119,10 +119,13 @@ pForm.gfn_callback = function(svcID, errorCode, errorMsg)
 	{
 		switch(errorCode)
 		{
-			case -1 :				
-				var arrError = (""+errorMsg).split("Query is");
-				// 서버 오류입니다.\n관리자에게 문의하세요.
-				this.gfn_alert("msg.server.error");
+			case -1 :	//	JAVA Controller Exception에서 발생 시키는 에러코드
+			
+				// Transaction Server Error{0} : 메세지창에는 에러코드만 노출 , 트레이스에는 svcID와 메세지.
+				trace("### svcID : "+svcID+" #### "+"errorCode---->"+errorCode+" #### "+"errorMsg---->"+errorMsg);
+				this.gfn_alert("msg.server.error", ["(errorCode:"+errorCode+")"], svcID, "", "A");	// gfn_alert(strMsgId, arrArg, strPopId, strCallback, strMsgType)
+																				//	var arrError = (""+errorMsg).split("Query is");
+				
 				break;
 				
 			case -2463215:
@@ -130,6 +133,9 @@ pForm.gfn_callback = function(svcID, errorCode, errorMsg)
 				//return false;
 				break;
 		}
+		
+		//	에러발생시 리턴 처리
+		return;
 	}
 
 	// 서비스 실행결과 출력

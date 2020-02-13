@@ -19,7 +19,9 @@ var pForm = nexacro.Form.prototype;
  */
  pForm.gfn_alert = function (strMsgId, arrArg, strPopId, strCallback, strMsgType)
 {
-											var gtrcPos = "Message.xjs.gfn_alert";
+	var gtrcPos = "Message.xjs.gfn_alert";
+	this.gtrace("● 메세지창(gfn_alert)", gtrcPos);
+	
     var objApp = pForm.gfn_getApplication();
 
 	//	if(objApp.gds_message.findRow("MSG_ID", strMsgId) < 0) return false;
@@ -38,7 +40,7 @@ var pForm = nexacro.Form.prototype;
     // 줄바꿈 변경
 	strMsg = strMsg.replace(/\\n/g, String.fromCharCode(10));
 	strMsg = pForm.gfn_convertMessage(strMsg, arrArg);
-												this.gtrace("strMsg------>"+strMsg, gtrcPos);
+												this.gtrace("strMsg(converted)------>"+strMsg, gtrcPos);
 //    trace("strMsg : " + strMsg);
 //	var strMsgType = objApp.gds_Language.lookup("DEFAULT_LANG", strMsgId, "MSG_TYPE");	
 
@@ -58,6 +60,7 @@ var pForm = nexacro.Form.prototype;
 	var oOption = {titlebar:"false"};	
 	
 	// messagePopup
+		this.gtrace("ev_messagePopup-->"+nexacro.getEnvironmentVariable("ev_messagePopup"), gtrcPos);
 	if (nexacro.getEnvironmentVariable("ev_messagePopup") == "true") {
 		this.gfn_openPopup(strPopId,strMsgUrl,oArg,strCallback,oOption);
 	}
