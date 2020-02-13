@@ -14,8 +14,8 @@
     </Layouts>
     <Script type="xscript5.1"><![CDATA[this.test_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
-	//	this.WebBrowser00.set_url("http://localhost:8080/QME/youtubePlayer.html");		//	https://developers.google.com/youtube/iframe_api_reference?hl=ko
-	this.WebBrowser00.set_url("http://nyc.panpacific.co.kr/QMEServer/");		//	https://developers.google.com/youtube/iframe_api_reference?hl=ko
+		this.WebBrowser00.set_url("http://localhost:8080/QME/QME_UI/QmeNexHtml/youtubePlayer.html");		//	https://developers.google.com/youtube/iframe_api_reference?hl=ko
+	//	this.WebBrowser00.set_url("http://nyc.panpacific.co.kr/QMEServer/");		//	https://developers.google.com/youtube/iframe_api_reference?hl=ko
 	//	this.WebBrowser00.set_url("http://naver.com");		//	https://developers.google.com/youtube/iframe_api_reference?hl=ko
 	//	this.WebBrowser00.set_url("http://192.168.11.193:8101/nexos/html/main/main.html?ver=20181022_03#LC00000M");
 };
@@ -76,8 +76,14 @@ this.ButtonOpenWindow_onclick = function(obj:nexacro.Button,e:nexacro.ClickEvent
 
 this.ButtonOpenerOpen_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	this.WebBrowser00.callMethod("qmeOpenProgram", "4500571397＾4500571724");
+	this.WebBrowser00.callMethod("qmeOpenProgram");
+	//	qmeOpenProgram();
 };
-]]></Script>
+
+function qmeOpenProgram(){
+	var param = new Object();
+	param.polist = "4500571397＾4500571724";
+	opener.openProgram(param);
+}]]></Script>
   </Form>
 </FDL>
