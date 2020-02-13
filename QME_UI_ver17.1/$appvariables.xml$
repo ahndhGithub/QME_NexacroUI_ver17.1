@@ -870,12 +870,6 @@
           <Col id="LANG_ID">Transaction error</Col>
         </Row>
         <Row>
-          <Col id="LANG_KO">Please Check Message!</Col>
-          <Col id="LANG_VI">Please Check Message!</Col>
-          <Col id="LANG_ID">Please Check Message!</Col>
-          <Col id="DEFAULT_LANG">msg.pleasecheckmessage</Col>
-        </Row>
-        <Row>
           <Col id="DEFAULT_LANG">아이디 </Col>
           <Col id="LANG_KO">ID</Col>
         </Row>
@@ -915,6 +909,30 @@
           <Col id="LANG_KO">Transaction Server Error{0}</Col>
           <Col id="LANG_VI">Transaction Server Error{0}</Col>
           <Col id="LANG_ID">Transaction Server Error{0}</Col>
+        </Row>
+        <Row>
+          <Col id="DEFAULT_LANG">msg.db.error</Col>
+          <Col id="LANG_KO">DB Server Error{0}</Col>
+          <Col id="LANG_VI">DB Server Error{0}</Col>
+          <Col id="LANG_ID">DB Server Error{0}</Col>
+        </Row>
+        <Row>
+          <Col id="LANG_KO">Save successfully.{0}</Col>
+          <Col id="DEFAULT_LANG">msg.success</Col>
+          <Col id="LANG_VI">Save successfully.{0}</Col>
+          <Col id="LANG_ID">Save successfully.{0}</Col>
+        </Row>
+        <Row>
+          <Col id="DEFAULT_LANG">msg.checkMessage</Col>
+          <Col id="LANG_KO">Please Check Message!</Col>
+          <Col id="LANG_VI">Please Check Message!</Col>
+          <Col id="LANG_ID">Please Check Message!</Col>
+        </Row>
+        <Row>
+          <Col id="DEFAULT_LANG">msg.NoPoCreated</Col>
+          <Col id="LANG_KO">Po NOT Created</Col>
+          <Col id="LANG_VI">Po NOT Created</Col>
+          <Col id="LANG_ID">Po NOT Created</Col>
         </Row>
       </Rows>
     </Dataset>
@@ -1431,7 +1449,7 @@
           <Col id="TrcId">POList.xfdl.callbackFunction</Col>
           <Col id="TrcSeq">610</Col>
           <Col id="Comments">PO</Col>
-          <Col id="ROW_CHK"></Col>
+          <Col id="ROW_CHK">1</Col>
           <Col id="TrcName">PO콜백</Col>
         </Row>
         <Row>
@@ -1561,7 +1579,7 @@
           <Col id="TrcId">Transaction.xjs.gfn_callback</Col>
           <Col id="TrcSeq">780</Col>
           <Col id="Comments"/>
-          <Col id="ROW_CHK"/>
+          <Col id="ROW_CHK">1</Col>
         </Row>
         <Row>
           <Col id="TrcId">Transaction.xjs.gfn_transaction</Col>

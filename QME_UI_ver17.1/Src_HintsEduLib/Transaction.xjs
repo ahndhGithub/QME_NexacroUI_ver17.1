@@ -112,7 +112,12 @@ pForm.gfn_transaction = function(strSvcId, strSvcUrl, inData, outData, strArg, c
  */
 pForm.gfn_callback = function(svcID, errorCode, errorMsg)
 {
-																var gtrcPos = "Transaction.xjs.gfn_callback"
+	var gtrcPos = "Transaction.xjs.gfn_callback"
+		this.gtrace("●콜백_공통(Transaction.js)", gtrcPos);
+		this.gtrace("svcID---->"+svcID, gtrcPos);
+		this.gtrace("errorCode---->"+errorCode, gtrcPos);
+		this.gtrace("errorMsg---->"+errorMsg, gtrcPos);
+		
 	var objSvcID = JSON.parse(svcID);
 	// 에러 공통 처리
 	if(errorCode != 0)

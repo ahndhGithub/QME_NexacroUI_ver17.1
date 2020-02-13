@@ -29,7 +29,7 @@ pForm.gfn_qmeRedirectMenu = function (sProgramId, oData){
 	this.gtrace("● 기존QME시스템 內 메뉴 호출",gtrcPos);
 	
 	//	호출URL
-	var redirectUrl = "/nexos/html/lc/"+sProgramId+".html?ver=20190305";
+	var redirectUrl = "/nexos/html/"+sProgramId+".html?ver=20190305";
 
 	this.gtrace("sProgramId---->"+sProgramId+" ---->PROGRAM_ID");
 	this.gtrace("redirectUrl---->"+redirectUrl+" ----> URL");
