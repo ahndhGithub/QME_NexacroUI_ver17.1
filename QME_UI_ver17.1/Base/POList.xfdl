@@ -765,13 +765,23 @@ this.callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
 				this.gtrace(this.ds_result_savePO.saveXML(), gtrcPos);
 				this.gtrace(this.ds_result_savePO_default.saveXML(), gtrcPos);
 				
+				var bSucc = true;
+				var arrSuccSalesOrderNo = [];
+				
 				for(var i = 0 ; i < this.ds_result_savePO.rowcount ; i++)
 				{
 					var sVBELN		=	this.ds_result_savePO.getColumn(i, "VBELN");		this.gtrace("sVBELN--->"+sVBELN, gtrcPos);	//	Sales Order
 					var sLIFNR		=	this.ds_result_savePO.getColumn(i, "LIFNR");		this.gtrace("sLIFNR--->"+sLIFNR, gtrcPos);	//	Vendor ( SUPPLIER_CODE )
-					var sMSG		=	this.ds_result_savePO.getColumn(i, "MESSAGE");		this.gtrace("sMSG--->"+sMSG, gtrcPos);	
-					//ZQME_PO : 000000000000000
-					//RETURN : S/F
+					var sMSG		=	this.ds_result_savePO.getColumn(i, "MESSAGE");		this.gtrace("sMSG--->"+sMSG, gtrcPos);
+					var sRtn		=	this.ds_result_savePO.getColumn(i, "RETURN");		this.gtrace("sRtn--->"+sRtn, gtrcPos);
+					
+					//성공여부 확인 - RETURN : S/F(ZQME_PO : 000000000000000)
+					if(sRtn != "S") bSucc = false; 
+					else{
+						arrSuccSalesOrderNo.push(sVBELN); 
+					}
+					
+					//메세지 적용
 					for(var k = 0 ; k < this.ds_POList.rowcount ; k++)
 					{
 						var pROW_CHK	=	this.ds_POList.getColumn(k, "ROW_CHK");						this.gtrace("pROW_CHK--->"+pROW_CHK, gtrcPos);	//	rowcheckbox
@@ -789,12 +799,14 @@ this.callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
 					}
 				}
 
-				var sCbMsg = "O_LIFNR:"+this.ds_result_savePO_default.getColumn(0, "O_LIFNR")		+"\n"
-							+"O_MSG:"+this.ds_result_savePO_default.getColumn(0, "O_MSG")			+"\n"
-							+"O_VBELN:"+this.ds_result_savePO_default.getColumn(0, "O_VBELN")		;
+				var sCbMsg = ( bSucc == true ? "Save successfully.(" + arrSuccSalesOrderNo+")" : "Please Check Message!");
+
+// 				var sCbMsg = "O_LIFNR:"+this.ds_result_savePO_default.getColumn(0, "O_LIFNR")		+"\n"
+// 							+"O_MSG:"+this.ds_result_savePO_default.getColumn(0, "O_MSG")			+"\n"
+// 							+"O_VBELN:"+this.ds_result_savePO_default.getColumn(0, "O_VBELN")		;
 									
-				this.gfn_alert(sCbMsg,"TTT",strSvcID,"callbackFunc_pop","C");
-				//	alert(sCbMsg);
+				this.gfn_alert(sCbMsg,"",strSvcID,"callbackFunc_pop","C");
+
 			break;
  	}
 }
@@ -979,10 +991,14 @@ this.TabMain_TabpagePOList_ButtonSearchSample_onclick = function(obj:nexacro.But
 // Go To Import Request
 this.TabMain_TabpagePOHistory_ButtonGoToImportRequest_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	//	var excUrl;
-	//	system.execBrowser(excUrl);
-	//	또는
-	//	별도 html 호출
+	var sProgramId = "LC00010E";	
+	var oData = {
+			columns: ["edtQPO_No", "poList"],
+			"edtQPO_No": "4500571397＾4500571724",
+			"poList": "4500571397＾4500571724"
+		};
+
+	this.gfn_qmeRedirectMenu(sProgramId, oData);
 };
 
 // Mass Input

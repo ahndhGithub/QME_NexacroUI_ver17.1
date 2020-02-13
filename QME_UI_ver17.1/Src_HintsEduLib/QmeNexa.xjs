@@ -19,6 +19,53 @@ pForm._getUserProperty = function (obj,userPropertyName)
 /*********************************************************************************************
  * @type   : function
  * @access : public
+ * @desc   : 기존 QME 시스템에 존재하는 특정 URL을 호출한다.
+ * @param  : 
+ * @return :
+ *********************************************************************************************/
+pForm.gfn_qmeRedirectMenu = function (sProgramId, oData){
+
+	var gtrcPos = "QmeNexa.xjs.gfn_qmeRedirectMenu";
+	this.gtrace("● 기존QME시스템 內 메뉴 호출",gtrcPos);
+	
+	//	호출URL
+	var redirectUrl = "/nexos/html/lc/"+sProgramId+".html?ver=20190305";
+
+	this.gtrace("sProgramId---->"+sProgramId+" ---->PROGRAM_ID");
+	this.gtrace("redirectUrl---->"+redirectUrl+" ----> URL");
+	this.gtrace("oData---->"+oData+" ----> DATA");
+	
+	//	$NC를 찾지 못하는 경우 발생하는 Error를 Catch한다.
+	try {
+		var params = {
+			PROGRAM_ID	: sProgramId,
+			URL			: redirectUrl,
+			DATA		: oData
+		};
+		
+		//	팝업인 경우 호출
+		opener.$NC.G_MAIN.redirectMenu(params);
+		this.gtrace("opener.$NC.G_MAIN.redirectMenu(params) 호출성공(팝업)");
+		return true;
+	}
+	catch(e){
+		//	탭인 경우 호출
+		try {
+			$NC.G_MAIN.redirectMenu(params);
+			this.gtrace("$NC.G_MAIN.redirectMenu(params) 호출성공(탭)");
+			return true;
+		}
+		catch(e){
+			this.gtrace("QME메뉴호출실패----------->"+e, gtrcPos);
+			return false
+		}
+	}
+}
+
+
+/*********************************************************************************************
+ * @type   : function
+ * @access : public
  * @desc   : 현재 플랫폼의 OS종류를 구한다.
  * @param  : 
  * @return :

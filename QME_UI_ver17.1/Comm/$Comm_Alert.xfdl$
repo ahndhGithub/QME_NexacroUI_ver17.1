@@ -7,7 +7,7 @@
         <Button id="btn_ok" taborder="0" text="확인" left="135" top="100" width="60" height="28" uWord="popup.ok" onclick="btn_ok_onclick" cssclass="btn_WF_pop2"/>
         <Static id="sta_16" taborder="2" left="10" top="87" height="1" cssclass="sta_WF_msg_line" right="10"/>
         <Static id="sta_icon" taborder="3" left="32" top="27" width="35" height="35" cssclass="sta_WF_msg_alert"/>
-        <TextArea id="txt_msg" taborder="4" left="80" top="27" width="216" height="35" cssclass="txt_WF_msg" wordWrap="char" readonly="true"/>
+        <TextArea id="txt_msg" taborder="4" left="80" top="27" width="216" height="55" cssclass="txt_WF_msg" wordWrap="char" readonly="true"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[include "Src_HintsEduLib::All_EduLib.xjs";

@@ -1412,7 +1412,7 @@
           <Col id="TrcId">Message.xjs.gfn_alert</Col>
           <Col id="TrcSeq">580</Col>
           <Col id="Comments"/>
-          <Col id="ROW_CHK">1</Col>
+          <Col id="ROW_CHK"></Col>
         </Row>
         <Row>
           <Col id="TrcId">Order_recap.xfdl.fn_reset</Col>
@@ -1431,7 +1431,7 @@
           <Col id="TrcId">POList.xfdl.callbackFunction</Col>
           <Col id="TrcSeq">610</Col>
           <Col id="Comments">PO</Col>
-          <Col id="ROW_CHK">1</Col>
+          <Col id="ROW_CHK"></Col>
           <Col id="TrcName">PO콜백</Col>
         </Row>
         <Row>
@@ -1550,6 +1550,12 @@
           <Col id="Comments"/>
           <Col id="TrcName">온로드시퀀스</Col>
           <Col id="ROW_CHK"/>
+        </Row>
+        <Row>
+          <Col id="TrcId">QmeNexa.xjs.gfn_qmeRedirectMenu</Col>
+          <Col id="ROW_CHK"></Col>
+          <Col id="TrcSeq">772</Col>
+          <Col id="TrcName">QME메뉴호출-리다이렉트</Col>
         </Row>
         <Row>
           <Col id="TrcId">Transaction.xjs.gfn_callback</Col>
