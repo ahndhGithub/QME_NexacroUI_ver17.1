@@ -263,7 +263,7 @@ this.tfn_FormatSave = function(rIDU)
 			// 한줄추가+값세팅
 			var iAddRp = this.ds_LayoutList.addRow();		this.gtrace("추가된 행 번호(ds_LayoutList-iAddRp)---->"+iAddRp, gtrcPos);
 			this.ds_LayoutList.setColumn(iAddRp, "PROGRAM_ID", this.paramNum);
-			this.ds_LayoutList.setColumn(iAddRp, "GRID_ID", this._getUniqueId(this.paramObj)+"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+			this.ds_LayoutList.setColumn(iAddRp, "GRID_ID", this._getUniqueId(this.paramObj));
 			this.ds_LayoutList.setColumn(iAddRp, "LAYOUT_NM", this.ds_in.getColumn(0, "LAYOUT_NM"));
 			this.ds_LayoutList.setColumn(iAddRp, "DEFAULT_YN", this.gfn_nvl(this.ds_in.getColumn(0, "DEFAULT_YN"),"N"));
 			this.ds_LayoutList.setColumn(iAddRp, "DEL_YN", "N");

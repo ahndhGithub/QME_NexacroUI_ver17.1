@@ -3,7 +3,7 @@
   <Form id="cmmGridFilterButton" width="40" height="28" onload="form_onload" scrolltype="none">
     <Layouts>
       <Layout height="28" width="40">
-        <Button id="btn_GridFilter" taborder="3" text="필터" left="0" top="0" width="40" height="28" onclick="btn_GridFilter_onclick"/>
+        <Button id="btn_GridFilter" taborder="3" text="필터" left="0" top="0" width="39" height="28" onclick="btn_GridFilter_onclick"/>
         <PopupMenu id="PopupMenuGrdFormat" left="0" top="28" width="100" height="80" captioncolumn="CAPTION" idcolumn="ID" levelcolumn="LEVEL" innerdataset="ds_GridFilterMenu" enablecolumn="ENABLE" userdatacolumn="userdatacolumn" onmenuclick="PopupMenuGrdFormat_onmenuclick" visible="false"/>
       </Layout>
     </Layouts>

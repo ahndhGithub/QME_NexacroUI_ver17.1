@@ -70,7 +70,7 @@
                         </Columns>
                         <Rows>
                           <Row size="24" band="head"/>
-                          <Row size="57"/>
+                          <Row size="24"/>
                         </Rows>
                         <Band id="head">
                           <Cell text="Status"/>
@@ -322,14 +322,14 @@
                       </Format>
                     </Formats>
                   </Grid>
-                  <Div id="DivBtnGfilter" taborder="1" text="" top="8" width="40" height="28" url="Comm::cmmGridFilterButton.xfdl" targetGrid="TabMain.TabpagePOHistory.form.GridPoHistory" visible="true" right="56"/>
-                  <Div id="DivBtnFormat" taborder="2" text="" top="8" width="40" height="28" url="Comm::cmmFormatMenuButton.xfdl" targetGrid="TabMain.TabpagePOHistory.form.GridPoHistory" visible="true" right="1071"/>
-                  <Button id="ButtonSendMailOutlook" taborder="3" text="SendMail(Outlook)" top="8" width="133" height="28" onclick="TabMain_TabpagePOHistory_ButtonSendMailOutlook_onclick" right="100"/>
-                  <Button id="ButtonDownloadPoPrint" taborder="4" text="Download P/O Print" top="8" width="133" height="28" onclick="TabMain_TabpagePOHistory_ButtonDownloadPoPrint_onclick" right="237"/>
-                  <Button id="ButtonPoPrintEn" taborder="5" text="P/O Print(EN)" top="8" width="133" height="28" onclick="TabMain_TabpagePOHistory_ButtonPoPrintEn_onclick" right="374"/>
-                  <Button id="ButtonPoPrintKr" taborder="6" text="P/O Print(KR)" top="8" width="133" height="28" onclick="TabMain_TabpagePOHistory_ButtonPoPrintKr_onclick" right="511"/>
-                  <Button id="ButtonMassInput" taborder="7" text="Mass Input" top="8" width="133" height="28" onclick="TabMain_TabpagePOHistory_ButtonMassInput_onclick" right="648"/>
-                  <Button id="ButtonGoToImportRequest" taborder="8" text="Go To Import Request" top="8" width="133" height="28" onclick="TabMain_TabpagePOHistory_ButtonGoToImportRequest_onclick" right="785"/>
+                  <Div id="DivBtnGfilter" taborder="1" text="" top="8" width="40" height="28" url="Comm::cmmGridFilterButton.xfdl" targetGrid="TabMain.TabpagePOHistory.form.GridPoHistory" visible="true" right="58"/>
+                  <Div id="DivBtnFormat" taborder="2" text="" top="8" width="40" height="28" url="Comm::cmmFormatMenuButton.xfdl" targetGrid="TabMain.TabpagePOHistory.form.GridPoHistory" visible="true" right="8"/>
+                  <Button id="ButtonSendMailOutlook" taborder="3" text="SendMail(Outlook)" top="8" width="133" height="28" onclick="TabMain_TabpagePOHistory_ButtonSendMailOutlook_onclick" right="105"/>
+                  <Button id="ButtonDownloadPoPrint" taborder="4" text="Download P/O Print" top="8" width="133" height="28" onclick="TabMain_TabpagePOHistory_ButtonDownloadPoPrint_onclick" right="242"/>
+                  <Button id="ButtonPoPrintEn" taborder="5" text="P/O Print(EN)" top="8" width="133" height="28" onclick="TabMain_TabpagePOHistory_ButtonPoPrintEn_onclick" right="379"/>
+                  <Button id="ButtonPoPrintKr" taborder="6" text="P/O Print(KR)" top="8" width="133" height="28" onclick="TabMain_TabpagePOHistory_ButtonPoPrintKr_onclick" right="516"/>
+                  <Button id="ButtonMassInput" taborder="7" text="Mass Input" top="8" width="133" height="28" onclick="TabMain_TabpagePOHistory_ButtonMassInput_onclick" right="653"/>
+                  <Button id="ButtonGoToImportRequest" taborder="8" text="Go To Import Request" top="8" width="133" height="28" onclick="TabMain_TabpagePOHistory_ButtonGoToImportRequest_onclick" right="790"/>
                 </Layout>
               </Layouts>
             </Tabpage>
@@ -536,6 +536,70 @@ this.fn_setSaveValidation = function()
 	this.gfn_setValidation(this.ds_POList, strVldtn_10, this.gfn_dsLookup(this.ds_grdDic, "BindCol", strVldtn_10, "HeaderText")	, "required");
 	
 }
+
+// 정합성체크 : 폼별 특수 케이스
+this.fn_validationCheck = function(){
+
+	var gtrcPos = "POList.xfdl.fn_validationCheck";
+		this.gtrace("● PO 정합성체크", gtrcPos);
+		
+	var oTp = this.getTabpageType();
+		var ttpe = oTp.TAB_TYPE;
+		var tds  = oTp.T_DS;
+	
+	switch(ttpe) {
+	case "PO_CREATE"	:	//	validationCheck
+			var checkResult = this.fn_saveCommonCheck(ttpe, tds);
+		break;
+	case "PO_UPDATE"	:	//	validationCheck
+			var checkResult = this.fn_saveCommonCheck(ttpe, tds);
+		break;
+	default:
+		break;
+	}
+	
+	return checkResult;
+}
+
+
+// 저장시 체크로직(CREATE / UPDATE)
+this.fn_saveCommonCheck = function(tabType, tabDs){
+
+	var gtrcPos = "POList.xfdl.fn_saveCommonCheck";
+		this.gtrace("●PO저장체크로직", gtrcPos);
+		
+	var bRtn;
+	
+	// 전체 돌면서 체크
+	tabDs.set_enableevent(false);
+	for(var i = 0 ; i < tabDs.rowcount ; i++){
+		
+		
+		//체크된 것에 대해서만 적용
+		var ck = tabDs.getColumn(i, "ROW_CHK");
+		if(ck == "1"){
+			//메세지초기화는 무조건 함
+			tabDs.setColumn(i, "Message","");
+
+			//	특정문서타입은 발주를 할수 없다.
+			var ckDocType = tabDs.getColumn(i, "DOC_TYPE");
+			if(ckDocType == "LN" || ckDocType == "LC" || ckDocType == "BM"){
+				//O/S type is not valid.
+				tabDs.setColumn(i, "Message", this.gfn_getMessage("msg.OStypeIsNotValid"));	
+				
+				bRtn = false;
+			}
+		}
+	}
+	this.ds_POList.set_enableevent(true);
+
+	// false되지 않았다면 true로 리턴
+	if(bRtn != false) bRtn = true;
+
+	this.gtrace("체크룰통과여부(validationCheck)-------->"+bRtn, gtrcPos);
+	
+	return bRtn;
+}
 /********************************************************************************************
 @desc	5. 서비스 호출(Transaction)
 ********************************************************************************************/
@@ -595,7 +659,7 @@ this.tfn_savePO = function(){
 	var gtrcPos = "POList.xfdl.tfn_savePO";		this.gtrace("● PO / POHistory 저장트랜잭션", gtrcPos);
 		
 	//	탭페이지에 따른 트랜잭션 세팅
-	var saveType = this.getTabpageType();
+	var saveType = this.getTabpageType().TAB_TYPE;
 	var strUrl;	
 	var strInDatasets;
 	var strOutDatasets;
@@ -638,12 +702,13 @@ this.tfn_savePO = function(){
 											// P_USER_BU , I_CHECK(Sales Order별)
 											this.ds_PoSave_in.setColumn(iAdRp, "P_USER_BU", this.gfn_getUser().BU_CD) ;
 											this.ds_PoSave_in.setColumn(iAdRp, "I_CHECK", this.ds_in.getColumn(0, "I_CHECK")) ;
+											this.ds_PoSave_in.setColumn(iAdRp, "P_EINDT", this.ds_PoSave_in.getColumn(iAdRp, "P_EINDT").replace("-", "")) ;
 											
 											//	P_BUKRS 값을 동일하게 세팅 ( 비맵핑컬럼 )
 											var sBukrs = this.ds_PoSave_in.getColumn(iAdRp, "P_BUKRS") ;
 														 this.ds_PoSave_in.setColumn(iAdRp, "P_EKORG", sBukrs) ;
 														 this.ds_PoSave_in.setColumn(iAdRp, "P_WERKS", sBukrs) ;
-											
+											 
 											//	PO생성 구분자 "C" 입력
 											this.ds_PoSave_in.setColumn(iAdRp, "P_CRUD", "C") ;
 										}
@@ -717,28 +782,39 @@ this.tfn_savePO = function(){
 */
 this.tfn_PoPrint = function(strLang){
 	
-	var gtrcPos = "POList.xfdl.tfn_PoPrint";		this.gtrace("● PO프린트", gtrcPos);
-	
-	var sLang = this.gfn_nvl(strLang, "EN");	//	기본 : 영어
+	var gtrcPos = "POList.xfdl.tfn_PoPrint";
+	this.gtrace("● PO프린트", gtrcPos);
 	
 	// 데이터셋초기화(in/out)
-// 	this.ds_ooo.clearData();
+	this.ds_PO_PRINT_in.clearData();
+	this.ds_PO_PRINT_in.addRow();
+	this.ds_PO_PRINT_out.clearData();
 
 	// 데이터 세팅
-// 	var addRp = this.ds_ooo.addRow();
-// 	this.ds_....setColumn(addRp, "", "");
+	var cDataStr;
+		var sEbeln = "I_EBELN|"	+ this.ds_POHistory.getColumn(this.ds_POHistory.rowposition, "POITEM");	//PO번호
+		var sItpe  = "ⁿI_TYPE|"+(strLang=="KR"? "K":"E");												//영문(E)/국문(K)
+		var sName  = "ⁿI_NAME|"+this.gfn_getApplication().gds_User.getColumn(0, "USER_NM");;			//사용자이름
+	cDataStr = sEbeln + sItpe + sName;
+
+	//	this.ds_PO_PRINT_in.setColumn(0, "rfcId", "ZQME_RFC_PO_PRINT");
+	this.ds_PO_PRINT_in.setColumn(0, "P_DATA_STR", cDataStr);
+	this.gfn_setUser(this.ds_PO_PRINT_in, "P_USER_ID");
+	this.ds_PO_PRINT_in.setColumn(0, "P_RETURN_TYPE", "DATA");
 	
 	// 트랜잭션 세팅
-// 	var sSvcID 			= "PoPrint";
-// 	var sURL 			= "AppSvr::common/commonAction.ppc";
-// 	var sInDatasets 	= "ds_in0=ds_ooo";
-// 	var sOutDatasets 	= "ds_xxx=ds_out0";
-// 	var sArguments 		= "sqlId=" + nexacro.wrapQuote("POMapper.ooo");
+	var sSvcID 			= "PoPrint";
+	var sURL 			= "AppSvr::common/os/call.ppc";
+	var sInDatasets 	= "ds_in0=ds_PO_PRINT_in";
+	var sOutDatasets 	= "ds_PO_PRINT_out=ds_out0";
+	//	var sArguments 		= "sqlId=" + nexacro.wrapQuote("");
+	var sArguments 		= "rfcId=" + nexacro.wrapQuote("ZQME_RFC_PO_PRINT");
+	
 		
-//		this.gtrace("보내는 데이터셋(ds_ooo.saveXML())---->"+this.ds_ooo.saveXML(), gtrcPos);
+		this.gtrace("보내는 데이터셋(ds_PO_PRINT_in.saveXML())---->"+this.ds_PO_PRINT_in.saveXML(), gtrcPos);
 	
 	//공통 트랜잭션 사용
-//	this.gfn_transaction(sSvcID, sURL, sInDatasets, sOutDatasets, sArguments, "callbackFunction");
+	this.gfn_transaction(sSvcID, sURL, sInDatasets, sOutDatasets, sArguments, "callbackFunction");
 }
 
 /********************************************************************************************
@@ -749,10 +825,10 @@ this.tfn_PoPrint = function(strLang){
 */
 this.callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
 {
-							var gtrcPos = "POList.xfdl.callbackFunction"
-							var gtrcSearchPos = gtrcPos+".getPoListHistoryLoad";
-								this.gtrace("● PO콜백", gtrcPos);
-								this.gtrace("● PO콜백-Search", gtrcSearchPos);
+	var gtrcPos = "POList.xfdl.callbackFunction"
+	var gtrcSearchPos = gtrcPos+".getPoListHistoryLoad";
+		this.gtrace("● PO콜백", gtrcPos);
+		this.gtrace("● PO콜백-Search", gtrcSearchPos);
 								
 	this.gtrace("strSvcID---->"+strSvcID, gtrcPos);
 	this.gtrace("nErrorCode---->"+nErrorCode, gtrcPos);
@@ -767,9 +843,13 @@ this.callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
 			break;
 			
 		case "PoPrint" : 	//	callback
-			//	ds_xxx....
-			//	var excUrl;
-			//	system.execBrowser(excUrl);
+			this.gtrace(this.ds_PO_PRINT_out.saveXML(), gtrcPos);
+			var excUrl;
+				excUrl = this.ds_PO_PRINT_out.getColumn(0, "O_REX_URL");
+				
+				excUrl.replace("&amp;", "&");
+				this.gtrace("excUrl----->"+excUrl, gtrcPos);
+				system.execBrowser(excUrl);
 			break;
 
 		case "getPoListHistoryLoad"	:	//	callback
@@ -781,94 +861,128 @@ this.callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
 			break;
 		
 		case "savePO":	//	callback
-				//	1126195724
-				//	"00000000000" : 모두 PO생성 안됐다는 것임.
+		
+				//	PO생성 / 수정 여부 확인
+				var oTp = this.getTabpageType();
+				var ttpe = oTp.TAB_TYPE;
+				var tds  = oTp.T_DS;
 
-				this.gtrace(this.ds_result_savePO_default.saveXML(), gtrcPos);
-				this.gtrace(this.ds_result_savePO_sap.saveXML(), gtrcPos);
+				this.gtrace("헤더의 결과(1줄)-savePO--->"+this.ds_result_savePO_default.saveXML(), gtrcPos);
+				this.gtrace("RFC의 결과(체크된Row)-savePO--->"+this.ds_result_savePO_sap.saveXML(), gtrcPos);
 
-				var sDef_ResultCd 	= this.ds_result_savePO_default.getColumn(0, "RESULT_CD");	this.gtrace("RESULT_CD-->"+sDef_ResultCd, gtrcPos);
-				var sDef_DbMsg 		= this.ds_result_savePO_default.getColumn(0, "DB_MSG");		this.gtrace("DB_MSG-->"+	sDef_DbMsg 	, gtrcPos);
+				var sDef_ResultCd 	= this.ds_result_savePO_default.getColumn(0, "RESULT_CD");	this.gtrace("nonsap저장성공여부(RESULT_CD)-->"+sDef_ResultCd	, gtrcPos);
+				var sDef_DbMsg 		= this.ds_result_savePO_default.getColumn(0, "DB_MSG");		this.gtrace("nonsap저장결과메세지(DB_MSG)-->"	+sDef_DbMsg 	, gtrcPos);
 				var sDef_RfcCall	= this.ds_result_savePO_default.getColumn(0, "RFC_CALL");	this.gtrace("RFC_CALL-->"+	sDef_RfcCall, gtrcPos);
 				var sDef_Expt 		= this.ds_result_savePO_default.getColumn(0, "EXCEPTION");	this.gtrace("EXCEPTION-->"+	sDef_Expt 	, gtrcPos);
 				
 				// nonsap 저장성공 , RFC진행 : 개별 성공여부 가져옴.
 				if(sDef_ResultCd == "S")
 				{
-					var bSucc = true;
-					var arrSuccSalesOrderNo = [];
+					var bSucc;					//	RFC 결과 전체Row가 모두 성공인지를 확인하기 위한 구분자
+					var arrEbeln = [];		// RFC 성공한 PO번호들을 담는 배열
 					
-					var cI_CHECK = this.ds_in.getColumn(0, "I_CHECK");
-						this.gtrace("cI_CHECK---->"+cI_CHECK, gtrcPos);
-					// Sales Order + Vendor 별로 하나의 PO가 생성된다
+					var cI_CHECK = this.ds_in.getColumn(0, "I_CHECK");	this.gtrace("SalesOrder별인지 구분(cI_CHECK)---->"+cI_CHECK, gtrcPos);
+
+					// PO_CREATE : Sales Order(Optional) + Vendor 별로 하나의 PO가 생성된다
+					// PO_UPDATE : Purchase Order 별로 하나의 메세지가 세팅된다 : 아이템별 부분성공 없음
 					for(var i = 0 ; i < this.ds_result_savePO_sap.rowcount ; i++)
 					{
+						var sEbeln		=	this.ds_result_savePO_sap.getColumn(i, "EBELN");		//	PO Number
 						var sVBELN		=	this.ds_result_savePO_sap.getColumn(i, "VBELN");		//	Sales Order
 						var sLIFNR		=	this.ds_result_savePO_sap.getColumn(i, "LIFNR");		//	Vendor ( SUPPLIER_CODE )
 						var sMSG		=	this.ds_result_savePO_sap.getColumn(i, "MESSAGE");	
 						var sRtn		=	this.ds_result_savePO_sap.getColumn(i, "RETURN");	
 						
-						//성공여부 확인 - RETURN : S/F(ZQME_PO : 000000000000000)
+						//성공여부 확인 - RETURN : S/F
 						if(sRtn != "S") bSucc = false; 
 						else{
-							arrSuccSalesOrderNo.push(sVBELN);
+							arrEbeln.push(sEbeln);
 						}
 						
 						//메세지 적용
-						for(var k = 0 ; k < this.ds_POList.rowcount ; k++)
+						for(var k = 0 ; k < tds.rowcount ; k++)
 						{
-							var pROW_CHK	=	this.ds_POList.getColumn(k, "ROW_CHK");						
-							var pVBELN		=	this.ds_POList.getColumn(k, "VBELN");						
-							var pSUPPLIER_CODE1		=	this.ds_POList.getColumn(k, "SUPPLIER_CODE1");			//	Vendor ( SUPPLIER_CODE )
+							var pROW_CHK			=	tds.getColumn(k, "ROW_CHK");
+							var pVBELN				=	tds.getColumn(k, "VBELN");					//	Sales Order
+							var pEbeln				=	tds.getColumn(k, "POITEM");					//	Purchase Order 
+							var pSUPPLIER_CODE1		=	tds.getColumn(k, "SUPPLIER_CODE1");			//	Vendor
 							
 							if(pROW_CHK == "1")
 							{
 								// 체크가 되어 있는 경우만 SalesOrder 번호까지 맞춰서 메세지를 세팅한다.
-								if(sVBELN == (cI_CHECK=="1"?pVBELN:sVBELN) && sLIFNR == pSUPPLIER_CODE1)
+								var bOkByTab;
+								switch(ttpe)
 								{
-									this.gtrace("i:"+i+"--k:"+k+"--sVBELN(Sales Order No)--->"+sVBELN, gtrcPos);
-									this.gtrace("i:"+i+"--k:"+k+"--sLIFNR(Vendor Code)--->"+sLIFNR, gtrcPos);
-									this.gtrace("i:"+i+"--k:"+k+"--sMSG--->"+sMSG, gtrcPos);
-									this.gtrace("i:"+i+"--k:"+k+"--sRtn--->"+sRtn, gtrcPos);
-									this.gtrace("i:"+i+"--k:"+k+"--pROW_CHK--->"+pROW_CHK, gtrcPos);	//	rowcheckbox
-									this.gtrace("i:"+i+"--k:"+k+"--pVBELN(Sales Order No)--->"+pVBELN, gtrcPos);		//	Sales Order
-									this.gtrace("i:"+i+"--k:"+k+"--pSUPPLIER_CODE1--->"+pSUPPLIER_CODE1, gtrcPos);	
+									case "PO_CREATE" : 
+											this.gtrace("PO생성측(bOkByTab)----->"+"cI_CHECK: "+cI_CHECK+" sVBELN: " +sVBELN+" pVBELN: " +pVBELN+" sLIFNR: " +sLIFNR+" pSUPPLIER_CODE1: " +pSUPPLIER_CODE1, gtrcPos);
+											if(		sVBELN == (cI_CHECK=="1"?pVBELN:sVBELN)
+												&& 	sLIFNR == pSUPPLIER_CODE1)
+											{
+												bOkByTab = true;
+											}else{
+												bOkByTab = false;
+											}
+										break;
+									case "PO_UPDATE" : 
+											this.gtrace("PO수정측(bOkByTab)----->"+"sEbeln: "+sEbeln+" pEbeln: " +pEbeln, gtrcPos);
+											if(sEbeln == pEbeln){
+												bOkByTab = true;
+											}else{
+												bOkByTab = false;
+											}
+										break;
+									default : break;
+								}
+								
+								this.gtrace(k+" 행 조건만족여부(bOkByTab)--->"+bOkByTab, gtrcPos);
+								if(bOkByTab)
+								{
+									this.gtrace("메세지입력할 row (k)-->"+k+" -- 메세지(sMSG), (VBELN, SUPPLIER_CODE1)--->"+sMSG+", "+pVBELN+","+pSUPPLIER_CODE1, gtrcPos);	
 									
-									//	메세지처리
-									//	this.ds_POList.setColumn(k, "Message", this.gfn_language(sMSG, ));
-									this.ds_POList.setColumn(k, "RETURN" , sRtn);
+									//	메세지처리 - 개행문자제거
+									tds.setColumn(k, "Message", this.gfn_getMessage(sMSG.replace( /\n/g , " ")));
+									tds.setColumn(k, "RETURN" , sRtn);
 									
 									//	성공이면 체크해제
-									if(sRtn == "S"){
-										this.ds_POList.set_enableevent(false);
-										this.ds_POList.setColumn(k, "ROW_CHK" , "0");	
-										this.ds_POList.set_enableevent(true);
+									if(sRtn == "S")
+									{
+										tds.set_enableevent(false);
+										tds.setColumn(k, "ROW_CHK" , "0");
+										tds.set_enableevent(true);
 									}
 								}
 							}
 						}
 						
-						//	성공한 오더번호가 하나도 없는 경우도 실패
-						if(arrSuccSalesOrderNo.length == 0) bSucc = false;
 					}
 					
-					// 모든 행이 성공이어야 성공
-					var sCbMsg;
+					//	성공한 오더번호가 하나도 없는 경우도 실패
+					if(arrEbeln.length == 0) bSucc = false;
+					
+					// 여기까지 bSucc가 false가 되지 않았다면 true
+					if(bSucc != false) bSucc = true;
+					
+					// 메세지 띄우기
 					if(bSucc){
-						sCbMsg = "msg.success";
-							this.gfn_alert(sCbMsg,["(" + arrSuccSalesOrderNo+")"],"savePO_SUCCESS","callbackFunc_pop","A");
+							//	전체적으로 성공완료
+							var sCbMsg = "msg.success";
+							this.gfn_alert(sCbMsg,["(" + arrEbeln+")"],"savePO_SUCCESS","callbackFunc_pop","A");
 					}else{
-						if(arrSuccSalesOrderNo.length == 0){
-							sCbMsg = "msg.NoPoCreated";
+						if(arrEbeln.length == 0){
+							//	SAP RFC는 탔으나 모두 실패 : PO가 하나도 생성되지 않음
+							var sCbMsg = "msg.NoPoCreated";
 							this.gfn_alert(sCbMsg,[],"savePO_NoPoCreated","callbackFunc_pop","A");
 						}else{
-							sCbMsg = "msg.checkMessage";
+							//	SAP RFC는 탔고 부분적으로 PO 생성 성공한 경우
+							var sCbMsg = "msg.checkMessage";
 							this.gfn_alert(sCbMsg,[],"savePO_CHECK","callbackFunc_pop","A");
 						}
 					}
 				}else{
+							//	SAP RFC (X), NON-SAP DB ERROR(O)
 							this.gfn_alert("msg.db.error",["(" + sDef_DbMsg+")"],"savePO_ERROR","callbackFunc_pop","A");
 				}
+				
 			break;
  	}
 }
@@ -878,8 +992,10 @@ this.callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
 */
 this.callbackFunc_pop = function(strID, variant)
 {
-	trace("strID---->"+strID);
-	trace("variant---->"+variant);
+	var gtrcPos = "POList.xfdl.callbackFunc_pop"
+	this.gtrace("● PO팝업콜백", gtrcPos);
+		this.gtrace("strID---->"+strID, gtrcPos);
+		this.gtrace("variant---->"+variant, gtrcPos);
 	
 	switch (strID) 
 	{
@@ -933,19 +1049,14 @@ this.cfn_del = function()
  */
 this.cfn_save = function()
 {
-	var checkDs;
-	switch(this.getTabpageType())
-	{
-		case "PO_CREATE" : checkDs		=	this.ds_POList;
-			break;
-		case "PO_UPDATE" : checkDs		=	this.ds_POHistory;
-			break;
-		default : break;
-	}
-	
-	if(this.gfn_rowCheckValidation(checkDs, "msg.err.validator.selectrow"))	// R : 체크한 행에 대해서만 체크
-	{
-		this.tfn_savePO();
+	var oTpage = this.getTabpageType();
+		var checkDs  = oTpage.T_DS;
+		
+	if(this.fn_validationCheck()){
+		if(this.gfn_rowCheckValidation(checkDs, "msg.err.validator.selectrow"))	// R : 체크한 행에 대해서만 체크
+		{
+			this.tfn_savePO();
+		}
 	}
 };
 
@@ -958,15 +1069,16 @@ this.cfn_save = function()
 this.getTabpageType = function()
 {
 	var resultStr;
+	var resultDs;
 	
 	switch(this.TabMain.tabindex)
 	{
-		case 0 	: resultStr = "PO_CREATE"; 	break;
-		case 1 	: resultStr = "PO_UPDATE"; 	break;
+		case 0 	: resultStr = "PO_CREATE"; 	resultDs = this.ds_POList; break;
+		case 1 	: resultStr = "PO_UPDATE"; 	resultDs = this.ds_POHistory; break;
 		default : resultStr = false;		break;
 	}
 	
-	return resultStr;
+	return {TAB_TYPE : resultStr, T_DS : resultDs};
 }
 
 /*
@@ -1062,7 +1174,7 @@ this.ButtonTrace_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
  */
 this.TabMain_TabpagePOList_ButtonSearchSample_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	this.ds_in.setColumn(0, "p_osno1", "1126195724");		//1202195746
+	this.ds_in.setColumn(0, "p_osno1", "1202195746");		//	//1126195724
 	this.DivCrudButton.form.btn_search.click();
 };
 
@@ -1144,8 +1256,9 @@ this.TabMain_TabpagePOHistory_ButtonSendMailOutlook_onclick = function(obj:nexac
  */
 this.ButtonScriptTest_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	var chkVal = this.ds_POList.setColumn(0, "ROW_CHK");	trace("chkVal--->"+chkVal);
-	this.ds_POList.setColumn(0, "ROW_CHK" , (chkVal=="1"?"0":"1"));
+	trace(this.gfn_getMessage("msg.OStypeIsNotValid"));
+// 	var chkVal = this.ds_POList.setColumn(0, "ROW_CHK");	trace("chkVal--->"+chkVal);
+// 	this.ds_POList.setColumn(0, "ROW_CHK" , (chkVal=="1"?"0":"1"));
 // 	var param = new Object();
 // 	param.polist = "4500571397＾4500571724";
 // 	opener.openProgram(param);
@@ -2093,7 +2206,7 @@ this.POList_onclick = function(obj:nexacro.Form,e:nexacro.ClickEventInfo)
           </Row>
           <Row>
             <Col id="LoadCol">MEINS</Col>
-            <Col id="SaveCol"/>
+            <Col id="SaveCol">P_MEINS</Col>
             <Col id="DsName">ds_POList</Col>
           </Row>
           <Row>
@@ -2153,7 +2266,7 @@ this.POList_onclick = function(obj:nexacro.Form,e:nexacro.ClickEventInfo)
           </Row>
           <Row>
             <Col id="LoadCol">DELIVERY_DATE</Col>
-            <Col id="SaveCol"/>
+            <Col id="SaveCol">P_EINDT</Col>
             <Col id="DsName">ds_POList</Col>
           </Row>
           <Row>
@@ -2233,7 +2346,7 @@ this.POList_onclick = function(obj:nexacro.Form,e:nexacro.ClickEventInfo)
           </Row>
           <Row>
             <Col id="LoadCol">ITEM_CD</Col>
-            <Col id="SaveCol"/>
+            <Col id="SaveCol">P_ITEM_CD</Col>
             <Col id="DsName">ds_POList</Col>
           </Row>
           <Row>
@@ -2253,7 +2366,7 @@ this.POList_onclick = function(obj:nexacro.Form,e:nexacro.ClickEventInfo)
           </Row>
           <Row>
             <Col id="LoadCol">LOT_NO</Col>
-            <Col id="SaveCol"/>
+            <Col id="SaveCol">P_LOT_NO</Col>
             <Col id="DsName">ds_POList</Col>
           </Row>
           <Row>
@@ -2652,6 +2765,10 @@ this.POList_onclick = function(obj:nexacro.Form,e:nexacro.ClickEventInfo)
           <Column id="P_LOEKZ" type="STRING" size="256"/>
           <Column id="P_USER_ID" type="STRING" size="256"/>
           <Column id="P_ZQME_PO" type="STRING" size="256"/>
+          <Column id="P_EINDT" type="STRING" size="256"/>
+          <Column id="P_MEINS" type="STRING" size="256"/>
+          <Column id="P_ITEM_CD" type="STRING" size="256"/>
+          <Column id="P_LOT_NO" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
       <Dataset id="ds_POHistory" useclientlayout="true">
@@ -2723,6 +2840,21 @@ this.POList_onclick = function(obj:nexacro.Form,e:nexacro.ClickEventInfo)
       <Dataset id="ds_result_savePO_sap"/>
       <Dataset id="ds_result_savePO_default"/>
       <Dataset id="ds_trans_POHistory" useclientlayout="true"/>
+      <Dataset id="ds_PO_PRINT_in" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="rfcId" type="STRING" size="256"/>
+          <Column id="P_DATA_STR" type="STRING" size="256"/>
+          <Column id="P_USER_ID" type="STRING" size="256"/>
+          <Column id="P_RETURN_TYPE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_PO_PRINT_out" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="O_REX_URL" type="STRING" size="256"/>
+          <Column id="O_USER_ID" type="STRING" size="256"/>
+          <Column id="O_RETURN" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
     </Objects>
     <Bind>
       <BindItem id="item0" compid="DivCondition.form.div_SalesOrderFromTo.form.calFrom" propid="value" datasetid="dsList" columnid="dtFrom"/>

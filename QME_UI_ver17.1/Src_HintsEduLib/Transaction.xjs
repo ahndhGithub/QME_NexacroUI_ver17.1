@@ -77,18 +77,50 @@ pForm.gfn_transaction = function(strSvcId, strSvcUrl, inData, outData, strArg, c
 
      this.gtrace("in_var1="+nexacro.wrapQuote(this.titletext) + " in_var2="+this.name, gtrcPos); 
 	 
-	 
 	 {	//	out데이터셋백업 : 콜백 사라짐 제거용
 		var arrOutDs = outData.split(" ");				//	this.gtrace("arrOutDs--->"+arrOutDs, gtrcPos);
 		
-		for (var k = 0 ; k < arrOutDs.length ; k++){
+		// 포맷관련 데이터셋이 없다면 무조건 추가해 놓음. 기준 : gds_outDs
+		{
+			var tOutDsName = "xGds_FormatOut";	this.gtrace("this.lookup(tOutDsName)-------------->"+this.lookup(tOutDsName), gtrcPos);
+			
+			if(this.gfn_isNull(this.lookup(tOutDsName))){
+				var tOutDs = new Dataset;
+				this.addChild(tOutDsName, tOutDs);
+			}
+			
+			this.xGds_FormatOut.copyData(this.gfn_getApplication().gds_outDs);
+		}
+		
+		//	OUT 데이터셋 Loop. : 받을 데이터셋 형태 세팅
+		for (var k = 0 ; k < arrOutDs.length ; k++)
+		{
 			var arrTmpStr = arrOutDs[k].split("=");
-			var tmpDs = eval("this."+arrTmpStr[0]);		this.gtrace(arrTmpStr[0]+"-->tmpDs.useclientlayout--->"+tmpDs.useclientlayout, gtrcPos);
-			for( var j=0; j<tmpDs.getColCount(); j++){
+			var tmpDs = eval("this."+arrTmpStr[0]);		
+					this.gtrace("tmpDs.name--->"+tmpDs.name, gtrcPos);
+					this.gtrace(arrTmpStr[0]+"-->tmpDs.useclientlayout--->"+tmpDs.useclientlayout, gtrcPos);
+			
+			var tmpDsName = tmpDs.name;
+			
+			//	useclientlayout 여부와 관계 없이 무조건 xGds_FormatOut데이터셋을 기준으로 가져오도록 한다.
+			//	var tmpUseclientlayout = tmpDs.useclientlayout;
+					this.gtrace("tmpDs.getColCount()--->"+tmpDs.getColCount(), gtrcPos);
+			for( var j=0; j<tmpDs.getColCount(); j++)
+			{
 				var tmpcol = tmpDs.getColID(j);
-					//	this.gtrace("tmpcol-->"+tmpcol, gtrcPos);
+				 
+				var aRp = this.xGds_FormatOut.addRow();
+					this.xGds_FormatOut.setColumn(aRp, "outName", tmpDsName);	//	Java : ds_out0 , ds_out1 , ...
+					this.xGds_FormatOut.setColumn(aRp, "dsName", "ds_out"+k);	//	Nexacro UI
+					this.xGds_FormatOut.setColumn(aRp, "dsCol", tmpcol);
+					this.xGds_FormatOut.setColumn(aRp, "dsColType", "STRING");
 			}
 		}
+		
+		inData = "xGds_FormatOut=xGds_FormatOut" + " " + inData;
+		
+		this.gtrace("xGds_FormatOut.saveXML--->"+this.xGds_FormatOut.saveXML(), gtrcPos);
+		this.gtrace("inData--->"+inData, gtrcPos);
 	 }
 	 
 	this.transaction( JSON.stringify(objSvcID)  //1.svcID

@@ -1055,6 +1055,249 @@ pForm.gfn_rowCheckValidation = function(objDs, strMsg)
 		this.gfn_alert("msg.err.validator.selectrow");
 		return false;
 	}else{
-		return this.gfn_validation(objDs, "R");
+		//	return this.gfn_validation(objDs, "R");
+		return this.gfn_rowMessageValidation(objDs, "R");
 	}
+};
+
+
+
+/**
+ * @class Dataset에 등록된 데이터 정합성체크 RuleSet에의해 정합성을 체크를 하고  ds의 Message 컬럼에 메세지를 셋팅하고 이상여부를 리턴한다.
+ * @param  {Dataset||Grid,String} Check 대상 Object(Dataset, Grid)
+                                  Check 모드 A: 모든 row에 대해서 체크, U: 변경된 row에 대해서만 체크(default)
+ * @return {Boolean} 정상 true / 오류 false
+ */
+pForm.gfn_rowMessageValidation = function()
+{
+							var gtrcPos = "Validation.xjs.gfn_rowMessageValidation";
+								this.gtrace("●정합성결과 데이터셋메세지에 셋팅(gfn_rowMessageValidation)", gtrcPos);
+	var nUpdateCnt = 0;
+	var targetlist  = new Array();
+	var sCheckMode   = "U";
+												this.gtrace("입력파람(arguments.length)--->"+arguments.length, gtrcPos);
+												this.gtrace("입력파람(arguments[0].name)--->"+arguments[0].name, gtrcPos);
+												this.gtrace("입력파람(arguments[1])--->"+arguments[1], gtrcPos);
+	var bFinalReturn ; 
+	
+	// Check 대상과 Check Mode(A/U)를 지정
+	for(var m=0; m<arguments.length; m++)
+	{    									//	this.gtrace("m--->"+m, gtrcPos);
+		// Check 모드(A-전체 row, U-변경된 row, R-ROW_CHK체크된 것) 설정
+			
+		if(this.gfn_typeOf(arguments[m]) == "string")
+		{
+			if(arguments[m] == "A" || arguments[m] == "U" || arguments[m] == "R")
+			{
+				sCheckMode = arguments[m];	this.gtrace("	Check 모드(sCheckMode)---->"+sCheckMode, gtrcPos);
+			}
+		}
+		// Check 대상 설정 : 데이타셋 or 그리드
+		else
+		{
+			targetlist.push(arguments[m]);	this.gtrace("	Check 대상(targetlist)---->"+arguments[m].name, gtrcPos);
+		}
+	}
+												
+	// arguments로 넘어온 Object 만큼 정합성 체크
+											this.gtrace("정합성 체크 : arguments로 넘어온 Object 만큼", gtrcPos);
+											this.gtrace("타겟리스트 갯수는(targetlist.length)--->"+targetlist.length, gtrcPos);
+	for(var m=0; m<targetlist.length; m++)
+	{
+											this.gtrace("타겟리스트의 "+m+"번째", gtrcPos);
+		var objDs;
+		var sObjtype = "";
+		var arrRule = new Array();
+
+		// 데이터셋
+		if(targetlist[m] instanceof Dataset){
+			objDs    = targetlist[m];
+			sObjtype = "dataset";
+		}
+		// 그리드
+		else if( targetlist[m] instanceof Grid ) {
+			objDs    = targetlist[m].getBindDataset();
+			sObjtype = "grid";
+		}
+		else {
+			continue;
+		}
+												this.gtrace("오브젝트타입(sObjtype)--->"+sObjtype, gtrcPos);
+												this.gtrace("오브젝트(objDs)--->"+objDs.name, gtrcPos);
+		
+		// 데이터셋의 RuleSet
+		var arrValidation = new Array();
+		if(!this.gfn_isNull(objDs.validationRuleSet) )
+		{
+			arrValidation = JSON.parse(objDs.validationRuleSet);
+		}
+		else {
+			continue;
+		}
+												this.gtrace("(데이터셋의) RULE SET (arrValidation)--->"+arrValidation, gtrcPos);
+												
+		// 삭제된 row 정합성 체크 건수 증가
+		nUpdateCnt += parseInt(objDs.getDeletedRowCount());
+												this.gtrace("삭제된 Row갯수(nUpdateCnt)--->"+nUpdateCnt, gtrcPos);
+		
+		// 데이터셋의 row 만큼 정합성 체크
+		for(var i=0; i<objDs.getRowCount(); i++)
+		{
+			if(sCheckMode=="R"){	// 체크된 것에 대해서만 체크
+				if(objDs.getColumn(i, "ROW_CHK")!="1") continue;
+			}
+													this.gtrace("i--->"+i+"(데이터셋의 "+i+"번째 행 in FOR문)", gtrcPos);
+			var nRowType = objDs.getRowType(i);		this.gtrace("행타입--->"+nRowType, gtrcPos);
+
+			// 삭제된 row
+			if (nRowType == 8) {
+				++nUpdateCnt;						this.gtrace("삭제행 nUpdateCnt증가--->"+nUpdateCnt, gtrcPos);
+				continue;
+			}
+
+			// sCheckMode에 따른 체크 대상 구분
+													this.gtrace("체크모드(sCheckMode)--->"+sCheckMode+" (A: 모든 row에 대해서 체크, U: 변경된 row에 대해서만 체크(default), R:체크된 row에 대해서만 체크)", gtrcPos);
+			if (sCheckMode == "U") {
+				// 변경 안된 Row는 정합성 체크 SKIP
+				if (nRowType == 1) {
+					continue;
+				}
+
+				// 추가, 수정은 정합성 체크
+				if (nRowType == 2 || nRowType == 4) {
+					++nUpdateCnt;
+				}
+			}
+			// 전체 row
+			else {
+				++nUpdateCnt;
+			}
+													this.gtrace("체크대상데이터셋행갯수(nUpdateCnt)--->"+nUpdateCnt, gtrcPos);
+			
+			// Rule 만큼 처리
+													this.gtrace("	RULE SET 갯수만큼 처리 (arrValidation.length)--->"+arrValidation.length, gtrcPos);
+													this.gtrace("첫번째체크룰 오브젝트만 확인(arrValidation[0]--->"+arrValidation[0], gtrcPos);
+			for(var j=0; j<arrValidation.length; j++)
+			{
+																					
+				var sColID     = arrValidation[j].name;								if(j==0)this.gtrace("	셋파람(sColID)--->"+sColID, gtrcPos);
+				var sColName   = new String(arrValidation[j].title);				if(j==0)this.gtrace("	셋파람(sColName)--->"+sColName, gtrcPos);
+				var sColValue  = String(objDs.getColumn(i, sColID)).trim();			if(j==0)this.gtrace("	셋파람(sColValue)--->"+sColValue, gtrcPos);
+				var arrRule    = (""+arrValidation[j].value).split(","); //required,length:5
+																					if(j==0)this.gtrace("	룰(arrRule)--->"+arrRule, gtrcPos);
+				var bNullCheck = arrValidation[j].notnull;
+																					if(j==0)this.gtrace("	널체크할것이지(bNullCheck)--->"+bNullCheck, gtrcPos);
+				// 필수입력 체크
+				if(bNullCheck == true){		//required가 있으므로 nullCheck를 하라
+																					if(j==0)this.gtrace("	널체크할값은(sColValue)--->"+this.gfn_nvl(sColValue,""), gtrcPos);
+
+				//	if(this.gfn_nvl(sColValue,"")==""){	//공백인 경우도체크 undefined인 경우는 ??
+				
+				if(sColID.indexOf("||") > -1)
+				{
+					var arrColId = sColID.split("||");
+					
+					for(var p=0 ; p<arrColId.length ;p++)
+					{
+						var tChkVal = String(objDs.getColumn(i, arrColId[p])).trim();
+						if(!this.gfn_isNull(tChkVal)){sColValue = tChkVal;}
+					}
+				}
+				
+				if(j==0)this.gtrace("sColValue--->"+sColValue, gtrcPos);
+					
+					if(this.gfn_isNull(sColValue))
+					{
+																if(j==0)this.gtrace("	체크값이널이다!!--->"+sColValue+" (sColValue)", gtrcPos);
+						// row 이동 및 focus 저장
+						objDs.set_rowposition(i);
+						this.validationObject = arguments[m];	if(j==0)this.gtrace("	체크오브젝트(this.validationObject)--->"+this.validationObject, gtrcPos);
+						this.validationColumn = sColID;			if(j==0)this.gtrace("	체크컬럼--->"+this.validationColumn, gtrcPos);
+
+						var titile = "";
+						if (sColName.indexOf(",") != -1) {
+							titile = sColName.split(",")[0];
+						}
+						else {
+							titile = sColName;
+						}
+				
+						// 예시 : 메시지 처리 : ${} 필수 입력 항목입니다. {0} 은(는) 필수 입력 항목입니다.
+						//this.gfnAlert("msg.err.validator", [this.gfn_getKoreanTarget(titile, "은(는)")+" 필수 입력 항목입니다."], null, "gfnValidationCallback");
+
+						//	this.gtrace("경고메세지---------(gfn_alert실행)(msg.err.validator.required)(in gds_Lang)(sColValue==null)", gtrcPos);
+						//	this.gfn_alert("msg.err.validator.required", [titile], null, "gfn_validationCallback", "A");	
+						
+						// 메세지 띄우지 않고 컬럼에 셋팅
+						objDs.setColumn(i, "Message", this.gfn_getMessage("msg.err.validator.required", [titile]));
+						
+						bFinalReturn = false;
+						//	return false;
+					}
+				}
+
+				// 필수값이 아닌 경우는 체크할 값이 null이 아닌 경우에만 체크(equalto,fromto,comparebig,comparesmall,comparesmall
+				if(this.gfn_nvl(sColValue,"")!=""){		//공백도 체크되도록 수정함	//if(!this.gfn_isNull(sColValue)){ 
+					// Rule에 따른 정합성 체크
+												if(j==0)this.gtrace("arrRule.length-------->"+arrRule.length, gtrcPos);
+					for(var k=0; k<arrRule.length; k++)
+					{
+						var msg = "";                        
+						// 컬럼의 두개의 값을 이용해서 처리하는 check 대상
+						var checkrule =  arrRule[k].split(":")[0];	if(j==0)this.gtrace("checkrule------->"+checkrule, gtrcPos);
+						if (checkrule == "equalto"
+						 || checkrule == "fromto" 
+						 || checkrule == "comparebig" 
+						 || checkrule == "comparesmall")
+						{
+							var compare1;
+							var compare2;
+							if(arrRule[k].split(":").length == 3){
+								compare1 = objDs.getColumn(i, arrRule[k].split(":")[1]);
+								compare2 = objDs.getColumn(i, arrRule[k].split(":")[2]);
+							}
+							else {
+								compare1 = objDs.getColumn(i, sColID);
+								compare2 = objDs.getColumn(i, arrRule[k].split(":")[1]);
+							}
+							msg = this.gfn_validationCheckRule(sColName, sColValue, arrRule[k], compare1, compare2);
+						}
+						// 컬럼의 한개 값을 이용해서 처리하는 check 대상
+						else {
+							msg = this.gfn_validationCheckRule(sColName, sColValue, arrRule[k]);
+						}
+
+						// 에러시
+						if (!this.gfn_isNull(msg)){
+							// row 이동 및 focus 저장
+							objDs.set_rowposition(i);
+							this.validationObject = arguments[m];
+							this.validationColumn = sColID;
+
+							// 메시지 처리 : ${}
+							this.gfn_alert("msg.err.validator", [msg], null, "gfn_validationCallback", "A");
+							
+							bFinalReturn = false;
+							//	return false;
+						}
+					}  // Rule에 따른 정합성 체크
+				}	// 필수값이 아닌 경우는 체크할 값이 null이 아닌 경우에만 체크
+			}  // Rule 만큼 처리
+		}  // 데이터셋의 row 만큼 정합성 체크
+	}  // arguments로 넘어온 체크 대상 만큼 정합성 체크
+
+	
+	// 정합성 체크 건수 확인
+	if (nUpdateCnt == 0)
+	{
+		this.gtrace("정합성 체크 대상이 없어 Validation을 체크가 되지 않았습니다.", gtrcPos);
+		//	return true; // 체크할 게 없는 경우 통과하도록 수정 191216.ADH.
+		bFinalReturn = true;
+	}
+	
+	if(bFinalReturn != false) bFinalReturn = true;
+	
+	this.gtrace("체크룰통과여부(gfn_rowMessageValidation)-------->"+bFinalReturn, gtrcPos);
+	
+	return bFinalReturn;
 };]]></Script>

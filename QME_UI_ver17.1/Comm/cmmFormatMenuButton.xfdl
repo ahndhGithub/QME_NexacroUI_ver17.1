@@ -3,7 +3,7 @@
   <Form id="cmmGridAddDelButton" width="40" height="28" onload="form_onload" scrolltype="none">
     <Layouts>
       <Layout height="28" width="40">
-        <Button id="btn_GridFormat" taborder="3" text="포맺" left="0" top="0" width="40" height="28" onclick="btn_GridFormat_onclick"/>
+        <Button id="btn_GridFormat" taborder="3" text="포맺" left="0" top="0" width="39" height="28" onclick="btn_GridFormat_onclick"/>
         <PopupMenu id="PopupMenuGrdFormat" top="28" width="80" height="80" captioncolumn="CAPTION" idcolumn="ID" levelcolumn="LEVEL" innerdataset="ds_GridFormatMenu" enablecolumn="ENABLE" userdatacolumn="userdatacolumn" onmenuclick="PopupMenuGrdFormat_onmenuclick" right="-40"/>
       </Layout>
     </Layouts>

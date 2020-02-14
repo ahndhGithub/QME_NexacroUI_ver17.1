@@ -98,14 +98,17 @@ pForm.gfn_convertMessage = function(msg, values)
 pForm.gfn_getMessage = function(sMsgId, arrArg) 
 {
     var objApp = pForm.gfn_getApplication();
-	//	if(objApp.gds_message.findRow("MSG_ID", sMsgId) < 0) return false;
-	if(objApp.gds_Language.findRow("DEFAULT_LANG", sMsgId) < 0) return false;
 	
-	//	var sMsg = objApp.gds_message.lookup("MSG_ID", sMsgId, "MSG_TEXT");
+	if(objApp.gds_Language.findRow("DEFAULT_LANG", sMsgId) < 0) {
+		return sMsgId.replace(/\\n/g, String.fromCharCode(10));
+	}
+	
 	var sMsg = objApp.gds_Language.lookup("DEFAULT_LANG", sMsgId, "LANGUAGE");
+	
 	// 줄바꿈 변경
 	sMsg = sMsg.replace(/\\n/g, String.fromCharCode(10));
 	sMsg =  pForm.gfn_convertMessage(sMsg, arrArg);	
+	
 	return sMsg;
 };
 

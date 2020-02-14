@@ -1037,9 +1037,8 @@
             </Format>
           </Formats>
         </Grid>
-        <Button id="Button00_00" taborder="5" text="Output Clear" width="209" height="35" onclick="Button00_onclick" right="0" bottom="0" visible="false"/>
-        <Button id="Button01" taborder="6" text="테스트트랜" left="387" top="175" width="103" height="25" onclick="Button01_onclick"/>
-        <Button id="Button02" taborder="7" text="일반테스트" left="500" top="175" width="103" height="25" onclick="Button02_onclick" visible="true"/>
+        <Button id="Button01" taborder="5" text="테스트트랜" left="387" top="175" width="103" height="25" onclick="Button01_onclick"/>
+        <Button id="Button02" taborder="6" text="일반테스트" left="500" top="175" width="103" height="25" onclick="Button02_onclick" visible="true"/>
         <Grid id="GridTrace" taborder="4" width="690" binddataset="gds_TrcInfo" griduserproperty="checkbox,sort" autofittype="col" cellsizingtype="col" visible="false" right="0" bottom="0" top="340" tempuserproperty="">
           <Formats>
             <Format id="default">
@@ -1065,7 +1064,7 @@
             </Format>
           </Formats>
         </Grid>
-        <Button id="ButtonTrace" taborder="8" text="Trc." height="25" onclick="ButtonTrace_onclick" right="260" width="40" top="215" visible="true"/>
+        <Button id="ButtonTrace" taborder="7" text="Trc." height="25" onclick="ButtonTrace_onclick" right="260" width="40" top="215" visible="true"/>
       </Layout>
     </Layouts>
     <Bind>

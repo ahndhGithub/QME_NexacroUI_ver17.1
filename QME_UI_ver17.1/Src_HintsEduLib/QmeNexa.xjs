@@ -453,8 +453,8 @@ pForm.gfn_callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
 						}
 						
 						var iAddRp = oGrdPrsnDs.addRow();
-						this.gtrace("GRIDID---->"+this.tFormatInDs.getColumn(i, "GRID_ID"),gtrcPos);
-						oGrdPrsnDs.setColumn(iAddRp, "sFormatId"	, this.tFormatInDs.getColumn(i, "GRID_ID"));
+						this.gtrace("GRIDID---->"+oTmpFrmDs.getColumn(i, "GRID_ID"),gtrcPos);
+						oGrdPrsnDs.setColumn(iAddRp, "sFormatId"	, oTmpFrmDs.getColumn(i, "GRID_ID"));
 						oGrdPrsnDs.setColumn(iAddRp, "sFormat"		, sData);
 						
 						this.gtrace("oGrdPrsnDs.saveXML---->"+oGrdPrsnDs.saveXML(),gtrcPos);

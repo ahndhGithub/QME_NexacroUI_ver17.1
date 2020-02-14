@@ -137,7 +137,7 @@ pForm.gfn_getAllInitData = function()
 																			this.gtrace(" -  넥사크로전용브라우져--TRANSYES", gtrcPos);
 				nexacro.getApplication().gds_QmeLogonInfo_in.clearData();
 				nexacro.getApplication().gds_QmeLogonInfo_in.addRow();
-				nexacro.getApplication().gds_QmeLogonInfo_in.setColumn(0, "p_user_id", "160307");
+				nexacro.getApplication().gds_QmeLogonInfo_in.setColumn(0, "p_user_id", "160307");	//	160307 : 나유철
 				nexacro.getApplication().gds_Language_in.clearData();
 				nexacro.getApplication().gds_Language_in.addRow();
 				nexacro.getApplication().gds_Language_in.setColumn(0, "p_country_cd", "KO");		//	한국 : KO / 베트남 : VI / 인도네시아 : ID
@@ -333,9 +333,11 @@ pForm.gfn_callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
 	switch (strSvcID) 
 	{
 		case "formatSearchOnload": 
-			var oGrdPrsnDs = this.gfn_getApplication().gds_gridPersonal;
-				oGrdPrsnDs.clearData();
 
+			var oGrdPrsnDs = this.gfn_getApplication().gds_gridPersonal;
+				trace("BEFORE---->"+this.gfn_getApplication().gds_gridPersonal.saveXML());
+				oGrdPrsnDs.clearData();
+				trace("AFTER---->"+this.gfn_getApplication().gds_gridPersonal.saveXML());
 			if(this.tFormatInDs.rowcount > 0)
 			{
 				for(var i = 0 ; i < this.tFormatInDs.rowcount ; i++)
