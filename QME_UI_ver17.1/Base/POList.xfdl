@@ -448,7 +448,7 @@
 @desc	1. Include
 ********************************************************************************************/
 include "Src_HintsEduLib::All_EduLib.xjs";
-
+ 
 /********************************************************************************************
 @desc	2. Form 변수 선언
 ********************************************************************************************/
@@ -547,59 +547,140 @@ this.fn_validationCheck = function(){
 		var ttpe = oTp.TAB_TYPE;
 		var tds  = oTp.T_DS;
 	
-	switch(ttpe) {
-	case "PO_CREATE"	:	//	validationCheck
-			var checkResult = this.fn_saveCommonCheck(ttpe, tds);
-		break;
-	case "PO_UPDATE"	:	//	validationCheck
-			var checkResult = this.fn_saveCommonCheck(ttpe, tds);
-		break;
-	default:
-		break;
-	}
+	// 저장공통체크
+	var checkResult = this.fn_saveCommonCheck(ttpe, tds);
 	
+	if(checkResult){
+		switch(ttpe) {
+		case "PO_CREATE"	:
+				//	PO 생성 체크
+				checkResult = this.fn_savePoValidation(ttpe, tds);
+				break;
+		case "PO_UPDATE"	:
+				//	히스토리 저장 체크
+				checkResult = this.fn_saveHistoryValidation(ttpe, tds);
+				break;
+		default:
+				break;
+		}
+	}
 	return checkResult;
 }
 
 
-// 저장시 체크로직(CREATE / UPDATE)
+// 저장시 공통체크로직(CREATE / UPDATE)
 this.fn_saveCommonCheck = function(tabType, tabDs){
 
 	var gtrcPos = "POList.xfdl.fn_saveCommonCheck";
 		this.gtrace("●PO저장체크로직", gtrcPos);
 		
-	var bRtn;
+	var bRtn = true;
 	
 	// 전체 돌면서 체크
 	tabDs.set_enableevent(false);
 	for(var i = 0 ; i < tabDs.rowcount ; i++){
 		
-		
 		//체크된 것에 대해서만 적용
 		var ck = tabDs.getColumn(i, "ROW_CHK");
+		
 		if(ck == "1"){
 			//메세지초기화는 무조건 함
-			tabDs.setColumn(i, "Message","");
-
-			//	특정문서타입은 발주를 할수 없다.
+			this.fn_setDsRowMessage(tabDs, i, "");
 			var ckDocType = tabDs.getColumn(i, "DOC_TYPE");
+			
+			// [P/O] 특정문서타입은 발주를 할수 없다. (''LN'', ''LC'', ''BM'')
+			// 에러메세지 : O/S type is not valid. (''LN'', ''LC'', ''BM'')
 			if(ckDocType == "LN" || ckDocType == "LC" || ckDocType == "BM"){
 				//O/S type is not valid.
-				tabDs.setColumn(i, "Message", this.gfn_getMessage("msg.OStypeIsNotValid"));	
-				
-				bRtn = false;
+				bRtn = this.fn_setDsRowMessage(tabDs, i, "msg.OStypeIsNotValid");
 			}
 		}
 	}
-	this.ds_POList.set_enableevent(true);
-
-	// false되지 않았다면 true로 리턴
-	if(bRtn != false) bRtn = true;
+	tabDs.set_enableevent(true);
 
 	this.gtrace("체크룰통과여부(validationCheck)-------->"+bRtn, gtrcPos);
 	
 	return bRtn;
 }
+
+// 히스토리 저장시 체크로직(UPDATE)
+this.fn_saveHistoryValidation = function(){
+	
+	var gtrcPos = "POList.xfdl.fn_saveHistoryValidation";
+		this.gtrace("●PO히스토리저장체크로직", gtrcPos);
+	
+	var bRtn = true;
+	var targetDs = this.ds_POHistory;
+	
+	targetDs.set_enableevent(false);
+	
+	// 전체 돌면서 체크
+	for(var i = 0 ; i < targetDs.rowcount ; i++){
+	
+		var ck = targetDs.getColumn(i, "ROW_CHK");
+		var ckDOC_TYPE = targetDs.getColumn(i, "DOC_TYPE");
+		var iPOITEM = targetDs.getColumn(i, "POITEM");
+		var iLIFNR = targetDs.getColumn(i, "LIFNR");			//	Vendor ( SUPPLIER_CODE )
+		var iUEBTO = nexacro.toNumber(targetDs.getColumn(i, "UEBTO"));
+		var iUNTTO = nexacro.toNumber(targetDs.getColumn(i, "UNTTO"));
+
+		//체크된 것에 대해서만 체크
+		if(ck=="1"){
+		
+			this.gtrace(i+"번째 행 DOC_TYPE-->"+ckDOC_TYPE, gtrcPos);
+			
+			if(ckDOC_TYPE == "NB" || ckDOC_TYPE == "IM")
+			{
+				//  NB' or 'IM' 으로 생성 및 변경시에는 TOL (more, less) 무조건 빈값
+				if(	!(iUEBTO==0 && iUNTTO==0)
+				){
+					bRtn = this.fn_setDsRowMessage(targetDs, i, "해당 Document Type은 TOL 값이 빈값이어야 합니다.");
+				}				
+			}
+			
+			// 두번 Loop.
+			for(var k = 0 ; k < targetDs.rowcount ; k++)
+			{	
+				var kPOITEM = targetDs.getColumn(k, "POITEM");
+				var kLIFNR = targetDs.getColumn(k, "LIFNR");	//	Vendor ( SUPPLIER_CODE )
+				var kROW_CHK = targetDs.getColumn(k, "ROW_CHK");	//	체크여부
+				
+				// [P/O HISTORY] 변경시 같은 PO인데 벤더가 다를경우 해당 에러 메시지
+				if(	iPOITEM == kPOITEM && iLIFNR != kLIFNR
+				){
+					this.gtrace(k+"번째 행 벤더코드-->"+kLIFNR+"!="+iLIFNR+"(체크된 벤더코드) at Purchase Number(POITEM)---->"+kPOITEM, gtrcPos);
+							var tmpMsg = "Please Select Equals PO AND Vendor Data!";
+							this.fn_setDsRowMessage(targetDs, i, tmpMsg);
+					bRtn = 	this.fn_setDsRowMessage(targetDs, k, tmpMsg);
+				}
+
+				// [ALL] Document Type NB' or 'IM' 로 변경시 해당 PO ITEM 전체선택 안되고 저장 불가
+				if(ckDOC_TYPE == "NB" || ckDOC_TYPE == "IM")
+				{
+					if(	iPOITEM == kPOITEM && kROW_CHK != "1"
+					){
+						//	체크되지 않은 것에도 메세지 표시
+						this.gtrace(k+"번째 행 체크안됨(kROW_CHK)-->"+kROW_CHK+" - Purchase Number(POITEM-kPOITEM)---->"+kPOITEM, gtrcPos);
+						var tmpMsg = "Document Type NB' or 'IM' 'PO번호' 에 아이템을 전체선택해주세요";
+								this.fn_setDsRowMessage(targetDs, i, tmpMsg);
+						bRtn = 	this.fn_setDsRowMessage(targetDs, k, tmpMsg);
+					}
+				}
+			}
+		}
+	}
+	
+	targetDs.set_enableevent(true);
+
+	this.gtrace("체크룰통과여부(validationCheck)-------->"+bRtn, gtrcPos);
+	return bRtn;
+}
+
+// PO 저장시 체크로직(CREATE)
+this.fn_savePoValidation = function(){
+	return true;
+}
+
 /********************************************************************************************
 @desc	5. 서비스 호출(Transaction)
 ********************************************************************************************/
@@ -1051,10 +1132,12 @@ this.cfn_save = function()
 {
 	var oTpage = this.getTabpageType();
 		var checkDs  = oTpage.T_DS;
-		
-	if(this.fn_validationCheck()){
-		if(this.gfn_rowCheckValidation(checkDs, "msg.err.validator.selectrow"))	// R : 체크한 행에 대해서만 체크
-		{
+
+	// R : 체크한 행에 대해서만 체크
+	if(this.gfn_rowCheckValidation(checkDs, "msg.err.validator.selectrow"))
+	{
+		// 정합성체크 : 폼별 특수 케이스
+		if(this.fn_validationCheck()){
 			this.tfn_savePO();
 		}
 	}
@@ -1121,6 +1204,17 @@ this.fn_PaytermDoctypeMatching = function(eRow, newPterm)
 		return false;
 	}
 }
+
+/*
+ * ds Row에 Message 입력
+ */
+this.fn_setDsRowMessage = function(oDs, iRow, sMsgId, arrArg)
+{
+	oDs.setColumn(iRow, "Message", this.gfn_getMessage(sMsgId, arrArg));
+	
+	 return false; // 메세지 입력할 일이 있다면 무조건 false로 리턴
+}
+
 /********************************************************************************************/
 /**   9. 이벤트(Event) 처리                                                                 */
 /********************************************************************************************/
@@ -1483,13 +1577,6 @@ this.POList_onclick = function(obj:nexacro.Form,e:nexacro.ClickEventInfo)
             <Col id="HeaderText">PO Desc</Col>
             <Col id="ColWidth">60</Col>
             <Col id="bTextAlign">center</Col>
-          </Row>
-          <Row>
-            <Col id="BindCol">PO_DESC</Col>
-            <Col id="HeaderText">PO Desc</Col>
-            <Col id="ColWidth">60</Col>
-            <Col id="bTextAlign">center</Col>
-            <Col id="bPadding"/>
           </Row>
           <Row>
             <Col id="BindCol">MATNR</Col>
@@ -1942,6 +2029,7 @@ this.POList_onclick = function(obj:nexacro.Form,e:nexacro.ClickEventInfo)
             <Col id="HeaderText">Vendor</Col>
             <Col id="GridId">GridPoHistory</Col>
             <Col id="ColWidth">80</Col>
+            <Col id="bEdittype">text</Col>
           </Row>
           <Row>
             <Col id="BindCol">NAME1</Col>
@@ -2780,6 +2868,7 @@ this.POList_onclick = function(obj:nexacro.Form,e:nexacro.ClickEventInfo)
           <Column id="CENTER_NM" type="STRING" size="256" description="20"/>
           <Column id="TYPE" type="STRING" size="256" description="30"/>
           <Column id="ERP_STYLE" type="STRING" size="256" description="40"/>
+          <Column id="DOC_TYPE" type="STRING" size="256"/>
           <Column id="POITEM" type="STRING" size="256" description="50"/>
           <Column id="EBELP" type="STRING" size="256" description="60"/>
           <Column id="ZTERM" type="STRING" size="256" description="70"/>
